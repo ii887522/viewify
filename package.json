@@ -1,0 +1,29 @@
+{
+  "name": "viewify",
+  "version": "1.0.0",
+  "description": "It is a GUI framework based on SDL 2 that can help developers create desktop client applications, video games and etc in record time.",
+  "main": "index.js",
+  "scripts": {
+    "install": "node build.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/ii887522/viewify.git"
+  },
+  "keywords": [
+    "view",
+    "viewify",
+    "UI",
+    "GUI"
+  ],
+  "author": "ii887522",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/ii887522/viewify/issues"
+  },
+  "homepage": "https://gitlab.com/ii887522/viewify#readme",
+  "dependencies": {
+    "@ii887522/packify": "^1.3.1"
+  }
+}
