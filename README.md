@@ -2,12 +2,16 @@
 It is a GUI framework based on SDL 2 that can help developers create desktop client applications, video games and etc in record time.
 
 ## Table of Contents
+- [For developers reading this in GitHub](https://gitlab.com/ii887522/viewify#for-developers-reading-this-in-github)
 - [Prerequisites](https://gitlab.com/ii887522/viewify#prerequisites)
 - [Update .NET Framework SDK version used by ms-build-tools to match your OS](https://gitlab.com/ii887522/viewify#update-net-framework-sdk-version-used-by-ms-build-tools-to-match-your-os)
 - [Build custom-node docker image](https://gitlab.com/ii887522/viewify#build-custom-node-docker-image)
 - [Build ms-build-tools docker image](https://gitlab.com/ii887522/viewify#build-ms-build-tools-docker-image)
 - [Install dependencies](https://gitlab.com/ii887522/viewify#install-dependencies)
 - [Build project](https://gitlab.com/ii887522/viewify#build-project)
+
+## For developers reading this in GitHub
+Please go to https://gitlab.com/ii887522/viewify to start contributing instead.
 
 ## Prerequisites
 - Windows 10
