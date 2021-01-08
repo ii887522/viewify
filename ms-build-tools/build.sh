@@ -1,1 +1,1 @@
-docker build -t viewify-ms-build-tools:latest .
+docker build -t ms-build-tools:latest .

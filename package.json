@@ -24,6 +24,6 @@
   },
   "homepage": "https://gitlab.com/ii887522/viewify#readme",
   "dependencies": {
-    "@ii887522/packify": "^1.3.1"
+    "@ii887522/packify": "^1.3.2"
   }
 }
