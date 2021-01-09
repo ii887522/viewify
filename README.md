@@ -80,3 +80,8 @@ install
 ```sh
 build
 ```
+
+### Deploy project
+```sh
+deploy <access-token>
+```
