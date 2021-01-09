@@ -6,7 +6,7 @@ options.outDirPath = 'libs/'
 options.x86DllOutDirPaths = ['viewify/Debug/', 'viewify/Release/', 'viewify/Test/'],
 options.x64DllOutDirPaths = ['viewify/x64/Debug/', 'viewify/x64/Release/', 'viewify/x64/Test/']
 
-const accessToken = 'bt2pXeqCYPKNq5awCwN6'
+const accessToken = '<access-token>'
 
 dependencies(async () => {
     await Promise.all([
