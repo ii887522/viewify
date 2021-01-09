@@ -14,7 +14,6 @@ It is a GUI framework based on SDL 2 that can help developers create desktop cli
 Please go to https://gitlab.com/ii887522/viewify to start contributing instead.
 
 ## Prerequisites
-- Windows 10
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) using Windows containers
 - [Visual Studio Code](https://code.visualstudio.com/)
     - Docker
@@ -33,23 +32,23 @@ Please go to https://gitlab.com/ii887522/viewify to start contributing instead.
 
 ## Update .NET Framework SDK version used by ms-build-tools to match your OS
 1. Left click on the start button at the bottom left corner of your desktop.
-    
+
     <img src="docs/start-button.png" alt="Start button" width="770" /><br /><br />
 
 2. Left click on the settings button at the left side of the start menu.
-    
+
     <img src="docs/settings.png" alt="Settings" width="770" /><br /><br />
 
 3. Left click on the system button at the top left corner of settings window.
-    
+
     <img src="docs/system.png" alt="System" width="770" /><br /><br />
 
 4. Left click on the about button at the bottom left corner of settings window.
-    
+
     <img src="docs/about.png" alt="About" width="770" /><br /><br />
 
 5. Take note of the version shown in the settings window. You will need it to search for appropriate tags later.
-    
+
     <img src="docs/version.png" alt="Version" width="770" /><br /><br />
 
 6. Go to https://hub.docker.com/_/microsoft-dotnet-framework-sdk/ and find Full Tag Listing section.
@@ -80,4 +79,9 @@ install
 ### Build project
 ```sh
 build
+```
+
+### Deploy project
+```sh
+deploy <access-token>
 ```

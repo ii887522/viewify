@@ -19,10 +19,231 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header Files\Any">
+      <UniqueIdentifier>{6cb3e681-7920-4e90-840f-a66d8ec5f1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factory">
+      <UniqueIdentifier>{de696fa2-5a76-4a71-a53e-04d05d4d2047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Functions">
+      <UniqueIdentifier>{356585ed-69e5-4f45-85c4-6c669ffa35b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Image">
+      <UniqueIdentifier>{9c050af2-5f76-43dc-8001-6b06463727fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{d586c314-8e41-4b5f-bfb0-42c9988ed15a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Struct">
+      <UniqueIdentifier>{95db7293-6d27-4cea-992c-f1fe0162e4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Text">
+      <UniqueIdentifier>{6666a972-376c-4d97-be1a-38216a339b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{bcd5d4c5-6f7c-47d5-854a-2e80ddae9633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ViewGroup">
+      <UniqueIdentifier>{faaff6c7-b5c6-470f-91d0-79ed31062f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Any">
+      <UniqueIdentifier>{6b171c95-585a-4438-8bda-f6e6ec8e39f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Functions">
+      <UniqueIdentifier>{890d3590-542c-4c28-89de-ddee1181defd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Image">
+      <UniqueIdentifier>{a5640fd0-e283-4c28-9d96-468c09de6770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{5dee731c-eb8c-4d7f-9bd7-7b8eeca9ad65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Text">
+      <UniqueIdentifier>{12ee4a31-2023-4aaa-926d-2f22eee3f866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{2557f775-0083-45e1-b293-a704447759c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Any">
+      <UniqueIdentifier>{eaeb864d-b681-48e5-a541-1209ba855f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Functions">
+      <UniqueIdentifier>{b2f3ca17-c80f-40db-8c70-ab83b67329f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Model">
+      <UniqueIdentifier>{be26eaa1-100c-43bb-9942-2a44b5376879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\Struct">
+      <UniqueIdentifier>{3419e22c-97c2-4815-b85a-deaec55e934b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Any">
+      <UniqueIdentifier>{c6a3fb23-a4a9-451d-b78d-c9e7720990a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Functions">
+      <UniqueIdentifier>{624db1a6-1cbb-4034-acca-11cd0b162515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Model">
+      <UniqueIdentifier>{525a7983-8f12-48b1-bc3d-81af74c7e8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\Struct">
+      <UniqueIdentifier>{5f8983f3-07a2-4b8b-b58d-2b01cdf02a34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\test\test.cpp">
-      <Filter>Test Source Files</Filter>
+    <ClInclude Include="src\main\Any\App.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Any\Enums.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Any\Map.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Any\Subsystems.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Any\View.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Factory\ViewGroupFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Functions\control_flow.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Functions\math_ext.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Functions\sdl_ext.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Image\Text.h">
+      <Filter>Header Files\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Model\ButtonModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Model\ImageModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Model\ModalModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\ViewGroup\Modal.h">
+      <Filter>Header Files\ViewGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\ViewGroup\Page.h">
+      <Filter>Header Files\ViewGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\View\BorderView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\View\Button.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\View\Image.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\View\RectView.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\View\ViewGroup.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Text\Score.h">
+      <Filter>Header Files\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\Border.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\Color.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\Paint.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\Point.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\Rect.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\Size.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Any\Map.test.h">
+      <Filter>Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Functions\math_ext.test.h">
+      <Filter>Test Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Model\ButtonModel.test.h">
+      <Filter>Test Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Model\ImageModel.test.h">
+      <Filter>Test Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Model\ModalModel.test.h">
+      <Filter>Test Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Struct\Point.test.h">
+      <Filter>Test Header Files\Struct</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main\Any\Subsystems.cpp">
+      <Filter>Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Any\View.cpp">
+      <Filter>Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Functions\sdl_ext.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Image\Text.cpp">
+      <Filter>Source Files\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Model\ButtonModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Model\ImageModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Model\ModalModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\View\Button.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\View\Image.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\View\RectView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Text\Score.cpp">
+      <Filter>Source Files\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Any\Map.test.cpp">
+      <Filter>Test Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Functions\math_ext.test.cpp">
+      <Filter>Test Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Functions\test.cpp">
+      <Filter>Test Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Model\ButtonModel.test.cpp">
+      <Filter>Test Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Model\ImageModel.test.cpp">
+      <Filter>Test Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Model\ModalModel.test.cpp">
+      <Filter>Test Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Struct\Point.test.cpp">
+      <Filter>Test Source Files\Struct</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
