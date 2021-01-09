@@ -26,6 +26,61 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\main\Any\App.h" />
+    <ClInclude Include="src\main\Any\Enums.h" />
+    <ClInclude Include="src\main\Any\Map.h" />
+    <ClInclude Include="src\main\Any\Subsystems.h" />
+    <ClInclude Include="src\main\Any\View.h" />
+    <ClInclude Include="src\main\Factory\ViewGroupFactory.h" />
+    <ClInclude Include="src\main\Functions\control_flow.h" />
+    <ClInclude Include="src\main\Functions\math_ext.h" />
+    <ClInclude Include="src\main\Functions\sdl_ext.h" />
+    <ClInclude Include="src\main\Image\Text.h" />
+    <ClInclude Include="src\main\Model\ButtonModel.h" />
+    <ClInclude Include="src\main\Model\ImageModel.h" />
+    <ClInclude Include="src\main\Model\ModalModel.h" />
+    <ClInclude Include="src\main\Struct\Border.h" />
+    <ClInclude Include="src\main\Struct\Color.h" />
+    <ClInclude Include="src\main\Struct\Paint.h" />
+    <ClInclude Include="src\main\Struct\Point.h" />
+    <ClInclude Include="src\main\Struct\Rect.h" />
+    <ClInclude Include="src\main\Struct\Size.h" />
+    <ClInclude Include="src\main\Text\Score.h" />
+    <ClInclude Include="src\main\ViewGroup\Modal.h" />
+    <ClInclude Include="src\main\ViewGroup\Page.h" />
+    <ClInclude Include="src\main\View\BorderView.h" />
+    <ClInclude Include="src\main\View\Button.h" />
+    <ClInclude Include="src\main\View\Image.h" />
+    <ClInclude Include="src\main\View\RectView.h" />
+    <ClInclude Include="src\main\View\ViewGroup.h" />
+    <ClInclude Include="src\test\Any\Map.test.h" />
+    <ClInclude Include="src\test\Functions\math_ext.test.h" />
+    <ClInclude Include="src\test\Model\ButtonModel.test.h" />
+    <ClInclude Include="src\test\Model\ImageModel.test.h" />
+    <ClInclude Include="src\test\Model\ModalModel.test.h" />
+    <ClInclude Include="src\test\Struct\Point.test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main\Any\Subsystems.cpp" />
+    <ClCompile Include="src\main\Any\View.cpp" />
+    <ClCompile Include="src\main\Functions\sdl_ext.cpp" />
+    <ClCompile Include="src\main\Image\Text.cpp" />
+    <ClCompile Include="src\main\Model\ButtonModel.cpp" />
+    <ClCompile Include="src\main\Model\ImageModel.cpp" />
+    <ClCompile Include="src\main\Model\ModalModel.cpp" />
+    <ClCompile Include="src\main\Text\Score.cpp" />
+    <ClCompile Include="src\main\View\Button.cpp" />
+    <ClCompile Include="src\main\View\Image.cpp" />
+    <ClCompile Include="src\main\View\RectView.cpp" />
+    <ClCompile Include="src\test\Any\Map.test.cpp" />
+    <ClCompile Include="src\test\Functions\math_ext.test.cpp" />
+    <ClCompile Include="src\test\Functions\test.cpp" />
+    <ClCompile Include="src\test\Model\ButtonModel.test.cpp" />
+    <ClCompile Include="src\test\Model\ImageModel.test.cpp" />
+    <ClCompile Include="src\test\Model\ModalModel.test.cpp" />
+    <ClCompile Include="src\test\Struct\Point.test.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -124,7 +179,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\include;C:\i\repos\viewify\libs\SDL2_image-2.0.5\include;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,19 +193,19 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TEST;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=148u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\include;C:\i\repos\viewify\libs\SDL2_image-2.0.5\include;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\lib\x86;C:\i\repos\viewify\libs\SDL2_image-2.0.5\lib\x86;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x86;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x86;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x86;$(ProjectDir)..\libs\nitro-1.0.1\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <TreatLibWarningAsErrors>true</TreatLibWarningAsErrors>
@@ -169,7 +224,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\include;C:\i\repos\viewify\libs\SDL2_image-2.0.5\include;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -191,7 +246,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\include;C:\i\repos\viewify\libs\SDL2_image-2.0.5\include;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -205,19 +260,19 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TEST;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=148u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\include;C:\i\repos\viewify\libs\SDL2_image-2.0.5\include;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\lib\x64;C:\i\repos\viewify\libs\SDL2_image-2.0.5\lib\x64;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x64;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x64;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x64;$(ProjectDir)..\libs\nitro-1.0.1\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <TreatLibWarningAsErrors>true</TreatLibWarningAsErrors>
@@ -236,7 +291,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\i\repos\viewify\libs\SDL2-2.0.12\include;C:\i\repos\viewify\libs\SDL2_image-2.0.5\include;C:\i\repos\viewify\libs\SDL2_ttf-2.0.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -248,9 +303,6 @@
       <TreatLibWarningAsErrors>true</TreatLibWarningAsErrors>
     </Lib>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\test\test.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
