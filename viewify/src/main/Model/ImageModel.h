@@ -37,9 +37,8 @@ namespace ii887522::viewify
 		public:
 			explicit constexpr Builder(const unsigned int a = 255u) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
 
-			// Animation Duration
+			// Animation Duration. It must be called at least 1 time before building ImageModel object.
 			// Param value: it must not be assigned to 0
-			// Must Call Time(s): At least 1
 			constexpr Builder& setDuration(const unsigned int value)
 			{
 				duration = value;
@@ -47,7 +46,7 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Must Call Time(s): At least 1
+			// It must be called to build ImageModel object.
 			ImageModel build();
 
 			friend class ImageModel;
