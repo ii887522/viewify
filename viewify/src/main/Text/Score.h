@@ -58,7 +58,7 @@ namespace ii887522::viewify
 			explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const unsigned int max,
 				const function<void()>& onValueMax);
 
-			// Must Call Time(s): At least 1
+            // It must be called at least 1 time before building Score object.
 			constexpr Builder& setCanIncrement(Reactive<bool>& value)
 			{
 				canIncrement = &value;
@@ -66,7 +66,7 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Must Call Time(s): At least 1
+			// It must be called at least 1 time before building Score object.
 			constexpr Builder& setCanReset(Reactive<bool>& value)
 			{
 				canReset = &value;
@@ -74,7 +74,7 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Must Call Time(s): At least 1
+			// It must be called to build Score object.
 			Score* build();
 
 			friend struct Score;

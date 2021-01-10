@@ -56,9 +56,8 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Animation duration
+			// Animation duration. It must be called at least 1 time before building Image object.
 			// Param value: it must not be assigned to 0
-			// Must Call Time(s): At least 1
 			constexpr Builder& setDuration(const unsigned int value)
 			{
 				duration = value;
@@ -66,7 +65,7 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Must Call Time(s): At least 1
+			// It must be called to build Image object.
 			Image* build();
 
 			friend class Image;
@@ -77,7 +76,7 @@ namespace ii887522::viewify
 		SDL_Surface* surface;
 		SDL_Texture* texture;
 		const Align align;
-		
+
 		void free();
 
 	protected:

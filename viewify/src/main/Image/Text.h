@@ -61,9 +61,8 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Animation duration
+			// Animation duration. It must be called at least 1 time before building Text object.
 			// Param p_value: it must not be assigned to 0
-			// Must Call Time(s): At least 1
 			constexpr Builder& setDuration(const unsigned int p_value)
 			{
 				duration = p_value;
@@ -71,7 +70,7 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Must Call Time(s): At least 1
+			// It must be called to build Text object.
 			Text* build();
 
 			friend class Text;

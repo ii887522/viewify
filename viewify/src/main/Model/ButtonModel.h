@@ -66,9 +66,8 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Alpha animation duration
+			// Alpha animation duration. It must be called at least 1 time before building ButtonModel object.
 			// Param value: it must not be assigned to 0
-			// Must Call Time(s): At least 1
 			constexpr Builder& setADuration(const unsigned int value)
 			{
 				aDuration = value;
@@ -76,9 +75,8 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Lightness animation duration
+			// Lightness animation duration. It must be called at least 1 time before building ButtonModel object.
 			// Param value: it must not be assigned to 0
-			// Must Call Time(s): At least 1
 			constexpr Builder& setLightnessDuration(const unsigned int value)
 			{
 				lightnessDuration = value;
@@ -86,16 +84,16 @@ namespace ii887522::viewify
 				return *this;
 			}
 
-			// Must Call Time(s): At least 1
+            // It must be called at least 1 time before building ButtonModel object.
 			Builder& setOnMouseOver(const function<void()>&);
 
-			// Must Call Time(s): At least 1
+			// It must be called at least 1 time before building ButtonModel object.
 			Builder& setOnMouseOut(const function<void()>&);
 
-			// Must Call TIme(s): At least 1
+			// It must be called at least 1 time before building ButtonModel object.
 			Builder& setOnClick(const function<void()>&);
 
-			// Must Call Time(s): At least 1
+			// It must be called to build ButtonModel object.
 			ButtonModel build();
 
 			friend class ButtonModel;
