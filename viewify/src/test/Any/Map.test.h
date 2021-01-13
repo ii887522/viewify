@@ -1,12 +1,15 @@
+// Copyright ii887522
+
+#ifndef VIEWIFY_SRC_TEST_ANY_MAP_TEST_H_
+#define VIEWIFY_SRC_TEST_ANY_MAP_TEST_H_
+
 #ifdef TEST
 
-#ifndef II887522_VIEWIFY_MAP_TEST_H
-#define II887522_VIEWIFY_MAP_TEST_H
+namespace ii887522::viewify {
 
-namespace ii887522::viewify
-{
-	void testMap();
-}
+void testMap();
+
+}  // namespace ii887522::viewify
 
 #endif
-#endif
+#endif  // VIEWIFY_SRC_TEST_ANY_MAP_TEST_H_
