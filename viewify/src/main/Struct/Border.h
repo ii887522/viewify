@@ -1,25 +1,27 @@
-#ifndef II887522_VIEWIFY_BORDER_H
-#define II887522_VIEWIFY_BORDER_H
+// Copyright ii887522
+
+#ifndef VIEWIFY_SRC_MAIN_STRUCT_BORDER_H_
+#define VIEWIFY_SRC_MAIN_STRUCT_BORDER_H_
 
 #include "Rect.h"
 
-namespace ii887522::viewify
-{
-	struct Border final
-	{
-		// remove copy semantics
-		Border(const Border&) = delete;
-		Border& operator=(const Border&) = delete;
+namespace ii887522::viewify {
 
-		// remove move semantics
-		Border(Border&&) = delete;
-		Border& operator=(Border&&) = delete;
+struct Border final {
+  // remove copy semantics
+  Border(const Border&) = delete;
+  Border& operator=(const Border&) = delete;
 
-		const Rect<int> rect;
-		const int width;
+  // remove move semantics
+  Border(Border&&) = delete;
+  Border& operator=(Border&&) = delete;
 
-		explicit constexpr Border(const Rect<int>& rect, const int width) : rect{ rect }, width{ width } { }
-	};
-}
+  const Rect<int> rect;
+  const int width;
 
-#endif
+  explicit constexpr Border(const Rect<int>& rect, const int width) : rect{ rect }, width{ width } { }
+};
+
+}  // namespace ii887522::viewify
+
+#endif  // VIEWIFY_SRC_MAIN_STRUCT_BORDER_H_

@@ -1,17 +1,19 @@
-#ifndef II887522_VIEWIFY_COLOR_H
-#define II887522_VIEWIFY_COLOR_H
+// Copyright ii887522
 
-namespace ii887522::viewify
-{
-	template <typename T> struct Color final
-	{
-		T r;
-		T g;
-		T b;
+#ifndef VIEWIFY_SRC_MAIN_STRUCT_COLOR_H_
+#define VIEWIFY_SRC_MAIN_STRUCT_COLOR_H_
 
-		explicit constexpr Color() { }
-		explicit constexpr Color(const T& r, const T& g, const T& b) : r{ r }, g{ g }, b{ b } { }
-	};
-}
+namespace ii887522::viewify {
 
-#endif
+template <typename T> struct Color final {
+  T r;
+  T g;
+  T b;
+
+  explicit constexpr Color() { }
+  explicit constexpr Color(const T& r, const T& g, const T& b) : r{ r }, g{ g }, b{ b } { }
+};
+
+}  // namespace ii887522::viewify
+
+#endif  // VIEWIFY_SRC_MAIN_STRUCT_COLOR_H_
