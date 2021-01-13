@@ -1,15 +1,18 @@
-#ifndef TEST
+// Copyright ii887522
 
-#ifndef II887522_VIEWIFY_SDL_EXT_H
-#define II887522_VIEWIFY_SDL_EXT_H
+#ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
+#define VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
+
+#ifndef TEST
 
 #include "../Struct/Point.h"
 
-namespace ii887522::viewify
-{
-	// Not Thread Safe: it must be called in main thread
-	Point<int> getMousePosition();
-}
+namespace ii887522::viewify {
+
+// Not Thread Safe: it must be called in main thread
+Point<int> getMousePosition();
+
+}  // namespace ii887522::viewify
 
 #endif
-#endif
+#endif  // VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_

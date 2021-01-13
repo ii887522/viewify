@@ -1,83 +1,79 @@
-#ifndef II887522_VIEWIFY_IMAGE_MODEL_H
-#define II887522_VIEWIFY_IMAGE_MODEL_H
+// Copyright ii887522
+
+#ifndef VIEWIFY_SRC_MAIN_MODEL_IMAGEMODEL_H_
+#define VIEWIFY_SRC_MAIN_MODEL_IMAGEMODEL_H_
 
 #include <Any/AnimatedAny.h>
 
 using ii887522::nitro::AnimatedAny;
 
-namespace ii887522::viewify
-{
-	// Not Thread Safe
-	class ImageModel final
-	{
-		// remove copy semantics
-		ImageModel(const ImageModel&) = delete;
-		ImageModel& operator=(const ImageModel&) = delete;
+namespace ii887522::viewify {
 
-		// remove move semantics
-		ImageModel(ImageModel&&) = delete;
-		ImageModel& operator=(ImageModel&&) = delete;
+// Not Thread Safe
+class ImageModel final {
+  // remove copy semantics
+  ImageModel(const ImageModel&) = delete;
+  ImageModel& operator=(const ImageModel&) = delete;
 
-	public:
-		// Not Thread Safe
-		class Builder final
-		{
-			// remove copy semantics
-			Builder(const Builder&) = delete;
-			Builder& operator=(const Builder&) = delete;
+  // remove move semantics
+  ImageModel(ImageModel&&) = delete;
+  ImageModel& operator=(ImageModel&&) = delete;
 
-			// remove move semantics
-			Builder(Builder&&) = delete;
-			Builder& operator=(Builder&&) = delete;
+ public:
+  // Not Thread Safe
+  class Builder final {
+    // remove copy semantics
+    Builder(const Builder&) = delete;
+    Builder& operator=(const Builder&) = delete;
 
-			const unsigned int a;
-			unsigned int duration; // animation duration
-			bool hasSetDuration; // has set animation duration
+    // remove move semantics
+    Builder(Builder&&) = delete;
+    Builder& operator=(Builder&&) = delete;
 
-		public:
-			explicit constexpr Builder(const unsigned int a = 255u) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
+    const unsigned int a;
+    unsigned int duration;  // animation duration
+    bool hasSetDuration;  // has set animation duration
 
-			// Animation Duration. It must be called at least 1 time before building ImageModel object.
-			// Param value: it must not be assigned to 0
-			constexpr Builder& setDuration(const unsigned int value)
-			{
-				duration = value;
-				hasSetDuration = true;
-				return *this;
-			}
+   public:
+    explicit constexpr Builder(const unsigned int a = 255u) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
 
-			// It must be called to build ImageModel object.
-			ImageModel build();
+    // Animation Duration. It must be called at least 1 time before building ImageModel object.
+    // Param value: it must not be assigned to 0
+    constexpr Builder& setDuration(const unsigned int value) {
+      duration = value;
+      hasSetDuration = true;
+      return *this;
+    }
 
-			friend class ImageModel;
-		};
+    // It must be called to build ImageModel object.
+    ImageModel build();
 
-	private:
-		AnimatedAny<int> a;
+    friend class ImageModel;
+  };
 
-		explicit ImageModel(const Builder&);
+ private:
+  AnimatedAny<int> a;
 
-	public:
-		constexpr unsigned int getA() const
-		{
-			return static_cast<unsigned int>(a.get());
-		}
+  explicit ImageModel(const Builder&);
 
-		constexpr void show()
-		{
-			a.set(255);
-		}
+ public:
+  constexpr unsigned int getA() const {
+    return static_cast<unsigned int>(a.get());
+  }
 
-		constexpr void hide()
-		{
-			a.teleport(0);
-		}
+  constexpr void show() {
+    a.set(255);
+  }
 
-		constexpr void step(const unsigned int dt)
-		{
-			a.step(dt);
-		}
-	};
-}
+  constexpr void hide() {
+    a.teleport(0);
+  }
 
-#endif
+  constexpr void step(const unsigned int dt) {
+    a.step(dt);
+  }
+};
+
+}  // namespace ii887522::viewify
+
+#endif  // VIEWIFY_SRC_MAIN_MODEL_IMAGEMODEL_H_
