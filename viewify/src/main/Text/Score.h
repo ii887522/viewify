@@ -99,11 +99,11 @@ struct Score final : public Text {
         const int) {
       if (!p_value) return;
       ++value;
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
 #endif
       set(string { "Score: " } + to_string(value));
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       endShortTermAlloc();
 #endif
       if (value == max) onValueMax();
@@ -112,11 +112,11 @@ struct Score final : public Text {
     builder.canReset->watch([this](const bool& p_value, const int) {
       if (!p_value) return;
       value = 0u;
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
 #endif
       set(string { "Score: " } + to_string(value));
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       endShortTermAlloc();
 #endif
     });
