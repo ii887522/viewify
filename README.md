@@ -17,8 +17,8 @@ It is a GUI framework based on SDL 2 that can help developers create desktop cli
 Please go to https://gitlab.com/ii887522/viewify to start contributing instead.
 
 ## Coding Style
-This project follows [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html). Please familiarize yourself with the rules provided 
-in the coding style and make sure all the proposed code changes in your commits are conforming to the style before making a merge request. You can 
+This project follows [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html). Please familiarize yourself with the rules provided
+in the coding style and make sure all the proposed code changes in your commits are conforming to the style before making a merge request. You can
 also make use of cpplint which is a [Visual Studio Code](https://code.visualstudio.com/) plugin and `build` command under the
 [Build project](https://gitlab.com/ii887522/viewify#build-project) section to support you.
 
@@ -90,10 +90,10 @@ install
 ```
 
 ## Set correct cpplint executable path in `.vscode/settings.json`
-1. In the explorer panel of [Visual Studio Code](https://code.visualstudio.com/), navigate to `env\Scripts\` or `env/bin/` in the project directory 
+1. In the explorer panel of [Visual Studio Code](https://code.visualstudio.com/), navigate to `env\Scripts\` or `env/bin/` in the project directory
 and find the cpplint executable.
 2. Right click on the cpplint executable and click on Copy Path to copy its absolute path.
-3. In the explorer panel of [Visual Studio Code](https://code.visualstudio.com/), navigate to `.vscode/settings.json` in the project directory and 
+3. In the explorer panel of [Visual Studio Code](https://code.visualstudio.com/), navigate to `.vscode/settings.json` in the project directory and
 open it.
 4. Finally, paste the absolute path as a string value of `"cpplint.cpplintPath"` in `settings.json` and save it.
 
@@ -104,5 +104,5 @@ build
 
 ### Deploy project
 ```sh
-deploy <access-token>
+deploy <version> <access-token>
 ```

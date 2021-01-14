@@ -57,7 +57,8 @@ struct Score final : public Text {
     // Param renderer: it must not be assigned to integer
     // Param font: it must not be assigned to integer
     explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const unsigned int max,
-      const function<void()>& onValueMax);
+      const function<void()>& onValueMax) : renderer{ renderer }, font{ font }, position{ position }, canIncrement{ nullptr },
+      hasSetCanIncrement{ false }, canReset{ nullptr }, hasSetCanReset{ false }, max{ max }, onValueMax{ onValueMax } { }
 
     // Param value: it must not be assigned to nullpter and integer
     // It must be called at least 1 time before building Score object.
@@ -76,7 +77,11 @@ struct Score final : public Text {
     }
 
     // It must be called to build Score object.
-    Score* build();
+    Score* build() {
+      if (!hasSetCanIncrement) throw runtime_error{ "Score canIncrement is required!" };
+      if (!hasSetCanReset) throw runtime_error{ "Score canReset is required!" };
+      return new Score{ *this };
+    }
 
     friend struct Score;
   };
@@ -94,11 +99,11 @@ struct Score final : public Text {
         const int) {
       if (!p_value) return;
       ++value;
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
 #endif
       set(string { "Score: " } + to_string(value));
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       endShortTermAlloc();
 #endif
       if (value == max) onValueMax();
@@ -107,11 +112,11 @@ struct Score final : public Text {
     builder.canReset->watch([this](const bool& p_value, const int) {
       if (!p_value) return;
       value = 0u;
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
 #endif
       set(string { "Score: " } + to_string(value));
-#if defined LINEAR_ALLOCATOR && SHORT_TERM_ALLOCATOR_SIZE
+#if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       endShortTermAlloc();
 #endif
     });
