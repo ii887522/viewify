@@ -58,9 +58,6 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{5dee731c-eb8c-4d7f-9bd7-7b8eeca9ad65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Text">
-      <UniqueIdentifier>{12ee4a31-2023-4aaa-926d-2f22eee3f866}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\View">
       <UniqueIdentifier>{2557f775-0083-45e1-b293-a704447759c4}</UniqueIdentifier>
     </Filter>
@@ -220,9 +217,6 @@
     </ClCompile>
     <ClCompile Include="src\main\View\RectView.cpp">
       <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main\Text\Score.cpp">
-      <Filter>Source Files\Text</Filter>
     </ClCompile>
     <ClCompile Include="src\test\Any\Map.test.cpp">
       <Filter>Test Source Files\Any</Filter>

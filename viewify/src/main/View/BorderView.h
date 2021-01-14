@@ -69,7 +69,7 @@ template <typename T = nullptr_t> class BorderView final : public View {
   explicit BorderView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>& paint, const int width,
     Map<T>*const map = nullptr, const T& cellValue = nullptr) : View{ renderer, position }, model{ Rect{ position, paint.size }, width },
     color{ paint.color } {
-    if (map) setCells(*map, cellValue);
+    if (map) setCells(map, cellValue);
   }
 
   void render() override {

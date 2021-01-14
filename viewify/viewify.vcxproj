@@ -69,7 +69,6 @@
     <ClCompile Include="src\main\Model\ButtonModel.cpp" />
     <ClCompile Include="src\main\Model\ImageModel.cpp" />
     <ClCompile Include="src\main\Model\ModalModel.cpp" />
-    <ClCompile Include="src\main\Text\Score.cpp" />
     <ClCompile Include="src\main\View\Button.cpp" />
     <ClCompile Include="src\main\View\Image.cpp" />
     <ClCompile Include="src\main\View\RectView.cpp" />
