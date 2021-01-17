@@ -23,6 +23,7 @@ also make use of cpplint which is a [Visual Studio Code](https://code.visualstud
 [Build project](https://gitlab.com/ii887522/viewify#build-project) section to support you.
 
 ## Prerequisites
+- Windows 10
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) using Windows containers
 - [Visual Studio Code](https://code.visualstudio.com/)
   - C/C++
