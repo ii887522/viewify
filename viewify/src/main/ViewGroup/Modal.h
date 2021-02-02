@@ -13,6 +13,7 @@
 #include "../Struct/Point.h"
 #include "../Model/ModalModel.h"
 #include "../Any/Enums.h"
+#include "../Functions/sdl_ext.h"
 
 using std::initializer_list;
 using ii887522::nitro::Reactive;
@@ -61,6 +62,7 @@ template <unsigned int viewCount> class Modal final : public ViewGroup<viewCount
       if (value) {
         model.show();
         ViewGroup<viewCount>::show();
+        ViewGroup<viewCount>::reactMouseMotion(SDL_MouseMotionEvent{ .x = getMousePosition().x, .y = getMousePosition().y });
       } else {
         model.hide();
         ViewGroup<viewCount>::hide();
