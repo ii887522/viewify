@@ -8,9 +8,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e5cb56dc-8885-4c16-9bb5-5da3cb97c772}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{46cd467e-a389-42e2-ae6a-7caf2a6704e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Test Header Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -84,6 +81,12 @@
     </Filter>
     <Filter Include="Test Source Files\Struct">
       <UniqueIdentifier>{5f8983f3-07a2-4b8b-b58d-2b01cdf02a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Header Files\ViewGroupFactory">
+      <UniqueIdentifier>{4f67d421-2845-4737-bfc9-2bc93cbf6c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Resource Files">
+      <UniqueIdentifier>{46cd467e-a389-42e2-ae6a-7caf2a6704e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +189,12 @@
     <ClInclude Include="src\test\Struct\Point.test.h">
       <Filter>Test Header Files\Struct</Filter>
     </ClInclude>
+    <ClInclude Include="src\test\ViewGroupFactory\ViewifyViewGroupFactory.h">
+      <Filter>Test Header Files\ViewGroupFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Any\Enums.h">
+      <Filter>Test Header Files\Any</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp">
@@ -239,5 +248,18 @@
     <ClCompile Include="src\test\Struct\Point.test.cpp">
       <Filter>Test Source Files\Struct</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\test\arial.ttf">
+      <Filter>Test Resource Files</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\test\placeholder1.png">
+      <Filter>Test Resource Files</Filter>
+    </Image>
+    <Image Include="res\test\placeholder2.png">
+      <Filter>Test Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

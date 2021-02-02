@@ -3,8 +3,6 @@
 #ifndef VIEWIFY_SRC_MAIN_ANY_APP_H_
 #define VIEWIFY_SRC_MAIN_ANY_APP_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
@@ -13,6 +11,7 @@
 #include "Enums.h"
 #include "../View/ViewGroup.h"
 #include "../Factory/ViewGroupFactory.h"
+#include "../Struct/Color.h"
 
 using std::string;
 using std::initializer_list;
@@ -33,6 +32,7 @@ template <unsigned int viewCount> class App final {
   SDL_Window*const window;
   SDL_Surface*const favicon;
   SDL_Renderer*const renderer;
+  const Color<unsigned int> backgroundColor;
   ViewGroup<viewCount> scene;
 
   constexpr void reactMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) {
@@ -48,7 +48,7 @@ template <unsigned int viewCount> class App final {
   }
 
   void renderBackground() {
-    SDL_SetRenderDrawColor(renderer, 0u, 0u, 0u, 255u);
+    SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(backgroundColor.r), static_cast<Uint8>(backgroundColor.g), static_cast<Uint8>(backgroundColor.b), 255u);
     SDL_RenderClear(renderer);
   }
 
@@ -59,9 +59,9 @@ template <unsigned int viewCount> class App final {
 
  public:
   // Param sceneFactory: it must not be assigned to nullptr and integer
-  explicit App(const string& title, const Size<int>& size, ViewGroupFactory<viewCount>*const sceneFactory) :
+  explicit App(const string& title, const Size<int>& size, const Color<unsigned int>& backgroundColor, ViewGroupFactory<viewCount>*const sceneFactory) :
     window{ SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, size.w, size.h, 0u) },
-    favicon{ IMG_Load("res/main/favicon.png") }, renderer{ SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED) },
+    favicon{ IMG_Load("res/main/favicon.png") }, renderer{ SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED) }, backgroundColor{ backgroundColor },
     scene(sceneFactory->make(renderer, size)) {
     SDL_SetWindowIcon(window, favicon);
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -105,5 +105,4 @@ template <unsigned int viewCount> class App final {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_ANY_APP_H_

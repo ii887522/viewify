@@ -1,7 +1,5 @@
 // Copyright ii887522
 
-#ifdef TEST
-
 #include "ButtonModel.test.h"
 #include <Struct/Range.h>
 #include <cassert>
@@ -22,6 +20,7 @@ static void testBuild() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -37,6 +36,7 @@ static void testBuild() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -52,6 +52,7 @@ static void testBuild() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -67,6 +68,7 @@ static void testBuild() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -83,6 +85,7 @@ static void testBuild() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -100,6 +103,7 @@ static void testBuild() {
       ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -118,6 +122,7 @@ static void testBuild() {
       ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -139,6 +144,34 @@ static void testBuild() {
       ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
+        .setOnMouseOver([&m]() {
+          ++m;
+        })
+        .setOnMouseOut([&p]() {
+          ++p;
+        })
+        .setOnClick([&n]() {
+          ++n;
+        })
+        .build()
+    };
+    assert(model.getA() == 255);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+  }
+  {
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
+    auto q{ 0u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -158,8 +191,12 @@ static void testBuild() {
     auto m{ 0u };
     auto n{ 0u };
     auto p{ 0u };
+    auto q{ 0u };
     ButtonModel model{
       ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -175,10 +212,14 @@ static void testBuild() {
     try {
       auto n{ 0u };
       auto p{ 0u };
+      auto q{ 0u };
       ButtonModel model{
         ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
           .setADuration(250u)
           .setLightnessDuration(250u)
+          .setOnMouseMove([&q]() {
+            ++q;
+          })
           .setOnMouseOut([&p]() {
             ++p;
           })
@@ -191,10 +232,14 @@ static void testBuild() {
       try {
         auto m{ 0u };
         auto n{ 0u };
+        auto q{ 0u };
         ButtonModel model{
           ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
             .setADuration(250u)
             .setLightnessDuration(250u)
+            .setOnMouseMove([&q]() {
+              ++q;
+            })
             .setOnMouseOver([&m]() {
               ++m;
             })
@@ -207,10 +252,14 @@ static void testBuild() {
         try {
           auto m{ 0u };
           auto p{ 0u };
+          auto q{ 0u };
           ButtonModel model{
             ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
               .setADuration(250u)
               .setLightnessDuration(250u)
+              .setOnMouseMove([&q]() {
+                ++q;
+              })
               .setOnMouseOver([&m]() {
                 ++m;
               })
@@ -220,13 +269,38 @@ static void testBuild() {
               .build()
           };
         } catch (const runtime_error&) {
-          return;
+          try {
+            auto m{ 0u };
+            auto n{ 0u };
+            auto p{ 0u };
+            ButtonModel model{
+              ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+                .setADuration(250u)
+                .setLightnessDuration(250u)
+                .setOnMouseOver([&m]() {
+                  ++m;
+                })
+                .setOnMouseOut([&p]() {
+                  ++p;
+                })
+                .setOnClick([&n]() {
+                  ++n;
+                })
+                .build()
+            };
+            assert(model.getA() == 255);
+            assert(model.getLightness() == initialLightness);
+            assert(model.getEndLightness() == initialLightness);
+          }
+          catch (const runtime_error&) {
+            return;
+          }
         }
       }
     }
   }
   assert(false);
-}
+}  // NOLINT(readability/fn_size)
 
 static void testReactMouseMotion() {
   {
@@ -235,6 +309,7 @@ static void testReactMouseMotion() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -276,6 +351,7 @@ static void testReactMouseMotion() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -317,6 +393,7 @@ static void testReactMouseMotion() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -359,6 +436,7 @@ static void testReactMouseMotion() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -370,31 +448,38 @@ static void testReactMouseMotion() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto n{ 0u };
@@ -403,6 +488,7 @@ static void testReactMouseMotion() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -414,31 +500,38 @@ static void testReactMouseMotion() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -448,6 +541,7 @@ static void testReactMouseMotion() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -461,31 +555,45 @@ static void testReactMouseMotion() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 2u);
+    assert(n == 0u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(m == 2u);
+    assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 2u);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -496,6 +604,7 @@ static void testReactMouseMotion() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -511,31 +620,135 @@ static void testReactMouseMotion() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 2u);
+    assert(n == 0u);
+    assert(p == 1u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(m == 2u);
+    assert(n == 0u);
+    assert(p == 1u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 2u);
+    assert(n == 0u);
+    assert(p == 2u);
+  }
+
+  {
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
+    auto q{ 0u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setA(1u)
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
+        .setOnMouseOver([&m]() {
+          ++m;
+        })
+        .setOnMouseOut([&p]() {
+          ++p;
+        })
+        .setOnClick([&n]() {
+          ++n;
+        })
+        .build()
+    };
+    model.reactMouseMotion(Point{ 0, 0 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 0u);
+    model.reactMouseMotion(Point{ 4, 4 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
+    model.reactMouseMotion(Point{ 4, 4 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 2u);
+    model.reactMouseMotion(Point{ 8, 8 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 1u);
+    assert(q == 2u);
+    model.reactMouseMotion(Point{ 4, 4 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 2u);
+    assert(n == 0u);
+    assert(p == 1u);
+    assert(q == 3u);
+    model.reactLeftMouseButtonDown();
+    model.reactMouseMotion(Point{ 4, 4 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == pressedLightness);
+    assert(m == 2u);
+    assert(n == 0u);
+    assert(p == 1u);
+    assert(q == 4u);
+    model.reactMouseMotion(Point{ 8, 8 });
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 2u);
+    assert(n == 0u);
+    assert(p == 2u);
+    assert(q == 4u);
   }
 }  // NOLINT(readability/fn_size)
 
@@ -546,6 +759,7 @@ static void testReactLeftMouseButtonDown() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -569,6 +783,7 @@ static void testReactLeftMouseButtonDown() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -592,6 +807,7 @@ static void testReactLeftMouseButtonDown() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -616,6 +832,7 @@ static void testReactLeftMouseButtonDown() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -628,47 +845,24 @@ static void testReactLeftMouseButtonDown() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(n == 0u);
   }
   {
-    auto n{ 1u };
-    ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
-        .setA(1u)
-        .setADuration(125u)
-        .setLightnessDuration(125u)
-        .setOnMouseOver([]() { })
-        .setOnMouseOut([]() { })
-        .setOnClick([&n]() {
-          ++n;
-        })
-        .build()
-    };
-    model.reactMouseMotion(Point{ 0, 0 });
-    model.reactLeftMouseButtonDown();
-    assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
-    model.reactLeftMouseButtonUp();
-    model.reactMouseMotion(Point{ 4, 4 });
-    model.reactLeftMouseButtonDown();
-    assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
-  }
-  {
-    auto m{ 1u };
-    auto n{ 1u };
+    auto m{ 0u };
+    auto n{ 0u };
     ButtonModel model{
       ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -683,22 +877,27 @@ static void testReactLeftMouseButtonDown() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(m == 1u);
+    assert(n == 0u);
   }
   {
-    auto m{ 1u };
-    auto n{ 1u };
-    auto p{ 1u };
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
     ButtonModel model{
       ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -715,12 +914,63 @@ static void testReactLeftMouseButtonDown() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == pressedLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+  }
+
+  {
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
+    auto q{ 0u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setA(1u)
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
+        .setOnMouseOver([&m]() {
+          ++m;
+        })
+        .setOnMouseOut([&p]() {
+          ++p;
+        })
+        .setOnClick([&n]() {
+          ++n;
+        })
+        .build()
+    };
+    model.reactMouseMotion(Point{ 0, 0 });
+    model.reactLeftMouseButtonDown();
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 0u);
+    model.reactLeftMouseButtonUp();
+    model.reactMouseMotion(Point{ 4, 4 });
+    model.reactLeftMouseButtonDown();
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == pressedLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
   }
 }
 
@@ -732,6 +982,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -761,6 +1012,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -790,6 +1042,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -819,6 +1072,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -848,6 +1102,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -878,6 +1133,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           --m;
         })
@@ -913,6 +1169,7 @@ static void testReactLeftMouseButtonUp() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           --m;
         })
@@ -943,7 +1200,52 @@ static void testReactLeftMouseButtonUp() {
     assert(n == 0u);
     assert(p == 1u);
   }
-}
+  {
+    auto m{ 1u };
+    auto n{ 1u };
+    auto p{ 1u };
+    auto q{ 1u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setA(1u)
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          --q;
+        })
+        .setOnMouseOver([&m]() {
+          --m;
+        })
+        .setOnMouseOut([&p]() {
+          --p;
+        })
+        .setOnClick([&n]() {
+          --n;
+        })
+        .build()
+    };
+    model.reactMouseMotion(Point{ 0, 0 });
+    model.reactLeftMouseButtonDown();
+    model.reactLeftMouseButtonUp();
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 1u);
+    assert(n == 1u);
+    assert(p == 1u);
+    assert(q == 1u);
+    model.reactMouseMotion(Point{ 4, 4 });
+    model.reactLeftMouseButtonDown();
+    model.reactLeftMouseButtonUp();
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 1u);
+    assert(q == 0u);
+  }
+}  // NOLINT(readability/fn_size)
 
 static void testReactMouseLeaveWindow() {
   {
@@ -952,6 +1254,7 @@ static void testReactMouseLeaveWindow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -968,6 +1271,7 @@ static void testReactMouseLeaveWindow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -984,6 +1288,7 @@ static void testReactMouseLeaveWindow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1001,6 +1306,7 @@ static void testReactMouseLeaveWindow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1012,6 +1318,7 @@ static void testReactMouseLeaveWindow() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto n{ 0u };
@@ -1020,6 +1327,7 @@ static void testReactMouseLeaveWindow() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1031,6 +1339,7 @@ static void testReactMouseLeaveWindow() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1040,6 +1349,7 @@ static void testReactMouseLeaveWindow() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1053,6 +1363,8 @@ static void testReactMouseLeaveWindow() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1063,6 +1375,7 @@ static void testReactMouseLeaveWindow() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1078,6 +1391,42 @@ static void testReactMouseLeaveWindow() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
+  }
+  {
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
+    auto q{ 0u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setA(1u)
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
+        .setOnMouseOver([&m]() {
+          ++m;
+        })
+        .setOnMouseOut([&p]() {
+          ++p;
+        })
+        .setOnClick([&n]() {
+          ++n;
+        })
+        .build()
+    };
+    model.reactMouseLeaveWindow();
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 0u);
   }
 }
 
@@ -1088,6 +1437,7 @@ static void testShow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1104,6 +1454,7 @@ static void testShow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1120,6 +1471,7 @@ static void testShow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1137,6 +1489,7 @@ static void testShow() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1148,6 +1501,7 @@ static void testShow() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto n{ 0u };
@@ -1156,6 +1510,7 @@ static void testShow() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1167,6 +1522,7 @@ static void testShow() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1176,6 +1532,7 @@ static void testShow() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1189,6 +1546,8 @@ static void testShow() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1199,6 +1558,7 @@ static void testShow() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1214,6 +1574,42 @@ static void testShow() {
     assert(model.getA() == 1);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
+  }
+  {
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
+    auto q{ 0u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setA(1u)
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
+        .setOnMouseOver([&m]() {
+          ++m;
+        })
+        .setOnMouseOut([&p]() {
+          ++p;
+        })
+        .setOnClick([&n]() {
+          ++n;
+        })
+        .build()
+    };
+    model.show();
+    assert(model.getA() == 1);
+    assert(model.getLightness() == initialLightness);
+    assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 0u);
   }
 }
 
@@ -1224,6 +1620,7 @@ static void testHide() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1240,6 +1637,7 @@ static void testHide() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1256,6 +1654,7 @@ static void testHide() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1273,6 +1672,7 @@ static void testHide() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1284,6 +1684,7 @@ static void testHide() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto n{ 0u };
@@ -1292,6 +1693,7 @@ static void testHide() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1303,6 +1705,7 @@ static void testHide() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1312,6 +1715,7 @@ static void testHide() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1325,6 +1729,8 @@ static void testHide() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1335,6 +1741,7 @@ static void testHide() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1350,6 +1757,9 @@ static void testHide() {
     assert(model.getA() == 0);
     assert(model.getLightness() == initialLightness);
     assert(model.getEndLightness() == initialLightness);
+    assert(m == 0u);
+    assert(n == 0u);
+    assert(p == 0u);
   }
 }
 
@@ -1360,6 +1770,7 @@ static void testStep() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1393,6 +1804,7 @@ static void testStep() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1426,6 +1838,7 @@ static void testStep() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([]() { })
@@ -1460,6 +1873,7 @@ static void testStep() {
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1472,22 +1886,27 @@ static void testStep() {
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(40u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(50u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(60u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(70u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
   }
   {
     auto n{ 0u };
@@ -1496,6 +1915,7 @@ static void testStep() {
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([]() { })
         .setOnMouseOut([]() { })
         .setOnClick([&n]() {
@@ -1508,22 +1928,27 @@ static void testStep() {
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1533,6 +1958,7 @@ static void testStep() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1547,22 +1973,32 @@ static void testStep() {
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
   }
   {
     auto m{ 0u };
@@ -1573,6 +2009,7 @@ static void testStep() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
+        .setOnMouseMove([]() { })
         .setOnMouseOver([&m]() {
           ++m;
         })
@@ -1589,22 +2026,103 @@ static void testStep() {
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
     assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+  }
+  {
+    auto m{ 0u };
+    auto n{ 0u };
+    auto p{ 0u };
+    auto q{ 0u };
+    ButtonModel model{
+      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+        .setA(1u)
+        .setADuration(250u)
+        .setLightnessDuration(250u)
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
+        .setOnMouseOver([&m]() {
+          ++m;
+        })
+        .setOnMouseOut([&p]() {
+          ++p;
+        })
+        .setOnClick([&n]() {
+          ++n;
+        })
+        .build()
+    };
+    model.reactMouseMotion(Point{ 4, 4 });
+    model.step(30u);
+    assert(model.getA() == 1);
+    assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
+    model.step(40u);
+    assert(model.getA() == 1);
+    assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
+    model.step(50u);
+    assert(model.getA() == 1);
+    assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
+    model.step(60u);
+    assert(model.getA() == 1);
+    assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
+    model.step(70u);
+    assert(model.getA() == 1);
+    assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
+    assert(model.getEndLightness() == hoveredLightness);
+    assert(m == 1u);
+    assert(n == 0u);
+    assert(p == 0u);
+    assert(q == 1u);
   }
 }  // NOLINT(readability/fn_size)
 
@@ -1620,5 +2138,3 @@ void testButtonModel() {
 }
 
 }  // namespace ii887522::viewify
-
-#endif

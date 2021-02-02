@@ -3,8 +3,6 @@
 #ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
 #define VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
 
-#ifndef TEST
-
 #include "../Struct/Point.h"
 
 namespace ii887522::viewify {
@@ -14,5 +12,4 @@ Point<int> getMousePosition();
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_

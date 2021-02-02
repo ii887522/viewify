@@ -3,8 +3,6 @@
 #ifndef VIEWIFY_SRC_MAIN_ANY_SUBSYSTEMS_H_
 #define VIEWIFY_SRC_MAIN_ANY_SUBSYSTEMS_H_
 
-#ifndef TEST
-
 namespace ii887522::viewify {
 
 // They are subsystems such as SDL, SDL_image, SDL_ttf and etc.
@@ -24,5 +22,4 @@ struct Subsystems final {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_ANY_SUBSYSTEMS_H_
