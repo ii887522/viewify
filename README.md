@@ -1,6 +1,8 @@
 # viewify
 It is a GUI framework based on SDL 2 that can help developers create desktop client applications, video games and etc in record time.
 
+<img src="docs/style-guide.png" alt="Style guide" width="770" /><br /><br />
+
 ## Table of Contents
 - [For developers reading this in GitHub](https://gitlab.com/ii887522/viewify#for-developers-reading-this-in-github)
 - [Coding Style](https://gitlab.com/ii887522/viewify#coding-style)

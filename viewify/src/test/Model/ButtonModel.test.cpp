@@ -300,7 +300,7 @@ static void testBuild() {
     }
   }
   assert(false);
-}
+}  // NOLINT(readability/fn_size)
 
 static void testReactMouseMotion() {
   {
@@ -750,7 +750,6 @@ static void testReactMouseMotion() {
     assert(p == 2u);
     assert(q == 4u);
   }
-
 }  // NOLINT(readability/fn_size)
 
 static void testReactLeftMouseButtonDown() {
@@ -1246,7 +1245,7 @@ static void testReactLeftMouseButtonUp() {
     assert(p == 1u);
     assert(q == 0u);
   }
-}
+}  // NOLINT(readability/fn_size)
 
 static void testReactMouseLeaveWindow() {
   {
@@ -1589,7 +1588,9 @@ static void testShow() {
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
-        .setOnMouseMove([]() {})
+        .setOnMouseMove([&q]() {
+          ++q;
+        })
         .setOnMouseOver([&m]() {
           ++m;
         })

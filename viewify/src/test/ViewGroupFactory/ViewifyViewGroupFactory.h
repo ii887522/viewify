@@ -3,16 +3,16 @@
 #ifndef VIEWIFY_SRC_TEST_VIEWGROUPFACTORY_VIEWIFYVIEWGROUPFACTORY_H_
 #define VIEWIFY_SRC_TEST_VIEWGROUPFACTORY_VIEWIFYVIEWGROUPFACTORY_H_
 
+#include <Any/Reactive.h>
+#include <iostream>
+#include <SDL.h>
+#include <SDL_ttf.h>
 #include "../../main/Factory/ViewGroupFactory.h"
 #include "../../main/View/ViewGroup.h"
-#include <SDL.h>
 #include "../../main/Struct/Size.h"
 #include "../../main/Struct/Point.h"
-#include <Any/Reactive.h>
 #include "../../main/Image/Text.h"
-#include <SDL_ttf.h>
 #include "../../main/Text/Score.h"
-#include <iostream>
 #include "../../main/View/BorderView.h"
 #include "../../main/Any/Map.h"
 #include "../Any/Enums.h"
@@ -56,7 +56,7 @@ template <unsigned int viewCount> class ViewifyViewGroupFactory final : public V
   Map<CellType> map;
   SDL_Cursor*const pointer;
 
-public:
+ public:
   // See also ../../main/View/ViewGroup.h for more details
   constexpr ViewifyViewGroupFactory() : ViewGroupFactory<viewCount>{ }, modalSize1{ 512, 256 }, modalSize2{ 384, 192 }, navButtonSize{ 128, 48 },
     headFont{ TTF_OpenFont("res/test/arial.ttf", 32) }, bodyFont{ TTF_OpenFont("res/test/arial.ttf", 16) }, canIncrementScore0{ false }, canResetScore0{ false }, canIncrementScore1{ false },
