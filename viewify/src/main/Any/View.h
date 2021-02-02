@@ -3,11 +3,10 @@
 #ifndef VIEWIFY_SRC_MAIN_ANY_VIEW_H_
 #define VIEWIFY_SRC_MAIN_ANY_VIEW_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <Any/Reactive.h>
 #include "../Struct/Point.h"
+#include "../Any/Enums.h"
 
 using ii887522::nitro::Reactive;
 
@@ -41,11 +40,11 @@ class View {
     return position;
   }
 
-  virtual void reactKeyDown(const SDL_KeyboardEvent&);
-  virtual void reactMouseMotion(const SDL_MouseMotionEvent&);
-  virtual void reactLeftMouseButtonDown(const SDL_MouseButtonEvent&);
-  virtual void reactLeftMouseButtonUp(const SDL_MouseButtonEvent&);
-  virtual void reactMouseLeaveWindow(const SDL_WindowEvent&);
+  virtual Action reactKeyDown(const SDL_KeyboardEvent&);
+  virtual Action reactMouseMotion(const SDL_MouseMotionEvent&);
+  virtual Action reactLeftMouseButtonDown(const SDL_MouseButtonEvent&);
+  virtual Action reactLeftMouseButtonUp(const SDL_MouseButtonEvent&);
+  virtual Action reactMouseLeaveWindow(const SDL_WindowEvent&);
   virtual void show();
   virtual void hide();
   virtual void step(const unsigned int dt);
@@ -56,5 +55,4 @@ class View {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_ANY_VIEW_H_

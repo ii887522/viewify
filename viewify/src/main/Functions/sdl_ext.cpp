@@ -1,7 +1,5 @@
 // Copyright ii887522
 
-#ifndef TEST
-
 #include "sdl_ext.h"  // NOLINT(build/include_subdir)
 #include <SDL.h>
 #include "../Struct/Point.h"
@@ -15,5 +13,3 @@ Point<int> getMousePosition() {
 }
 
 }  // namespace ii887522::viewify
-
-#endif

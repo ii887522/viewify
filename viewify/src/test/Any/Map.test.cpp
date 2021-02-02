@@ -1,7 +1,5 @@
 // Copyright ii887522
 
-#ifdef TEST
-
 #include "Map.test.h"
 #include <cassert>
 #include "../../main/Any/Map.h"
@@ -36,5 +34,3 @@ void testMap() {
 }
 
 }  // namespace ii887522::viewify
-
-#endif

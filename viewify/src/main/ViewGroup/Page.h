@@ -3,14 +3,14 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEWGROUP_PAGE_H_
 #define VIEWIFY_SRC_MAIN_VIEWGROUP_PAGE_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <Any/Reactive.h>
 #include <initializer_list>
 #include "../View/ViewGroup.h"
 #include "../Struct/Point.h"
 #include "../Any/View.h"
+#include "../Functions/sdl_ext.h"
+#include "../Any/Enums.h"
 
 using std::initializer_list;
 using ii887522::nitro::Reactive;
@@ -39,28 +39,34 @@ template <typename T, unsigned int viewCount> class Page final : public ViewGrou
       isShowing = value == path;
       if (!wasShowing && isShowing) this->show();
       else if (wasShowing && !isShowing) this->hide();
+      ViewGroup<viewCount>::reactMouseMotion(SDL_MouseMotionEvent{ .x = getMousePosition().x, .y = getMousePosition().y });
     });
     currentPath->set(currentPath->get());
   }
 
-  void reactKeyDown(const SDL_KeyboardEvent& keyEvent) override {
+  Action reactKeyDown(const SDL_KeyboardEvent& keyEvent) override {
     if (isShowing) ViewGroup<viewCount>::reactKeyDown(keyEvent);
+    return Action::NONE;
   }
 
-  void reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override {
+  Action reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override {
     if (isShowing) ViewGroup<viewCount>::reactMouseMotion(motionEvent);
+    return Action::NONE;
   }
 
-  void reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override {
+  Action reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override {
     if (isShowing) ViewGroup<viewCount>::reactLeftMouseButtonDown(buttonEvent);
+    return Action::NONE;
   }
 
-  void reactLeftMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) override {
+  Action reactLeftMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) override {
     if (isShowing) ViewGroup<viewCount>::reactLeftMouseButtonUp(buttonEvent);
+    return Action::NONE;
   }
 
-  void reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) override {
+  Action reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) override {
     if (isShowing) ViewGroup<viewCount>::reactMouseLeaveWindow(windowEvent);
+    return Action::NONE;
   }
 
   void step(const unsigned int dt) override {
@@ -74,5 +80,4 @@ template <typename T, unsigned int viewCount> class Page final : public ViewGrou
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEWGROUP_PAGE_H_

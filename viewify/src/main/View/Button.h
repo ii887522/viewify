@@ -3,14 +3,13 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_BUTTON_H_
 #define VIEWIFY_SRC_MAIN_VIEW_BUTTON_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <functional>
 #include "../Any/View.h"
 #include "../Struct/Point.h"
 #include "../Model/ButtonModel.h"
 #include "../Struct/Paint.h"
+#include "../Any/Enums.h"
 
 using std::function;
 
@@ -46,6 +45,8 @@ class Button final : public View {
     bool hasSetADuration;
     unsigned int lightnessDuration;  // lightness animation duration
     bool hasSetLightnessDuration;
+    function<void()> onMouseMove;
+    bool hasSetOnMouseMove;
     function<void()> onMouseOver;
     bool hasSetOnMouseOver;
     function<void()> onMouseOut;
@@ -79,6 +80,9 @@ class Button final : public View {
     }
 
     // It must be called at least 1 time before building Button object.
+    Builder& setOnMouseMove(const function<void()>&);
+
+    // It must be called at least 1 time before building Button object.
     Builder& setOnMouseOver(const function<void()>&);
 
     // It must be called at least 1 time before building Button object.
@@ -100,10 +104,10 @@ class Button final : public View {
   explicit Button(const Builder&);
 
  public:
-  void reactMouseMotion(const SDL_MouseMotionEvent&) override;
-  void reactLeftMouseButtonDown(const SDL_MouseButtonEvent&) override;
-  void reactLeftMouseButtonUp(const SDL_MouseButtonEvent&) override;
-  void reactMouseLeaveWindow(const SDL_WindowEvent&) override;
+  Action reactMouseMotion(const SDL_MouseMotionEvent&) override;
+  Action reactLeftMouseButtonDown(const SDL_MouseButtonEvent&) override;
+  Action reactLeftMouseButtonUp(const SDL_MouseButtonEvent&) override;
+  Action reactMouseLeaveWindow(const SDL_WindowEvent&) override;
   void show() override;
   void hide() override;
   void step(const unsigned int dt) override;
@@ -112,5 +116,4 @@ class Button final : public View {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_BUTTON_H_

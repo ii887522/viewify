@@ -3,8 +3,6 @@
 #ifndef VIEWIFY_SRC_MAIN_TEXT_SCORE_H_
 #define VIEWIFY_SRC_MAIN_TEXT_SCORE_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <Any/allocator.h>
@@ -13,6 +11,7 @@
 #include <string>
 #include "../Image/Text.h"
 #include "../Struct/Point.h"
+#include "../Struct/Color.h"
 
 using std::to_string;
 using std::function;
@@ -46,6 +45,7 @@ struct Score final : public Text {
     SDL_Renderer*const renderer;
     TTF_Font*const font;
     const Point<int> position;
+    const Color<unsigned int> color;
     Reactive<bool>* canIncrement;
     bool hasSetCanIncrement;
     Reactive<bool>* canReset;
@@ -56,11 +56,11 @@ struct Score final : public Text {
    public:
     // Param renderer: it must not be assigned to integer
     // Param font: it must not be assigned to integer
-    explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const unsigned int max,
-      const function<void()>& onValueMax) : renderer{ renderer }, font{ font }, position{ position }, canIncrement{ nullptr },
+    explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const Color<unsigned int>& color, const unsigned int max,
+      const function<void()>& onValueMax) : renderer{ renderer }, font{ font }, position{ position }, color{ color }, canIncrement{ nullptr },
       hasSetCanIncrement{ false }, canReset{ nullptr }, hasSetCanReset{ false }, max{ max }, onValueMax{ onValueMax } { }
 
-    // Param value: it must not be assigned to nullpter and integer
+    // Param value: it must not be assigned to nullptr and integer
     // It must be called at least 1 time before building Score object.
     constexpr Builder& setCanIncrement(Reactive<bool>*const value) {
       canIncrement = value;
@@ -68,7 +68,7 @@ struct Score final : public Text {
       return *this;
     }
 
-    // Param value: it must not be assigned to nullpter and integer
+    // Param value: it must not be assigned to nullptr and integer
     // It must be called at least 1 time before building Score object.
     constexpr Builder& setCanReset(Reactive<bool>*const value) {
       canReset = value;
@@ -90,7 +90,7 @@ struct Score final : public Text {
   unsigned int value;
 
   explicit Score(const Builder& builder) : Text{
-    Text::Builder{ builder.renderer, builder.font, builder.position, "Score: 0", Color{ 255u, 255u, 255u }, Align::CENTER }
+    Text::Builder{ builder.renderer, builder.font, builder.position, "Score: 0", builder.color, Align::CENTER }
         .setA(255u)
         .setDuration(1u)
     }, value{ 0u } {
@@ -125,5 +125,4 @@ struct Score final : public Text {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_TEXT_SCORE_H_

@@ -3,8 +3,6 @@
 #ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_CONTROL_FLOW_H_
 #define VIEWIFY_SRC_MAIN_FUNCTIONS_CONTROL_FLOW_H_
 
-#ifndef TEST
-
 #include "../Any/App.h"
 #include <SDL.h>
 #include "../Any/Enums.h"
@@ -29,5 +27,4 @@ template <unsigned int viewCount> void eventLoop(App<viewCount>&& app) {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_FUNCTIONS_CONTROL_FLOW_H_
