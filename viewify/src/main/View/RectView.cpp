@@ -1,7 +1,5 @@
 // Copyright ii887522
 
-#ifndef TEST
-
 #include "RectView.h"
 #include "../Any/View.h"
 #include <SDL.h>
@@ -21,5 +19,3 @@ void RectView::render() {
 }
 
 }  // namespace ii887522::viewify
-
-#endif

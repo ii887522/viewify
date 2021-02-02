@@ -54,12 +54,14 @@
     <ClInclude Include="src\main\View\Image.h" />
     <ClInclude Include="src\main\View\RectView.h" />
     <ClInclude Include="src\main\View\ViewGroup.h" />
+    <ClInclude Include="src\test\Any\Enums.h" />
     <ClInclude Include="src\test\Any\Map.test.h" />
     <ClInclude Include="src\test\Functions\math_ext.test.h" />
     <ClInclude Include="src\test\Model\ButtonModel.test.h" />
     <ClInclude Include="src\test\Model\ImageModel.test.h" />
     <ClInclude Include="src\test\Model\ModalModel.test.h" />
     <ClInclude Include="src\test\Struct\Point.test.h" />
+    <ClInclude Include="src\test\ViewGroupFactory\ViewifyViewGroupFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp" />
@@ -79,6 +81,13 @@
     <ClCompile Include="src\test\Model\ImageModel.test.cpp" />
     <ClCompile Include="src\test\Model\ModalModel.test.cpp" />
     <ClCompile Include="src\test\Struct\Point.test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\test\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\test\placeholder1.png" />
+    <Image Include="res\test\placeholder2.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -192,7 +201,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=148u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;SHORT_TERM_ALLOCATOR_SIZE=128u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -259,7 +268,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=148u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;SHORT_TERM_ALLOCATOR_SIZE=128u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>

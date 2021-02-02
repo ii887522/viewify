@@ -3,8 +3,6 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEWGROUP_MODAL_H_
 #define VIEWIFY_SRC_MAIN_VIEWGROUP_MODAL_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <Any/Reactive.h>
 #include <initializer_list>
@@ -14,6 +12,7 @@
 #include "../Struct/Size.h"
 #include "../Struct/Point.h"
 #include "../Model/ModalModel.h"
+#include "../Any/Enums.h"
 
 using std::initializer_list;
 using ii887522::nitro::Reactive;
@@ -69,24 +68,44 @@ template <unsigned int viewCount> class Modal final : public ViewGroup<viewCount
     });
   }
 
-  void reactKeyDown(const SDL_KeyboardEvent& keyEvent) override {
-    if (isShowing.get()) ViewGroup<viewCount>::reactKeyDown(keyEvent);
+  Action reactKeyDown(const SDL_KeyboardEvent& keyEvent) override {
+    if (isShowing.get()) {
+      ViewGroup<viewCount>::reactKeyDown(keyEvent);
+      return Action::CONSUME_EVENT;
+    }
+    return Action::NONE;
   }
 
-  void reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override {
-    if (isShowing.get()) ViewGroup<viewCount>::reactMouseMotion(motionEvent);
+  Action reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override {
+    if (isShowing.get()) {
+      ViewGroup<viewCount>::reactMouseMotion(motionEvent);
+      return Action::CONSUME_EVENT;
+    }
+    return Action::NONE;
   }
 
-  void reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override {
-    if (isShowing.get()) ViewGroup<viewCount>::reactLeftMouseButtonDown(buttonEvent);
+  Action reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override {
+    if (isShowing.get()) {
+      ViewGroup<viewCount>::reactLeftMouseButtonDown(buttonEvent);
+      return Action::CONSUME_EVENT;
+    }
+    return Action::NONE;
   }
 
-  void reactLeftMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) override {
-    if (isShowing.get()) ViewGroup<viewCount>::reactLeftMouseButtonUp(buttonEvent);
+  Action reactLeftMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) override {
+    if (isShowing.get()) {
+      ViewGroup<viewCount>::reactLeftMouseButtonUp(buttonEvent);
+      return Action::CONSUME_EVENT;
+    }
+    return Action::NONE;
   }
 
-  void reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) override {
-    if (isShowing.get()) ViewGroup<viewCount>::reactMouseLeaveWindow(windowEvent);
+  Action reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) override {
+    if (isShowing.get()) {
+      ViewGroup<viewCount>::reactMouseLeaveWindow(windowEvent);
+      return Action::CONSUME_EVENT;
+    }
+    return Action::NONE;
   }
 
   void step(const unsigned int dt) override {
@@ -105,5 +124,4 @@ template <unsigned int viewCount> class Modal final : public ViewGroup<viewCount
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEWGROUP_MODAL_H_

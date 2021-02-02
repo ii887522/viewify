@@ -1,7 +1,5 @@
 // Copyright ii887522
 
-#ifdef TEST
-
 #include "math_ext.test.h"  // NOLINT(build/include_subdir)
 #include <Struct/Range.h>
 #include <cassert>
@@ -41,5 +39,3 @@ void testMathExt() {
 }
 
 }  // namespace ii887522::viewify
-
-#endif

@@ -3,11 +3,10 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_VIEWGROUP_H_
 #define VIEWIFY_SRC_MAIN_VIEW_VIEWGROUP_H_
 
-#ifndef TEST
-
 #include <SDL.h>
 #include <initializer_list>
 #include "../Any/View.h"
+#include "../Any/Enums.h"
 
 using std::initializer_list;
 
@@ -47,24 +46,39 @@ template <unsigned int viewCount> class ViewGroup : public View {
     memset(that.views, 0, viewCount * sizeof(View*));
   }
 
-  void reactKeyDown(const SDL_KeyboardEvent& keyEvent) override {
-    for (auto i{ 0u }; i != sizeof views / sizeof(View*); ++i) views[i]->reactKeyDown(keyEvent);
+  Action reactKeyDown(const SDL_KeyboardEvent& keyEvent) override {
+    for (auto i{ static_cast<int>(sizeof views / sizeof(View*) - 1) }; i >= 0; --i) {
+      if (views[i]->reactKeyDown(keyEvent) == Action::CONSUME_EVENT) break;
+    }
+    return Action::NONE;
   }
 
-  void reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override {
-    for (auto i{ 0u }; i != sizeof views / sizeof(View*); ++i) views[i]->reactMouseMotion(motionEvent);
+  Action reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override {
+    for (auto i{ static_cast<int>(sizeof views / sizeof(View*) - 1) }; i >= 0; --i) {
+      if (views[i]->reactMouseMotion(motionEvent) == Action::CONSUME_EVENT) break;
+    }
+    return Action::NONE;
   }
 
-  void reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override {
-    for (auto i{ 0u }; i != sizeof views / sizeof(View*); ++i) views[i]->reactLeftMouseButtonDown(buttonEvent);
+  Action reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override {
+    for (auto i{ static_cast<int>(sizeof views / sizeof(View*) - 1) }; i >= 0; --i) {
+      if (views[i]->reactLeftMouseButtonDown(buttonEvent) == Action::CONSUME_EVENT) break;
+    }
+    return Action::NONE;
   }
 
-  void reactLeftMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) override {
-    for (auto i{ 0u }; i != sizeof views / sizeof(View*); ++i) views[i]->reactLeftMouseButtonUp(buttonEvent);
+  Action reactLeftMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) override {
+    for (auto i{ static_cast<int>(sizeof views / sizeof(View*) - 1) }; i >= 0; --i) {
+      if (views[i]->reactLeftMouseButtonUp(buttonEvent) == Action::CONSUME_EVENT) break;
+    }
+    return Action::NONE;
   }
 
-  void reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) override {
-    for (auto i{ 0u }; i != sizeof views / sizeof(View*); ++i) views[i]->reactMouseLeaveWindow(windowEvent);
+  Action reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) override {
+    for (auto i{ static_cast<int>(sizeof views / sizeof(View*) - 1) }; i >= 0; --i) {
+      if (views[i]->reactMouseLeaveWindow(windowEvent) == Action::CONSUME_EVENT) break;
+    }
+    return Action::NONE;
   }
 
   void show() final {
@@ -94,5 +108,4 @@ template <unsigned int viewCount> class ViewGroup : public View {
 
 }  // namespace ii887522::viewify
 
-#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_VIEWGROUP_H_

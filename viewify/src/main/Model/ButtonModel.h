@@ -49,6 +49,8 @@ class ButtonModel final {
     bool hasSetADuration;  // has set alpha animation duration
     unsigned int lightnessDuration;  // lightness animation duration
     bool hasSetLightnessDuration;  // has set lightness animation duration
+    function<void()> onMouseMove;
+    bool hasSetOnMouseMove;
     function<void()> onMouseOver;
     bool hasSetOnMouseOver;
     function<void()> onMouseOut;
@@ -81,6 +83,9 @@ class ButtonModel final {
     }
 
     // It must be called at least 1 time before building ButtonModel object.
+    Builder& setOnMouseMove(const function<void()>&);
+
+    // It must be called at least 1 time before building ButtonModel object.
     Builder& setOnMouseOver(const function<void()>&);
 
     // It must be called at least 1 time before building ButtonModel object.
@@ -100,6 +105,7 @@ class ButtonModel final {
   State state;
   AnimatedAny<float> lightness;
   AnimatedAny<int> a;
+  const function<void()> onMouseMove;
   const function<void()> onMouseOver;
   const function<void()> onMouseOut;
   const function<void()> onClick;
@@ -110,18 +116,25 @@ class ButtonModel final {
     if (!isOverlap(position, rect)) return;
     state = State::HOVERED;
     lightness.set(hoveredLightness);
+    onMouseMove();
     onMouseOver();
   }
 
   constexpr void reactMouseMotionWhenHovered(const Point<int>& position) {
-    if (isOverlap(position, rect)) return;
+    if (isOverlap(position, rect)) {
+      onMouseMove();
+      return;
+    }
     state = State::INITIAL;
     lightness.set(initialLightness);
     onMouseOut();
   }
 
   constexpr void reactMouseMotionWhenPressed(const Point<int>& position) {
-    if (isOverlap(position, rect)) return;
+    if (isOverlap(position, rect)) {
+      onMouseMove();
+      return;
+    }
     state = State::INITIAL;
     lightness.set(initialLightness);
     onMouseOut();
@@ -146,6 +159,10 @@ class ButtonModel final {
 
   constexpr unsigned int getA() const {
     return a.get();
+  }
+
+  constexpr const function<void()>& getOnMouseOut() const {
+    return onMouseOut;
   }
 
   constexpr void reactMouseMotion(const Point<int>& position) {
