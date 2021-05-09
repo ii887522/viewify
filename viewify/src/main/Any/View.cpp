@@ -32,5 +32,10 @@ namespace ii887522::viewify {
   void View::hide() { }
   void View::step(const unsigned int) { }
   void View::checkAndReactHits(const unsigned int) { }
+
+  Action View::postRender() {
+    return Action::NONE;
+  }
+
   View::~View() { }
 }  // namespace ii887522::viewify

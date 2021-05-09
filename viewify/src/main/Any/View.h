@@ -50,6 +50,7 @@ class View {
   virtual void step(const unsigned int dt);
   virtual void checkAndReactHits(const unsigned int dt);
   virtual void render() = 0;
+  virtual Action postRender();
   virtual ~View();
 };
 

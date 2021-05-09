@@ -21,6 +21,7 @@ template <unsigned int viewCount> void eventLoop(App<viewCount>&& app) {
     app.checkAndReactHits(now - lastTime);
     lastTime = now;
     app.show();
+    if (app.postShow() == Action::QUIT) return;
     SDL_Delay(4u);
   }
 }

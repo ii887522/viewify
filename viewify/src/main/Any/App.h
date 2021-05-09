@@ -96,6 +96,10 @@ template <unsigned int viewCount> class App final {
     SDL_RenderPresent(renderer);
   }
 
+  Action postShow() {
+    return scene.postRender();
+  }
+
   ~App() {
     SDL_DestroyRenderer(renderer);
     SDL_FreeSurface(favicon);
