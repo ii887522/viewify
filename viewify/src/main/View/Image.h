@@ -42,8 +42,8 @@ class Image : public View {
     const Align align;
 
    public:
-    // Param renderer: it must not be assigned to integer
-    // Param surface: it must not be assigned to integer
+    // Param renderer: it must not be assigned to nullptr or integer
+    // Param surface: it must not be assigned to nullptr or integer
     explicit constexpr Builder(SDL_Renderer*const renderer, SDL_Surface*const surface, const Point<int>& position,
       const Align align = Align::LEFT) : renderer{ renderer }, surface{ surface }, position{ position }, a{ 255u }, duration{ 0u },
       hasSetDuration{ false }, align{ align } { }

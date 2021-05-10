@@ -55,7 +55,7 @@ class Button final : public View {
     bool hasSetOnClick;
 
    public:
-    // Param renderer: it must not be assigned to integer
+    // Param renderer: it must not be assigned to nullptr or integer
     explicit Builder(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&);
 
     constexpr Builder& setA(const unsigned int value) {

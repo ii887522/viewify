@@ -27,7 +27,7 @@ template <unsigned int viewCount> class ViewGroup : public View {
   View* views[viewCount];
 
  public:
-  // Param renderer: it must not be assigned to integer
+  // Param renderer: it must not be assigned to nullptr or integer
   // See also ../Any/View.h for more details
   explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views) :
     View{ renderer, position } {
