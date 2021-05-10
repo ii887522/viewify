@@ -31,7 +31,7 @@ template <typename T, unsigned int viewCount> class Page final : public ViewGrou
   bool isShowing;
 
  public:
-  // Param renderer: it must not be assigned to integer
+  // Param renderer: it must not be assigned to nullptr or integer
   explicit Page(SDL_Renderer*const renderer, const Point<int>& position, const T& path, Reactive<T>*const currentPath,
     const initializer_list<View*>& views) : ViewGroup<viewCount>{ renderer, position, views }, isShowing{ false } {
     currentPath->watch([this, path](const T& value, const int) {

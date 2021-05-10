@@ -51,9 +51,9 @@ template <unsigned int viewCount> class Modal final : public ViewGroup<viewCount
   }
 
  public:
-  // Param renderer: it must not be assigned to integer
+  // Param renderer: it must not be assigned to nullptr or integer
   // Param duration: animation duration and it must not be assigned to 0
-  // Param isShowing: it must not be assigned to nullptr and integer
+  // Param isShowing: it must not be assigned to nullptr or integer
   explicit Modal(SDL_Renderer*const renderer, const Size<int>& sceneSize, const Point<int>& position,
     const Paint<int, unsigned int>& paint, Reactive<bool>*const isShowing, const unsigned int duration, const initializer_list<View*>& views)
       : ViewGroup<viewCount>{ renderer, position, views }, sceneSize{ sceneSize }, paint{ paint }, isShowing{ *isShowing },

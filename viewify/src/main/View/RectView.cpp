@@ -24,7 +24,9 @@ void RectView::render() {
 }
 
 Action RectView::postRender() {
-  return onPostRender(model, color);
+  const auto result{ onPostRender(model, color) };
+  getPosition().set(model.position);
+  return result;
 }
 
 }  // namespace ii887522::viewify

@@ -54,13 +54,13 @@ struct Score final : public Text {
     const function<void()> onValueMax;
 
    public:
-    // Param renderer: it must not be assigned to integer
-    // Param font: it must not be assigned to integer
+    // Param renderer: it must not be assigned to nullptr or integer
+    // Param font: it must not be assigned to nullptr or integer
     explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const Color<unsigned int>& color, const unsigned int max,
       const function<void()>& onValueMax) : renderer{ renderer }, font{ font }, position{ position }, color{ color }, canIncrement{ nullptr },
       hasSetCanIncrement{ false }, canReset{ nullptr }, hasSetCanReset{ false }, max{ max }, onValueMax{ onValueMax } { }
 
-    // Param value: it must not be assigned to nullptr and integer
+    // Param value: it must not be assigned to nullptr or integer
     // It must be called at least 1 time before building Score object.
     constexpr Builder& setCanIncrement(Reactive<bool>*const value) {
       canIncrement = value;
@@ -68,7 +68,7 @@ struct Score final : public Text {
       return *this;
     }
 
-    // Param value: it must not be assigned to nullptr and integer
+    // Param value: it must not be assigned to nullptr or integer
     // It must be called at least 1 time before building Score object.
     constexpr Builder& setCanReset(Reactive<bool>*const value) {
       canReset = value;

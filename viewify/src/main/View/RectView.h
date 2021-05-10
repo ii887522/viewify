@@ -32,7 +32,7 @@ class RectView final : public View {
   const function<Action(Rect<int>&, Color<unsigned int>&)> onPostRender;
 
  public:
-  // Param renderer: it must not be assigned to integer
+  // Param renderer: it must not be assigned to nullptr or integer
   explicit RectView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&,
     const function<Action(Rect<int>&, Color<unsigned int>&)>& onPostRender = [](Rect<int>&, Color<unsigned int>&) {
       return Action::NONE;

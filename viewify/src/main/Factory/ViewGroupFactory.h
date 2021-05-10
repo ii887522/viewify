@@ -22,7 +22,7 @@ template <unsigned int viewCount> struct ViewGroupFactory {
   // See also ../View/ViewGroup.h for more details
   constexpr ViewGroupFactory() { }
 
-  // Param renderer: it must not be assigned to integer
+  // Param renderer: it must not be assigned to nullptr or integer
   // See also ../View/ViewGroup.h for more details
   virtual ViewGroup<viewCount> make(SDL_Renderer*const renderer, const Size<int>&) = 0;
 
