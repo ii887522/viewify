@@ -3,12 +3,16 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_
 #define VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_
 
-#include "../Any/View.h"
 #include <SDL.h>
+#include <functional>
+#include "../Any/View.h"
 #include "../Struct/Rect.h"
 #include "../Struct/Point.h"
 #include "../Struct/Paint.h"
 #include "../Struct/Color.h"
+#include "../Any/Enums.h"
+
+using std::function;
 
 namespace ii887522::viewify {
 
@@ -23,14 +27,19 @@ class RectView final : public View {
   RectView(RectView&&) = delete;
   RectView& operator=(RectView&&) = delete;
 
-  const Rect<int> model;
-  const Color<unsigned int> color;
+  Rect<int> model;
+  Color<unsigned int> color;
+  const function<Action(Rect<int>&, Color<unsigned int>&)> onPostRender;
 
  public:
-  // Param renderer: it must not be assigned to integer
-  explicit RectView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&);
+  // Param renderer: it must not be assigned to nullptr or integer
+  explicit RectView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&,
+    const function<Action(Rect<int>&, Color<unsigned int>&)>& onPostRender = [](Rect<int>&, Color<unsigned int>&) {
+      return Action::NONE;
+    });
 
   void render() override;
+  Action postRender() override;
 };
 
 }  // namespace ii887522::viewify

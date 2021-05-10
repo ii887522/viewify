@@ -47,8 +47,8 @@ class Text : public Image {
     const Align align;
 
    public:
-    // Param renderer: it must not be assigned to integer
-    // Param font: it must not be assigned to integer
+    // Param renderer: it must not be assigned to nullptr or integer
+    // Param font: it must not be assigned to nullptr or integer
     explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const string& = " ",
       const Color<unsigned int>& = Color{ 0u, 0u, 0u }, const Align = Align::LEFT);
         // " " because TTF_Render*() needs a string with at least one character.

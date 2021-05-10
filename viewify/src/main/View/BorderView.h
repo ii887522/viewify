@@ -30,31 +30,31 @@ template <typename T = nullptr_t> class BorderView final : public View {
   const Border model;
   const Color<unsigned int> color;
 
-  // Param map: it must not be assigned to nullptr and integer
+  // Param map: it must not be assigned to nullptr or integer
   constexpr void setTopCells(Map<T>*const map, const T& cellValue) const {
     for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.w / model.width); ++i)
       map->set(Point{ i, 0u }, cellValue);
   }
 
-  // Param map: it must not be assigned to nullptr and integer
+  // Param map: it must not be assigned to nullptr or integer
   constexpr void setRightCells(Map<T>*const map, const T& cellValue) const {
     for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.h / model.width); ++i)
       map->set(Point{ model.rect.size.w / model.width - 1u, i }, cellValue);
   }
 
-  // Param map: it must not be assigned to nullptr and integer
+  // Param map: it must not be assigned to nullptr or integer
   constexpr void setBottomCells(Map<T>*const map, const T& cellValue) const {
     for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.w / model.width); ++i)
       map->set(Point{ i, model.rect.size.h / model.width - 1u }, cellValue);
   }
 
-  // Param map: it must not be assigned to nullptr and integer
+  // Param map: it must not be assigned to nullptr or integer
   constexpr void setLeftCells(Map<T>*const map, const T& cellValue) const {
     for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.h / model.width); ++i)
       map->set(Point{ 0u, i }, cellValue);
   }
 
-  // Param map: it must not be assigned to nullptr and integer
+  // Param map: it must not be assigned to nullptr or integer
   constexpr void setCells(Map<T>*const map, const T& cellValue) const {
     setTopCells(map, cellValue);
     setRightCells(map, cellValue);
@@ -63,7 +63,7 @@ template <typename T = nullptr_t> class BorderView final : public View {
   }
 
  public:
-  // Param renderer: it must not be assigned to integer
+  // Param renderer: it must not be assigned to nullptr or integer
   explicit BorderView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>& paint, const int width,
     Map<T>*const map = nullptr, const T& cellValue = nullptr) : View{ renderer, position }, model{ Rect{ position, paint.size }, width },
     color{ paint.color } {

@@ -58,9 +58,9 @@ template <unsigned int viewCount> class App final {
   }
 
  public:
-  // Param sceneFactory: it must not be assigned to nullptr and integer
-  explicit App(const string& title, const Size<int>& size, const Color<unsigned int>& backgroundColor, ViewGroupFactory<viewCount>*const sceneFactory) :
-    window{ SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, size.w, size.h, 0u) },
+  // Param sceneFactory: it must not be assigned to nullptr or integer
+  explicit App(const string& title, const Size<int>& size, const Color<unsigned int>& backgroundColor, ViewGroupFactory<viewCount>*const sceneFactory, const unsigned int windowFlags = 0u) :
+    window{ SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, size.w, size.h, windowFlags) },
     favicon{ IMG_Load("res/main/favicon.png") }, renderer{ SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED) }, backgroundColor{ backgroundColor },
     scene(sceneFactory->make(renderer, size)) {
     SDL_SetWindowIcon(window, favicon);
@@ -94,6 +94,10 @@ template <unsigned int viewCount> class App final {
   void show() {
     render();
     SDL_RenderPresent(renderer);
+  }
+
+  Action postShow() {
+    return scene.postRender();
   }
 
   ~App() {

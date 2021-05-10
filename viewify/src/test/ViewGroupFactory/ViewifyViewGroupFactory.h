@@ -7,10 +7,13 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <random>
 #include "../../main/Factory/ViewGroupFactory.h"
 #include "../../main/View/ViewGroup.h"
 #include "../../main/Struct/Size.h"
 #include "../../main/Struct/Point.h"
+#include "../../main/Struct/Rect.h"
+#include "../../main/Struct/Color.h"
 #include "../../main/Image/Text.h"
 #include "../../main/Text/Score.h"
 #include "../../main/View/BorderView.h"
@@ -24,6 +27,8 @@
 
 using ii887522::nitro::Reactive;
 using std::cout;
+using std::uniform_int_distribution;
+using std::default_random_engine;
 
 namespace ii887522::viewify {
 
@@ -55,19 +60,21 @@ template <unsigned int viewCount> class ViewifyViewGroupFactory final : public V
   Reactive<Path> currentPath;
   Map<CellType> map;
   SDL_Cursor*const pointer;
+  uniform_int_distribution<unsigned int> colorComponents;
+  default_random_engine randomEngine;
 
  public:
   // See also ../../main/View/ViewGroup.h for more details
   constexpr ViewifyViewGroupFactory() : ViewGroupFactory<viewCount>{ }, modalSize1{ 512, 256 }, modalSize2{ 384, 192 }, navButtonSize{ 128, 48 },
     headFont{ TTF_OpenFont("res/test/arial.ttf", 32) }, bodyFont{ TTF_OpenFont("res/test/arial.ttf", 16) }, canIncrementScore0{ false }, canResetScore0{ false }, canIncrementScore1{ false },
     canResetScore1{ false }, isModal1Showing{ false }, isModal2Showing{ false }, isModal3Showing{ false }, isModal4Showing{ false }, isModal5Showing{ false }, isModal6Showing{ false },
-    currentPath{ Path::MAIN }, map{ Size{ 8u, 8u } }, pointer{ SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND) } { }
+    currentPath{ Path::MAIN }, map{ Size{ 8u, 8u } }, pointer{ SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND) }, colorComponents{ 0u, 255u }, randomEngine{ } { }
 
   // Param renderer: it must not be assigned to integer
   // See also ../View/ViewGroup.h for more details
   ViewGroup<viewCount> make(SDL_Renderer*const renderer, const Size<int>& size) override {
     return ViewGroup<viewCount>{ renderer, Point{ 0, 0 }, {
-      new Page<Path, 71>{ renderer, Point{ 0, 0 }, Path::MAIN, &currentPath, {
+      new Page<Path, 72>{ renderer, Point{ 0, 0 }, Path::MAIN, &currentPath, {
         Text::Builder{ renderer, headFont, Point{ 16, 16 }, "Text" }.setDuration(1u).build(),
         Text::Builder{ renderer, bodyFont, Point{ 16, 64 }, "Body text1" }.setDuration(1u).build(),
         Text::Builder{ renderer, bodyFont, Point{ 112, 64 }, "Body text2" }.setDuration(1u).build(),
@@ -227,6 +234,10 @@ template <unsigned int viewCount> class ViewifyViewGroupFactory final : public V
         new RectView{ renderer, Point{ 48, 648 }, Paint{ Size{ 16, 16 }, Color{ 0u, 0u, 0u } } },
         new RectView{ renderer, Point{ 80, 648 }, Paint{ Size{ 32, 32 }, Color{ 0u, 0u, 0u } } },
         new RectView{ renderer, Point{ 128, 648 }, Paint{ Size{ 32, 32 }, Color{ 128u, 128u, 128u } } },
+        new RectView{ renderer, Point{ 176, 648 }, Paint{ Size{ 32, 32 }, Color{ 128u, 128u, 128u } }, [this](Rect<int>&, Color<unsigned int>& color) {
+          color = { colorComponents(randomEngine), colorComponents(randomEngine), colorComponents(randomEngine) };
+          return Action::NONE;
+        } },
         Text::Builder{ renderer, headFont, Point{ 16, 712 }, "ViewGroup" }.setDuration(1u).build(),
         new ViewGroup<2u>{ renderer, Point{ 16, 760 }, {
           Text::Builder{ renderer, bodyFont, Point{ 0, 0 }, "Body text1" }.setDuration(1u).build(),
