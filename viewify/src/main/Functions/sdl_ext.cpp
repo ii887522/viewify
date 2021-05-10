@@ -3,9 +3,9 @@
 #include "sdl_ext.h"  // NOLINT(build/include_subdir)
 #include <SDL.h>
 #include <SDL_image.h>
+#include <string>
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"
-#include <string>
 
 using std::string;
 

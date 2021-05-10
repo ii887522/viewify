@@ -3,13 +3,13 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_
 #define VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_
 
-#include "../Any/View.h"
 #include <SDL.h>
+#include <functional>
+#include "../Any/View.h"
 #include "../Struct/Rect.h"
 #include "../Struct/Point.h"
 #include "../Struct/Paint.h"
 #include "../Struct/Color.h"
-#include <functional>
 #include "../Any/Enums.h"
 
 using std::function;

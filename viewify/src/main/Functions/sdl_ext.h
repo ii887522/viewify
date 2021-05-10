@@ -3,10 +3,10 @@
 #ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
 #define VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
 
-#include "../Struct/Point.h"
-#include "../Struct/Rect.h"
 #include <SDL.h>
 #include <string>
+#include "../Struct/Point.h"
+#include "../Struct/Rect.h"
 
 using std::string;
 

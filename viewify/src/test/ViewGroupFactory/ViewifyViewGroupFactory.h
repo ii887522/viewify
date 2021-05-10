@@ -7,6 +7,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <random>
 #include "../../main/Factory/ViewGroupFactory.h"
 #include "../../main/View/ViewGroup.h"
 #include "../../main/Struct/Size.h"
@@ -23,7 +24,6 @@
 #include "../../main/View/RectView.h"
 #include "../../main/ViewGroup/Modal.h"
 #include "../../main/ViewGroup/Page.h"
-#include <random>
 
 using ii887522::nitro::Reactive;
 using std::cout;

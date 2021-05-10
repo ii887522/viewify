@@ -1,13 +1,13 @@
 // Copyright ii887522
 
 #include "RectView.h"
-#include "../Any/View.h"
 #include <SDL.h>
+#include <functional>
+#include "../Any/View.h"
 #include "../Struct/Rect.h"
 #include "../Struct/Color.h"
 #include "../Struct/Point.h"
 #include "../Struct/Paint.h"
-#include <functional>
 #include "../Any/Enums.h"
 
 using std::function;
