@@ -6,11 +6,13 @@
 #include <SDL.h>
 #include <vector>
 #include <initializer_list>
+#include <functional>
 #include "../Any/View.h"
 #include "../Any/Enums.h"
 
 using std::initializer_list;
 using std::vector;
+using std::function;
 
 namespace ii887522::viewify {
 
@@ -18,13 +20,15 @@ namespace ii887522::viewify {
 // Not Thread Safe: it must not be assigned to integer
 // See also ../Any/View.h for more details
 class ViewGroup : public View {
-  // See also ../Any/View.h for more details
-  vector<View*> views;
+  vector<View*> views;  // See also ../Any/View.h for more details
+  const function<Action()> onPostRender;
 
  public:
   // Param renderer: it must not be assigned to nullptr or integer
   // See also ../Any/View.h for more details
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views);
+  explicit ViewGroup(SDL_Renderer* const renderer, const Point<int>& position, const initializer_list<View*>& views = { }, const function<Action()>& onPostRender = []() {
+    return Action::NONE;
+  });
 
   // See also ../Any/View.h for more details
   explicit ViewGroup(ViewGroup&& that) noexcept;
