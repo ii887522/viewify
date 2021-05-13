@@ -3,14 +3,17 @@
 #include "ViewGroup.h"
 #include <SDL.h>
 #include <initializer_list>
+#include <functional>
 #include "../Any/View.h"
 #include "../Any/Enums.h"
 
 using std::initializer_list;
+using std::function;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views) : View{ renderer, position } {
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views, const function<Action()>& onPostRender) : View{ renderer, position },
+  onPostRender{ onPostRender } {
   for (auto view : views) add(view);
 }
 
@@ -87,7 +90,7 @@ Action ViewGroup::postRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->postRender() == Action::QUIT) return Action::QUIT;
   }
-  return Action::NONE;
+  return onPostRender();
 }
 
 ViewGroup::~ViewGroup() {
