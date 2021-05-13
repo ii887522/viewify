@@ -1,6 +1,6 @@
 {
   "name": "viewify",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "It is a GUI framework based on SDL 2 that can help developers create desktop client applications, video games and etc in record time.",
   "main": "index.js",
   "scripts": {
