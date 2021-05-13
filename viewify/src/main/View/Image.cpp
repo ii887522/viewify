@@ -62,7 +62,7 @@ void Image::render() {
     rect.x = getPosition().get().x - ((rect.w - rect.h) >> 1u);
     rect.y = getPosition().get().y + ((rect.w - rect.h) >> 1u);
   }
-  SDL_RenderCopyEx(getRenderer(), texture, nullptr, &rect, static_cast<double>(static_cast<float>(rotation) * 90.f), nullptr, SDL_FLIP_NONE);
+  SDL_RenderCopyEx(getRenderer(), texture, nullptr, &rect, static_cast<double>(static_cast<unsigned int>(rotation) * 90u), nullptr, SDL_FLIP_NONE);
 }
 
 Image::~Image() {
