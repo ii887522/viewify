@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifdef TEST
+
 #include "ButtonModel.test.h"
 #include <Struct/Range.h>
 #include <cassert>
@@ -2138,3 +2140,5 @@ void testButtonModel() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

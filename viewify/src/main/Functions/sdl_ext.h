@@ -17,7 +17,7 @@ Point<int> getMousePosition();
 
 // Param renderer: it must not be assigned to nullptr or integer
 // Not Thread Safe: it must be called in main thread
-void snapshot(SDL_Renderer*const renderer, const Rect<int>&, const string& fileName);
+void snapshot(SDL_Renderer*const renderer, const Rect<int>&, const string& filePath);
 
 }  // namespace ii887522::viewify
 

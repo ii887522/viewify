@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifdef TEST
+
 #include "ImageModel.test.h"
 #include <cassert>
 #include <stdexcept>
@@ -114,3 +116,5 @@ void testImageModel() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

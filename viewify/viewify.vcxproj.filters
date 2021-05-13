@@ -88,6 +88,15 @@
     <Filter Include="Test Resource Files">
       <UniqueIdentifier>{46cd467e-a389-42e2-ae6a-7caf2a6704e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{6225f69f-c7dc-41ce-9358-bec237b3e61e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ViewGroup">
+      <UniqueIdentifier>{d98ba57f-8dbf-4c99-a30a-70c0fec6ae8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source Files\ViewGroupFactory">
+      <UniqueIdentifier>{ccd20e5d-624e-46fa-8a6f-7a5ada50fc20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main\Any\App.h">
@@ -247,6 +256,24 @@
     </ClCompile>
     <ClCompile Include="src\test\Struct\Point.test.cpp">
       <Filter>Test Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\View\ViewGroup.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Any\App.cpp">
+      <Filter>Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Factory\ViewGroupFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Functions\control_flow.cpp">
+      <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\ViewGroup\Modal.cpp">
+      <Filter>Source Files\ViewGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
+      <Filter>Test Source Files\ViewGroupFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

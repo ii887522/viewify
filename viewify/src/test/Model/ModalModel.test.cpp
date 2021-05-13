@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifdef TEST
+
 #include "ModalModel.test.h"
 #include "../../main/Model/ModalModel.h"
 #include <cassert>
@@ -84,3 +86,5 @@ void testModalModel() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif
