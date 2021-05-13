@@ -15,6 +15,7 @@ ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, co
 }
 
 ViewGroup::ViewGroup(ViewGroup&& that) noexcept : View{ that.getRenderer(), that.getPosition().get() } {
+  views.resize(that.views.size());
   memcpy(views.data(), that.views.data(), that.views.size() * sizeof(View*));
   memset(that.views.data(), 0, that.views.size() * sizeof(View*));
 }
