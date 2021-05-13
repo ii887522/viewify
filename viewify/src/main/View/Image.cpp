@@ -21,7 +21,7 @@ Image* Image::Builder::build() {
 Image::Image(const Builder& builder) :
   View{ builder.renderer, builder.position - (builder.align == Align::LEFT ? Size{ 0, 0 } : Size{ builder.surface->w >> 1u, 0 }) },
   model{ ImageModel::Builder{ builder.a }.setDuration(builder.duration).build() }, surface{ builder.surface },
-  texture{ SDL_CreateTextureFromSurface(builder.renderer, surface) }, align{ builder.align } { }
+  texture{ SDL_CreateTextureFromSurface(builder.renderer, surface) }, align{ builder.align }, rotation{ builder.rotation } { }
 
 void Image::free() {
   SDL_DestroyTexture(texture);
@@ -50,8 +50,19 @@ void Image::step(const unsigned int dt) {
 
 void Image::render() {
   SDL_SetTextureAlphaMod(texture, static_cast<Uint8>(model.getA()));
-  const SDL_Rect rect{ getPosition().get().x, getPosition().get().y, surface->w, surface->h };
-  SDL_RenderCopy(getRenderer(), texture, nullptr, &rect);
+  SDL_Rect rect;
+  rect.w = surface->w;
+  rect.h = surface->h;
+  switch (rotation) {
+  case Rotation::NONE: case Rotation::HALF:
+    rect.x = getPosition().get().x;
+    rect.y = getPosition().get().y;
+    break;
+  case Rotation::QUARTER_CLOCKWISE: case Rotation::QUARTER_COUNTERCLOCKWISE:
+    rect.x = getPosition().get().x - ((rect.w - rect.h) >> 1u);
+    rect.y = getPosition().get().y + ((rect.w - rect.h) >> 1u);
+  }
+  SDL_RenderCopyEx(getRenderer(), texture, nullptr, &rect, static_cast<double>(static_cast<float>(rotation) * 90.f), nullptr, SDL_FLIP_NONE);
 }
 
 Image::~Image() {
