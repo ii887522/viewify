@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifdef TEST
+
 #include "Point.test.h"
 #include "../../main/Struct/Point.h"
 #include <Struct/Vector.h>
@@ -57,3 +59,5 @@ void testPoint() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif
