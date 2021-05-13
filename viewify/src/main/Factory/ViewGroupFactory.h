@@ -10,7 +10,7 @@
 namespace ii887522::viewify {
 
 // See also ../View/ViewGroup.h for more details
-template <unsigned int viewCount> struct ViewGroupFactory {
+struct ViewGroupFactory {
   // remove copy semantics
   ViewGroupFactory(const ViewGroupFactory&) = delete;
   ViewGroupFactory& operator=(const ViewGroupFactory&) = delete;
@@ -24,9 +24,9 @@ template <unsigned int viewCount> struct ViewGroupFactory {
 
   // Param renderer: it must not be assigned to nullptr or integer
   // See also ../View/ViewGroup.h for more details
-  virtual ViewGroup<viewCount> make(SDL_Renderer*const renderer, const Size<int>&) = 0;
+  virtual ViewGroup make(SDL_Renderer*const renderer, const Size<int>&) = 0;
 
-  virtual ~ViewGroupFactory() { }
+  virtual ~ViewGroupFactory();
 };
 
 }  // namespace ii887522::viewify
