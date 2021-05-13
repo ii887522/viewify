@@ -16,6 +16,7 @@
 #include "../../main/Image/Text.h"
 #include "../../main/Text/Score.h"
 #include "../../main/View/BorderView.h"
+#include "../../main/Any/Enums.h"
 #include "../Any/Enums.h"
 #include "../../main/View/Button.h"
 #include "../../main/View/Image.h"
@@ -187,6 +188,9 @@ ViewGroup ViewifyViewGroupFactory::make(SDL_Renderer*const renderer, const Size<
       Image::Builder{ renderer, IMG_Load("res/test/placeholder2.png"), Point{ 176, 504 } }.setDuration(1u).build(),
       Image::Builder{ renderer, IMG_Load("res/test/placeholder2.png"), Point{ 256, 504 } }.setA(128u).setDuration(1u).build(),
       Image::Builder{ renderer, IMG_Load("res/test/placeholder2.png"), Point{ 336, 504 } }.setA(128u).setDuration(256u).build(),
+      Image::Builder{ renderer, IMG_Load("res/test/placeholder2.png"), Point{ 416, 504 }, Align::LEFT, Rotation::QUARTER_CLOCKWISE }.setA(128u).setDuration(256u).build(),
+      Image::Builder{ renderer, IMG_Load("res/test/placeholder2.png"), Point{ 496, 504 }, Align::LEFT, Rotation::HALF }.setA(128u).setDuration(256u).build(),
+      Image::Builder{ renderer, IMG_Load("res/test/placeholder2.png"), Point{ 576, 504 }, Align::LEFT, Rotation::QUARTER_COUNTERCLOCKWISE }.setA(128u).setDuration(256u).build(),
       Text::Builder{ renderer, headFont, Point{ 16, 600 }, "RectView" }.setDuration(1u).build(),
       new RectView{ renderer, Point{ 16, 648 }, Paint{ Size{ 16, 16 }, Color{ 0u, 0u, 0u } } },
       new RectView{ renderer, Point{ 48, 648 }, Paint{ Size{ 16, 16 }, Color{ 0u, 0u, 0u } } },
