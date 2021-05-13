@@ -18,13 +18,6 @@ namespace ii887522::viewify {
 // Not Thread Safe: it must not be assigned to integer
 // See also ../Any/View.h for more details
 class ViewGroup : public View {
-  // remove copy semantics
-  ViewGroup(const ViewGroup&) = delete;
-  ViewGroup& operator=(const ViewGroup&) = delete;
-
-  // remove move semantics
-  ViewGroup& operator=(ViewGroup&&) = delete;
-
   // See also ../Any/View.h for more details
   vector<View*> views;
 
