@@ -40,13 +40,14 @@ class Image : public View {
     unsigned int duration;  // animation duration
     bool hasSetDuration;  // has set animation duration
     const Align align;
+    const Rotation rotation;
 
    public:
     // Param renderer: it must not be assigned to nullptr or integer
     // Param surface: it must not be assigned to nullptr or integer
     explicit constexpr Builder(SDL_Renderer*const renderer, SDL_Surface*const surface, const Point<int>& position,
-      const Align align = Align::LEFT) : renderer{ renderer }, surface{ surface }, position{ position }, a{ 255u }, duration{ 0u },
-      hasSetDuration{ false }, align{ align } { }
+      const Align align = Align::LEFT, const Rotation rotation = Rotation::NONE) : renderer{ renderer }, surface{ surface }, position{ position }, a{ 255u }, duration{ 0u },
+      hasSetDuration{ false }, align{ align }, rotation{ rotation } { }
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;
@@ -72,6 +73,7 @@ class Image : public View {
   SDL_Surface* surface;
   SDL_Texture* texture;
   const Align align;
+  const Rotation rotation;
 
   void free();
 
