@@ -12,8 +12,8 @@ using std::function;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views, const function<Action()>& onPreRender,
-  const function<Action()>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views, const function<Action(ViewGroup&)>& onPreRender,
+  const function<Action(ViewGroup&)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
   for (auto view : views) add(view);
 }
 
@@ -90,7 +90,7 @@ Action ViewGroup::preRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->preRender() == Action::QUIT) return Action::QUIT;
   }
-  return onPreRender();
+  return onPreRender(*this);
 }
 
 void ViewGroup::render() {
@@ -101,7 +101,7 @@ Action ViewGroup::postRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->postRender() == Action::QUIT) return Action::QUIT;
   }
-  return onPostRender();
+  return onPostRender(*this);
 }
 
 ViewGroup::~ViewGroup() {
