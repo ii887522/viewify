@@ -50,19 +50,19 @@ void Image::step(const unsigned int dt) {
 
 void Image::render() {
   SDL_SetTextureAlphaMod(texture, static_cast<Uint8>(model.getA()));
-  SDL_Rect rect;
-  rect.w = surface->w;
-  rect.h = surface->h;
+  SDL_FRect rect;
+  rect.w = static_cast<float>(surface->w);
+  rect.h = static_cast<float>(surface->h);
   switch (rotation) {
   case Rotation::NONE: case Rotation::HALF:
-    rect.x = getPosition().get().x;
-    rect.y = getPosition().get().y;
+    rect.x = static_cast<float>(getPosition().get().x);
+    rect.y = static_cast<float>(getPosition().get().y);
     break;
   case Rotation::QUARTER_CLOCKWISE: case Rotation::QUARTER_COUNTERCLOCKWISE:
-    rect.x = getPosition().get().x - ((rect.w - rect.h) >> 1u);
-    rect.y = getPosition().get().y + ((rect.w - rect.h) >> 1u);
+    rect.x = getPosition().get().x - ((rect.w - rect.h) * .5f);
+    rect.y = getPosition().get().y + ((rect.w - rect.h) * .5f);
   }
-  SDL_RenderCopyEx(getRenderer(), texture, nullptr, &rect, static_cast<double>(static_cast<unsigned int>(rotation) * 90u), nullptr, SDL_FLIP_NONE);
+  SDL_RenderCopyExF(getRenderer(), texture, nullptr, &rect, static_cast<double>(static_cast<unsigned int>(rotation) * 90u), nullptr, SDL_FLIP_NONE);
 }
 
 Image::~Image() {
