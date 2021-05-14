@@ -45,6 +45,7 @@ class App final {
   Action react(const SDL_Event& event);
   void step(const unsigned int dt);
   void checkAndReactHits(const unsigned int dt);
+  Action preShow();
   void show();
   Action postShow();
   ~App();
