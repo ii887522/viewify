@@ -21,15 +21,15 @@ namespace ii887522::viewify {
 // See also ../Any/View.h for more details
 class ViewGroup : public View {
   vector<View*> views;  // See also ../Any/View.h for more details
-  const function<Action()> onPreRender;
-  const function<Action()> onPostRender;
+  const function<Action(ViewGroup&)> onPreRender;
+  const function<Action(ViewGroup&)> onPostRender;
 
  public:
   // Param renderer: it must not be assigned to nullptr or integer
   // See also ../Any/View.h for more details
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views = { }, const function<Action()>& onPreRender = []() {
+  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views = { }, const function<Action(ViewGroup&)>& onPreRender = [](ViewGroup&) {
     return Action::NONE;
-  }, const function<Action()>& onPostRender = []() {
+  }, const function<Action(ViewGroup&)>& onPostRender = [](ViewGroup&) {
     return Action::NONE;
   });
 
