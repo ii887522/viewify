@@ -15,6 +15,7 @@ void eventLoop(App&& app) {
     app.step(now - lastTime);
     app.checkAndReactHits(now - lastTime);
     lastTime = now;
+    if (app.preShow() == Action::QUIT) return;
     app.show();
     if (app.postShow() == Action::QUIT) return;
     SDL_Delay(4u);

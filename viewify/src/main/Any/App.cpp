@@ -62,6 +62,10 @@ void App::renderBackground() {
   SDL_RenderClear(renderer);
 }
 
+Action App::preShow() {
+  return scene.preRender();
+}
+
 void App::render() {
   renderBackground();
   scene.render();
