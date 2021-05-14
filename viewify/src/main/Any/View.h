@@ -49,6 +49,7 @@ class View {
   virtual void hide();
   virtual void step(const unsigned int dt);
   virtual void checkAndReactHits(const unsigned int dt);
+  virtual Action preRender();
   virtual void render() = 0;
   virtual Action postRender();
   virtual ~View();

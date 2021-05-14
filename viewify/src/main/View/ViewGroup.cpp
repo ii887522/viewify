@@ -12,8 +12,8 @@ using std::function;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views, const function<Action()>& onPostRender) : View{ renderer, position },
-  onPostRender{ onPostRender } {
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views, const function<Action()>& onPreRender,
+  const function<Action()>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
   for (auto view : views) add(view);
 }
 
@@ -29,6 +29,10 @@ void ViewGroup::add(View*const view) {
     view->getPosition().set(value + getPosition().get(), handlerI);
   });
   view->getPosition().set(view->getPosition().get());
+}
+
+void ViewGroup::clear() {
+  views.clear();
 }
 
 Action ViewGroup::reactKeyDown(const SDL_KeyboardEvent& keyEvent) {
@@ -80,6 +84,13 @@ void ViewGroup::step(const unsigned int dt) {
 
 void ViewGroup::checkAndReactHits(const unsigned int dt) {
   for (auto i{ 0u }; i != views.size(); ++i) views[i]->checkAndReactHits(dt);
+}
+
+Action ViewGroup::preRender() {
+  for (auto i{ 0u }; i != views.size(); ++i) {
+    if (views[i]->preRender() == Action::QUIT) return Action::QUIT;
+  }
+  return onPreRender();
 }
 
 void ViewGroup::render() {

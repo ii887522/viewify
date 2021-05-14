@@ -21,12 +21,15 @@ namespace ii887522::viewify {
 // See also ../Any/View.h for more details
 class ViewGroup : public View {
   vector<View*> views;  // See also ../Any/View.h for more details
+  const function<Action()> onPreRender;
   const function<Action()> onPostRender;
 
  public:
   // Param renderer: it must not be assigned to nullptr or integer
   // See also ../Any/View.h for more details
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views = { }, const function<Action()>& onPostRender = []() {
+  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views = { }, const function<Action()>& onPreRender = []() {
+    return Action::NONE;
+  }, const function<Action()>& onPostRender = []() {
     return Action::NONE;
   });
 
@@ -34,6 +37,7 @@ class ViewGroup : public View {
   explicit ViewGroup(ViewGroup&& that) noexcept;
 
   void add(View*const);
+  void clear();
   Action reactKeyDown(const SDL_KeyboardEvent& keyEvent) override;
   Action reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override;
   Action reactLeftMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent) override;
@@ -43,6 +47,7 @@ class ViewGroup : public View {
   void hide() final;
   void step(const unsigned int dt) override;
   void checkAndReactHits(const unsigned int dt) override;
+  Action preRender() override;
   void render() override;
   Action postRender() override;
   ~ViewGroup();
