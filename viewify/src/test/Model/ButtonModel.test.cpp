@@ -3,7 +3,7 @@
 #ifdef TEST
 
 #include "ButtonModel.test.h"
-#include <Struct/Range.h>
+#include <nitro/Struct/Range.h>
 #include <cassert>
 #include "../../main/Model/ButtonModel.h"
 #include "../../main/Struct/Rect.h"
