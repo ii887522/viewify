@@ -3,7 +3,7 @@
 #ifdef TEST
 
 #include "math_ext.test.h"  // NOLINT(build/include_subdir)
-#include <Struct/Range.h>
+#include <nitro/Struct/Range.h>
 #include <cassert>
 #include "../../main/Functions/math_ext.h"
 #include "../../main/Struct/Point.h"

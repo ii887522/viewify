@@ -4,7 +4,7 @@
 
 #include "Point.test.h"
 #include "../../main/Struct/Point.h"
-#include <Struct/Vector.h>
+#include <nitro/Struct/Vector.h>
 #include "../../main/Struct/Size.h"
 
 using ii887522::nitro::Vector;

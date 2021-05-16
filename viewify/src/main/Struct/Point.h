@@ -3,7 +3,7 @@
 #ifndef VIEWIFY_SRC_MAIN_STRUCT_POINT_H_
 #define VIEWIFY_SRC_MAIN_STRUCT_POINT_H_
 
-#include <Struct/Vector.h>
+#include <nitro/Struct/Vector.h>
 #include "Size.h"
 
 using ii887522::nitro::Vector;
