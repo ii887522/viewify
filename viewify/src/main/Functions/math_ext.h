@@ -20,9 +20,8 @@ template <typename T> constexpr bool isOverlap(const Point<T>& point, const Rect
 }
 
 template <typename T> constexpr bool isOverlap(const Rect<T>& self, const Rect<T>& that) {
-  return isOverlap(self.position, that) || isOverlap(Point{ self.position.x + self.size.w - static_cast<T>(1), self.position.y }, that) ||
-    isOverlap(Point{ self.position.x + self.size.w - static_cast<T>(1), self.position.y + self.size.h - static_cast<T>(1) }, that) ||
-    isOverlap(Point{ self.position.x, self.position.y + self.size.h - static_cast<T>(1) }, that);
+  return self.position.x + self.size.w > that.position.x && self.position.x < that.position.x + that.size.w && self.position.y + self.size.h > that.position.y &&
+    self.position.y < that.position.y + that.size.h;
 }
 
 }  // namespace ii887522::viewify
