@@ -6,7 +6,7 @@
 namespace ii887522::viewify {
 
 enum class Action : unsigned int {
-  NONE, QUIT, CONSUME_EVENT
+  NONE, QUIT, CONSUME_EVENT, RETURN_FROM_CALLER
 };
 
 enum class Align : unsigned int {
