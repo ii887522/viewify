@@ -39,7 +39,9 @@ void Modal::darkenScene() {
 }
 
 void Modal::renderBackground() {
-  SDL_SetRenderDrawColor(View::getRenderer(), static_cast<Uint8>(paint.color.r), static_cast<Uint8>(paint.color.g), static_cast<Uint8>(paint.color.b), static_cast<Uint8>(model.getA()));
+  SDL_SetRenderDrawColor(
+    View::getRenderer(), static_cast<Uint8>(paint.color.r), static_cast<Uint8>(paint.color.g), static_cast<Uint8>(paint.color.b), static_cast<Uint8>(paint.color.a * model.getA() / 255.f)
+  );
   const SDL_Rect rect{ View::getPosition().get().x, View::getPosition().get().y, paint.size.w, paint.size.h };
   SDL_RenderFillRect(View::getRenderer(), &rect);
 }

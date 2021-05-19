@@ -9,9 +9,10 @@ template <typename T> struct Color final {
   T r;
   T g;
   T b;
+  T a;
 
   explicit constexpr Color() { }
-  explicit constexpr Color(const T& r, const T& g, const T& b) : r{ r }, g{ g }, b{ b } { }
+  explicit constexpr Color(const T& r, const T& g, const T& b, const T& a) : r{ r }, g{ g }, b{ b }, a{ a } { }
 };
 
 }  // namespace ii887522::viewify

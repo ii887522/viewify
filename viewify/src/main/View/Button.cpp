@@ -107,7 +107,7 @@ void Button::step(const unsigned int dt) {
 void Button::render() {
   SDL_SetRenderDrawColor(
     getRenderer(), static_cast<Uint8>(color.r * model.getLightness()), static_cast<Uint8>(color.g * model.getLightness()),
-    static_cast<Uint8>(color.b * model.getLightness()), static_cast<Uint8>(model.getA()));
+    static_cast<Uint8>(color.b * model.getLightness()), static_cast<Uint8>(color.a * model.getA() / 255.f));
   const SDL_Rect rect{ getPosition().get().x, getPosition().get().y, model.getRect().size.w, model.getRect().size.h };
   SDL_RenderFillRect(getRenderer(), &rect);
 }
