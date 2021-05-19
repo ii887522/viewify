@@ -2,11 +2,11 @@
 
 #include "QuadTree.test.h"
 #include <cassert>
+#include <vector>
 #include "../../main/Struct/Rect.h"
 #include "../../main/Struct/Point.h"
 #include "../../main/Struct/Size.h"
 #include "../../main/Any/QuadTree.h"
-#include <vector>
 
 using std::vector;
 
@@ -1398,7 +1398,7 @@ static void testIsAnyRectHit() {
     assert(quadTree.isAnyRectHit(Rect{ Point{ 12.f, 12.f }, Size{ 10.f, 10.f } }));
     assert(quadTree.isAnyRectHit(Rect{ Point{ 20.f, 20.f }, Size{ 10.f, 10.f } }));
   }
-}
+}  // NOLINT(readability/fn_size)
 
 static void testClear() {
   {

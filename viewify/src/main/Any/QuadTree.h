@@ -1,14 +1,14 @@
 // Copyright ii887522
 
-#ifndef VIEWIFY_SRC_MAIN_ANY_QUAD_TREE_H_
-#define VIEWIFY_SRC_MAIN_ANY_QUAD_TREE_H_
+#ifndef VIEWIFY_SRC_MAIN_ANY_QUADTREE_H_
+#define VIEWIFY_SRC_MAIN_ANY_QUADTREE_H_
 
 #include <vector>
+#include <cstring>
 #include "../Struct/Rect.h"
 #include "../Struct/Point.h"
 #include "../Struct/Size.h"
 #include "../Functions/math_ext.h"
-#include <cstring>
 
 using std::vector;
 
@@ -38,12 +38,13 @@ class QuadTree final {
   bool isParent;
 
   // Param rect: it is a rectangle pointed to by this quad tree
-  explicit QuadTree(Rect<float>& rect);
+  //  it must not be assigned to integer or nullptr
+  explicit QuadTree(Rect<float>*const rect);
 
   void becomeParent();
   void free();
 
-public:
+ public:
   // Param rect: it is a container rectangle that contains this quad tree
   explicit QuadTree(const Rect<float>& rect);
 
@@ -54,6 +55,6 @@ public:
   ~QuadTree();
 };
 
-} // namespace ii887522::viewify
+}  // namespace ii887522::viewify
 
-#endif
+#endif  // VIEWIFY_SRC_MAIN_ANY_QUADTREE_H_

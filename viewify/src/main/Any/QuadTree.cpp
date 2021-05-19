@@ -1,10 +1,10 @@
 // Copyright ii887522
 
 #include "QuadTree.h"
+#include <vector>
 #include "../Struct/Rect.h"
 #include "../Struct/Point.h"
 #include "../Struct/Size.h"
-#include <vector>
 
 using std::vector;
 
@@ -15,10 +15,10 @@ QuadTree::QuadTree(const Rect<float>& rect) : rects{
     Rect{ Point{ rect.position.x + rect.size.w * .5f, rect.position.y }, Size{ rect.size.w * .5f, rect.size.h * .5f } },
     Rect{ Point{ rect.position.x, rect.position.y + rect.size.h * .5f }, Size{ rect.size.w * .5f, rect.size.h * .5f } },
     Rect{ Point{ rect.position.x + rect.size.w * .5f, rect.position.y + rect.size.h * .5f }, Size{ rect.size.w * .5f, rect.size.h * .5f } }
-  }, parentRect{ nullptr }, topLeft{ new QuadTree{ rects[TOP_LEFT_INDEX] } }, topRight{ new QuadTree{ rects[TOP_RIGHT_INDEX] } }, bottomLeft{ new QuadTree{ rects[BOTTOM_LEFT_INDEX] } },
-  bottomRight{ new QuadTree{ rects[BOTTOM_RIGHT_INDEX] } }, isParent{ true } { }
+  }, parentRect{ nullptr }, topLeft{ new QuadTree{ &rects[TOP_LEFT_INDEX] } }, topRight{ new QuadTree{ &rects[TOP_RIGHT_INDEX] } }, bottomLeft{ new QuadTree{ &rects[BOTTOM_LEFT_INDEX] } },
+  bottomRight{ new QuadTree{ &rects[BOTTOM_RIGHT_INDEX] } }, isParent{ true } { }
 
-QuadTree::QuadTree(Rect<float>& rect) : parentRect{ &rect }, topLeft{ nullptr }, topRight{ nullptr }, bottomLeft{ nullptr }, bottomRight{ nullptr }, isParent{ false } { }
+QuadTree::QuadTree(Rect<float>*const rect) : parentRect{ rect }, topLeft{ nullptr }, topRight{ nullptr }, bottomLeft{ nullptr }, bottomRight{ nullptr }, isParent{ false } { }
 
 void QuadTree::becomeParent() {
   rects.clear();
@@ -26,12 +26,11 @@ void QuadTree::becomeParent() {
   rects.push_back(Rect{ Point{ parentRect->position.x + parentRect->size.w * .5f, parentRect->position.y }, Size{ parentRect->size.w * .5f, parentRect->size.h * .5f } });
   rects.push_back(Rect{ Point{ parentRect->position.x, parentRect->position.y + parentRect->size.h * .5f }, Size{ parentRect->size.w * .5f, parentRect->size.h * .5f } });
   rects.push_back(
-    Rect{ Point{ parentRect->position.x + parentRect->size.w * .5f, parentRect->position.y + parentRect->size.h * .5f }, Size{ parentRect->size.w * .5f, parentRect->size.h * .5f } }
-  );
-  topLeft = new QuadTree{ rects[TOP_LEFT_INDEX] };
-  topRight = new QuadTree{ rects[TOP_RIGHT_INDEX] };
-  bottomLeft = new QuadTree{ rects[BOTTOM_LEFT_INDEX] };
-  bottomRight = new QuadTree{ rects[BOTTOM_RIGHT_INDEX] };
+    Rect{ Point{ parentRect->position.x + parentRect->size.w * .5f, parentRect->position.y + parentRect->size.h * .5f }, Size{ parentRect->size.w * .5f, parentRect->size.h * .5f } });
+  topLeft = new QuadTree{ &rects[TOP_LEFT_INDEX] };
+  topRight = new QuadTree{ &rects[TOP_RIGHT_INDEX] };
+  bottomLeft = new QuadTree{ &rects[BOTTOM_LEFT_INDEX] };
+  bottomRight = new QuadTree{ &rects[BOTTOM_RIGHT_INDEX] };
   isParent = true;
 }
 
@@ -46,15 +45,15 @@ void QuadTree::add(const Rect<float>& rect) {
     if (isOverlap(rects[TOP_RIGHT_INDEX], rect)) topRight->add(rect);
     if (isOverlap(rects[BOTTOM_LEFT_INDEX], rect)) bottomLeft->add(rect);
     if (isOverlap(rects[BOTTOM_RIGHT_INDEX], rect)) bottomRight->add(rect);
-  }
-  else if (rects.size() == maxRectsSize) {
+  } else if (rects.size() == maxRectsSize) {
     vector<Rect<float>> aux(maxRectsSize);
     memcpy(aux.data(), rects.data(), maxRectsSize * sizeof Rect<float>);
     becomeParent();
     add(aux);
     add(rect);
+  } else {
+    rects.push_back(rect);
   }
-  else rects.push_back(rect);
 }
 
 bool QuadTree::isAnyRectHit(const Rect<float>& p_rect) const {
@@ -69,10 +68,10 @@ bool QuadTree::isAnyRectHit(const Rect<float>& p_rect) const {
 
 void QuadTree::clear() {
   free();
-  topLeft = new QuadTree{ rects[TOP_LEFT_INDEX] };
-  topRight = new QuadTree{ rects[TOP_RIGHT_INDEX] };
-  bottomLeft = new QuadTree{ rects[BOTTOM_LEFT_INDEX] };
-  bottomRight = new QuadTree{ rects[BOTTOM_RIGHT_INDEX] };
+  topLeft = new QuadTree{ &rects[TOP_LEFT_INDEX] };
+  topRight = new QuadTree{ &rects[TOP_RIGHT_INDEX] };
+  bottomLeft = new QuadTree{ &rects[BOTTOM_LEFT_INDEX] };
+  bottomRight = new QuadTree{ &rects[BOTTOM_RIGHT_INDEX] };
 }
 
 void QuadTree::free() {
