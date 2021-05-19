@@ -58,7 +58,7 @@ void App::checkAndReactHits(const unsigned int dt) {
 }
 
 void App::renderBackground() {
-  SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(backgroundColor.r), static_cast<Uint8>(backgroundColor.g), static_cast<Uint8>(backgroundColor.b), 255u);
+  SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(backgroundColor.r), static_cast<Uint8>(backgroundColor.g), static_cast<Uint8>(backgroundColor.b), static_cast<Uint8>(backgroundColor.a));
   SDL_RenderClear(renderer);
 }
 

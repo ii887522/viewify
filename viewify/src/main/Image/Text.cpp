@@ -26,12 +26,12 @@ Text* Text::Builder::build() {
 
 Text::Text(const Builder& builder) : Image{ Image::Builder{ builder.renderer, TTF_RenderText_Blended(
     builder.font, builder.value.c_str(),
-    SDL_Color{ static_cast<Uint8>(builder.color.r), static_cast<Uint8>(builder.color.g), static_cast<Uint8>(builder.color.b) }),
+    SDL_Color{ static_cast<Uint8>(builder.color.r), static_cast<Uint8>(builder.color.g), static_cast<Uint8>(builder.color.b), static_cast<Uint8>(builder.color.a) }),
     builder.position, builder.align }.setA(builder.a).setDuration(builder.duration) }, font{ builder.font }, color{ builder.color } { }
 
 void Text::set(const string& value) {
   Image::set(TTF_RenderText_Blended(font, value.c_str(), SDL_Color{
-    static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b)
+    static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b), static_cast<Uint8>(color.a)
   }));
 }
 

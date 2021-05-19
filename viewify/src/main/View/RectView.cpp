@@ -18,7 +18,7 @@ RectView::RectView(SDL_Renderer*const renderer, const Point<int>& position, cons
   View{ renderer, position }, model{ Rect{ position, paint.size } }, color{ paint.color }, onPostRender{ onPostRender } { }
 
 void RectView::render() {
-  SDL_SetRenderDrawColor(getRenderer(), static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b), 255u);
+  SDL_SetRenderDrawColor(getRenderer(), static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b), static_cast<Uint8>(color.a));
   const SDL_Rect rect{ getPosition().get().x, getPosition().get().y, model.size.w, model.size.h };
   SDL_RenderFillRect(getRenderer(), &rect);
 }
