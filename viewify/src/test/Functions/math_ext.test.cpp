@@ -35,9 +35,18 @@ constexpr static void testIsRectAndRectOverlap() {
   static_assert(isOverlap(Rect{ Point{ 4, 0 }, Size{ 5, 5 } }, Rect{ Point{ 3, 3 }, Size{ 3, 3 } }));
 }
 
+constexpr static void testDistanceSqr() {
+  static_assert(distanceSqr(Point{ 0, 0 }, Point{ 0, 0 }) == 0);
+  static_assert(distanceSqr(Point{ 1, 0 }, Point{ 0, 0 }) == 1);
+  static_assert(distanceSqr(Point{ 1, 1 }, Point{ 0, 0 }) == 2);
+  static_assert(distanceSqr(Point{ 1, 1 }, Point{ 1, 0 }) == 1);
+  static_assert(distanceSqr(Point{ 1, 1 }, Point{ 1, 1 }) == 0);
+}
+
 void testMathExt() {
   testIsPointAndRectOverlap();
   testIsRectAndRectOverlap();
+  testDistanceSqr();
 }
 
 }  // namespace ii887522::viewify

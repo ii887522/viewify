@@ -24,6 +24,10 @@ template <typename T> constexpr bool isOverlap(const Rect<T>& self, const Rect<T
     self.position.y < that.position.y + that.size.h;
 }
 
+constexpr int distanceSqr(const Point<int>& l, const Point<int>& r) {
+  return (r.x - l.x) * (r.x - l.x) + (r.y - l.y) * (r.y - l.y);
+}
+
 }  // namespace ii887522::viewify
 
 #endif  // VIEWIFY_SRC_MAIN_FUNCTIONS_MATH_EXT_H_

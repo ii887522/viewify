@@ -18,6 +18,7 @@
 #include <SDL.h>
 #include "../../main/Functions/control_flow.h"
 #include "../../main/Struct/Color.h"
+#include "../Any/QuadTree.test.h"
 
 namespace ii887522::viewify {
 
@@ -28,6 +29,7 @@ static void consoleTest() {
   testImageModel();
   testButtonModel();
   testMap();
+  testQuadTree();
 }
 
 static void guiTest() {

@@ -30,6 +30,7 @@
     <ClInclude Include="src\main\Any\App.h" />
     <ClInclude Include="src\main\Any\Enums.h" />
     <ClInclude Include="src\main\Any\Map.h" />
+    <ClInclude Include="src\main\Any\QuadTree.h" />
     <ClInclude Include="src\main\Any\Subsystems.h" />
     <ClInclude Include="src\main\Any\View.h" />
     <ClInclude Include="src\main\Factory\ViewGroupFactory.h" />
@@ -56,6 +57,7 @@
     <ClInclude Include="src\main\View\ViewGroup.h" />
     <ClInclude Include="src\test\Any\Enums.h" />
     <ClInclude Include="src\test\Any\Map.test.h" />
+    <ClInclude Include="src\test\Any\QuadTree.test.h" />
     <ClInclude Include="src\test\Functions\math_ext.test.h" />
     <ClInclude Include="src\test\Model\ButtonModel.test.h" />
     <ClInclude Include="src\test\Model\ImageModel.test.h" />
@@ -65,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\App.cpp" />
+    <ClCompile Include="src\main\Any\QuadTree.cpp" />
     <ClCompile Include="src\main\Any\Subsystems.cpp" />
     <ClCompile Include="src\main\Any\View.cpp" />
     <ClCompile Include="src\main\Factory\ViewGroupFactory.cpp" />
@@ -80,6 +83,7 @@
     <ClCompile Include="src\main\View\RectView.cpp" />
     <ClCompile Include="src\main\View\ViewGroup.cpp" />
     <ClCompile Include="src\test\Any\Map.test.cpp" />
+    <ClCompile Include="src\test\Any\QuadTree.test.cpp" />
     <ClCompile Include="src\test\Functions\math_ext.test.cpp" />
     <ClCompile Include="src\test\Functions\test.cpp" />
     <ClCompile Include="src\test\Model\ButtonModel.test.cpp" />
@@ -207,7 +211,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;SHORT_TERM_ALLOCATOR_SIZE=128u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=131072u;SHORT_TERM_ALLOCATOR_SIZE=128u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -274,7 +278,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;SHORT_TERM_ALLOCATOR_SIZE=128u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=131072u;SHORT_TERM_ALLOCATOR_SIZE=128u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>

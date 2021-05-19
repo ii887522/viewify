@@ -11,6 +11,10 @@ template <typename T> struct Size final {
 
   explicit constexpr Size() { }
   explicit constexpr Size(const T& w, const T& h) : w{ w }, h{ h } { }
+
+  template <typename U> explicit constexpr operator Size<U>() const {
+    return Size{ static_cast<U>(w), static_cast<U>(h) };
+  }
 };
 
 }  // namespace ii887522::viewify

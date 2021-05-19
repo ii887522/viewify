@@ -204,6 +204,12 @@
     <ClInclude Include="src\test\Any\Enums.h">
       <Filter>Test Header Files\Any</Filter>
     </ClInclude>
+    <ClInclude Include="src\main\Any\QuadTree.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\Any\QuadTree.test.h">
+      <Filter>Test Header Files\Any</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp">
@@ -274,6 +280,12 @@
     </ClCompile>
     <ClCompile Include="src\test\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
       <Filter>Test Source Files\ViewGroupFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Any\QuadTree.cpp">
+      <Filter>Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\Any\QuadTree.test.cpp">
+      <Filter>Test Source Files\Any</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
