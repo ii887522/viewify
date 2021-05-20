@@ -2,19 +2,19 @@
 
 #include "ViewGroup.h"
 #include <SDL.h>
-#include <initializer_list>
 #include <functional>
+#include <vector>
 #include "../Any/View.h"
 #include "../Any/Enums.h"
 
-using std::initializer_list;
 using std::function;
+using std::vector;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views, const function<Action(ViewGroup&)>& onPreRender,
-  const function<Action(ViewGroup&)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
-  for (auto view : views) add(view);
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews,
+  const function<Action(ViewGroup&)>& onPreRender, const function<Action(ViewGroup&)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
+  for (auto view : makeViews(*this, renderer)) add(view);
 }
 
 ViewGroup::ViewGroup(ViewGroup&& that) noexcept : View{ that.getRenderer(), that.getPosition().get() }, onPreRender{ that.onPreRender }, onPostRender{ that.onPostRender } {

@@ -5,15 +5,17 @@
 
 #include <SDL.h>
 #include <nitro/Any/Reactive.h>
-#include <initializer_list>
+#include <functional>
+#include <vector>
 #include "../View/ViewGroup.h"
 #include "../Struct/Point.h"
 #include "../Any/View.h"
 #include "../Functions/sdl_ext.h"
 #include "../Any/Enums.h"
 
-using std::initializer_list;
 using ii887522::nitro::Reactive;
+using std::function;
+using std::vector;
 
 namespace ii887522::viewify {
 
@@ -32,8 +34,10 @@ template <typename T> class Page final : public ViewGroup {
 
  public:
   // Param renderer: it must not be assigned to nullptr or integer
-  explicit Page(SDL_Renderer*const renderer, const Point<int>& position, const T& path, Reactive<T>*const currentPath, const initializer_list<View*>& views) :
-    ViewGroup{ renderer, position, views }, isShowing{ false } {
+  explicit Page(SDL_Renderer*const renderer, const Point<int>& position, const T& path, Reactive<T>*const currentPath,
+    const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews = [](ViewGroup&, SDL_Renderer*const) {
+      return vector<View*>{ };
+    }) : ViewGroup{ renderer, position, makeViews }, isShowing{ false } {
     currentPath->watch([this, path](const T& value, const int) {
       const auto wasShowing{ isShowing };
       isShowing = value == path;
