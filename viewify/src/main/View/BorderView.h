@@ -71,7 +71,7 @@ template <typename T = nullptr_t> class BorderView final : public View {
   }
 
   void render() override {
-    SDL_SetRenderDrawColor(getRenderer(), static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b), 255u);
+    SDL_SetRenderDrawColor(getRenderer(), static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b), static_cast<Uint8>(color.a));
     const SDL_Rect rects[]{
       { getPosition().get().x, getPosition().get().y, model.width, model.width },
       { getPosition().get().x + model.width, getPosition().get().y, model.rect.size.w - (model.width << 1u), model.width },

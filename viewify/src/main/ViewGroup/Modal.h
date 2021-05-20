@@ -5,16 +5,18 @@
 
 #include <SDL.h>
 #include <nitro/Any/Reactive.h>
-#include <initializer_list>
+#include <functional>
+#include <vector>
 #include "../Any/View.h"
+#include "../View/ViewGroup.h"
 #include "../Struct/Paint.h"
 #include "../Struct/Size.h"
 #include "../Struct/Point.h"
 #include "../Model/ModalModel.h"
 #include "../Any/Enums.h"
-#include "../View/ViewGroup.h"
 
-using std::initializer_list;
+using std::function;
+using std::vector;
 using ii887522::nitro::Reactive;
 
 namespace ii887522::viewify {
@@ -44,7 +46,9 @@ class Modal final : public ViewGroup {
   // Param isShowing: it must not be assigned to nullptr or integer
   // See also ../Any/View.h for more details
   explicit Modal(SDL_Renderer*const renderer, const Size<int>& sceneSize, const Point<int>& position, const Paint<int, unsigned int>& paint, Reactive<bool>*const isShowing,
-    const unsigned int duration, const initializer_list<View*>& views);
+    const unsigned int duration, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews = [](ViewGroup&, SDL_Renderer*const) {
+      return vector<View*>{ };
+    });
 
   Action reactKeyDown(const SDL_KeyboardEvent& keyEvent) override;
   Action reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override;

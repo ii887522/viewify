@@ -50,7 +50,7 @@ class Text : public Image {
     // Param renderer: it must not be assigned to nullptr or integer
     // Param font: it must not be assigned to nullptr or integer
     explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const string& = " ",
-      const Color<unsigned int>& = Color{ 0u, 0u, 0u }, const Align = Align::LEFT);
+      const Color<unsigned int>& = Color{ 0u, 0u, 0u, 255u }, const Align = Align::LEFT);
         // " " because TTF_Render*() needs a string with at least one character.
 
     constexpr Builder& setA(const unsigned int p_value) {

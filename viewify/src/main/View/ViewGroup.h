@@ -5,12 +5,10 @@
 
 #include <SDL.h>
 #include <vector>
-#include <initializer_list>
 #include <functional>
 #include "../Any/View.h"
 #include "../Any/Enums.h"
 
-using std::initializer_list;
 using std::vector;
 using std::function;
 
@@ -27,7 +25,9 @@ class ViewGroup : public View {
  public:
   // Param renderer: it must not be assigned to nullptr or integer
   // See also ../Any/View.h for more details
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const initializer_list<View*>& views = { }, const function<Action(ViewGroup&)>& onPreRender = [](ViewGroup&) {
+  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews = [](ViewGroup&, SDL_Renderer*const) {
+    return vector<View*>{ };
+  }, const function<Action(ViewGroup&)>& onPreRender = [](ViewGroup&) {
     return Action::NONE;
   }, const function<Action(ViewGroup&)>& onPostRender = [](ViewGroup&) {
     return Action::NONE;

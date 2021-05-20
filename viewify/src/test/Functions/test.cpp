@@ -35,7 +35,7 @@ static void consoleTest() {
 static void guiTest() {
   const Subsystems subsystems;
   ViewifyViewGroupFactory viewifyViewGroupFactory;
-  eventLoop(App{ "Test", Size{ 992, 992 }, Color{ 255u, 255u, 255u }, &viewifyViewGroupFactory });
+  eventLoop(App{ "Test", Size{ 992, 992 }, Color{ 255u, 255u, 255u, 255u }, &viewifyViewGroupFactory });
 }
 
 static int main(int, char**) {
