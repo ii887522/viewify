@@ -37,12 +37,15 @@
     <ClInclude Include="src\main\Functions\control_flow.h" />
     <ClInclude Include="src\main\Functions\math_ext.h" />
     <ClInclude Include="src\main\Functions\sdl_ext.h" />
+    <ClInclude Include="src\main\Functions\ttf_ext.h" />
     <ClInclude Include="src\main\Image\Text.h" />
     <ClInclude Include="src\main\Model\ButtonModel.h" />
     <ClInclude Include="src\main\Model\ImageModel.h" />
     <ClInclude Include="src\main\Model\ModalModel.h" />
     <ClInclude Include="src\main\Struct\Border.h" />
+    <ClInclude Include="src\main\Struct\BoundingBox.h" />
     <ClInclude Include="src\main\Struct\Color.h" />
+    <ClInclude Include="src\main\Struct\GlyphMetrics.h" />
     <ClInclude Include="src\main\Struct\Paint.h" />
     <ClInclude Include="src\main\Struct\Point.h" />
     <ClInclude Include="src\main\Struct\Rect.h" />
@@ -73,6 +76,7 @@
     <ClCompile Include="src\main\Factory\ViewGroupFactory.cpp" />
     <ClCompile Include="src\main\Functions\control_flow.cpp" />
     <ClCompile Include="src\main\Functions\sdl_ext.cpp" />
+    <ClCompile Include="src\main\Functions\ttf_ext.cpp" />
     <ClCompile Include="src\main\Image\Text.cpp" />
     <ClCompile Include="src\main\Model\ButtonModel.cpp" />
     <ClCompile Include="src\main\Model\ImageModel.cpp" />

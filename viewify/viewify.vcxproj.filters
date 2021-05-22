@@ -210,6 +210,15 @@
     <ClInclude Include="src\test\Any\QuadTree.test.h">
       <Filter>Test Header Files\Any</Filter>
     </ClInclude>
+    <ClInclude Include="src\main\Struct\BoundingBox.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Struct\GlyphMetrics.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Functions\ttf_ext.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp">
@@ -286,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="src\test\Any\QuadTree.test.cpp">
       <Filter>Test Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Functions\ttf_ext.cpp">
+      <Filter>Source Files\Functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
