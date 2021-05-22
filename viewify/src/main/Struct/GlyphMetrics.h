@@ -1,7 +1,7 @@
 // Copyright ii887522
 
-#ifndef VIEWIFY_SRC_MAIN_STRUCT_GLYPH_METRICS_H_
-#define VIEWIFY_SRC_MAIN_STRUCT_GLYPH_METRICS_H_
+#ifndef VIEWIFY_SRC_MAIN_STRUCT_GLYPHMETRICS_H_
+#define VIEWIFY_SRC_MAIN_STRUCT_GLYPHMETRICS_H_
 
 #include "BoundingBox.h"
 
@@ -18,4 +18,4 @@ struct GlyphMetrics final {
 
 }  // namespace ii887522::viewify
 
-#endif  // VIEWIFY_SRC_MAIN_STRUCT_GLYPH_METRICS_H_
+#endif  // VIEWIFY_SRC_MAIN_STRUCT_GLYPHMETRICS_H_

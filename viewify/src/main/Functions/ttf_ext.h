@@ -1,9 +1,9 @@
 // Copyright ii887522
 
-#ifndef TEST
-
 #ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_TTF_EXT_H_
 #define VIEWIFY_SRC_MAIN_FUNCTIONS_TTF_EXT_H_
+
+#ifndef TEST
 
 #include "../Struct/GlyphMetrics.h"
 #include <SDL_ttf.h>

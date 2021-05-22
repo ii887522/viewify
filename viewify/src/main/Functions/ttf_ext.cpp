@@ -2,7 +2,7 @@
 
 #ifndef TEST
 
-#include "ttf_ext.h"
+#include "ttf_ext.h"  // NOLINT(build/include_subdir)
 #include "../Struct/GlyphMetrics.h"
 #include <SDL_ttf.h>
 
