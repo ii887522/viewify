@@ -35,6 +35,8 @@ also make use of cpplint which is a [Visual Studio Code](https://code.visualstud
   - Extensions:
     - Markdown Editor
     - EditorConfig Language Service
+    - Line Endings Unifier
+    - Github Extension for Visual Studio
   - Workloads:
     - Desktop development with C++
   - Individual components:
