@@ -1,6 +1,6 @@
 // Copyright ii887522
 
-#ifdef TEST
+#ifdef CONSOLE_TEST
 
 #include "math_ext.test.h"  // NOLINT(build/include_subdir)
 #include <nitro/Struct/Range.h>

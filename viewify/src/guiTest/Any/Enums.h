@@ -1,9 +1,9 @@
 // Copyright ii887522
 
-#ifdef TEST
+#ifndef VIEWIFY_SRC_GUITEST_ANY_ENUMS_H_
+#define VIEWIFY_SRC_GUITEST_ANY_ENUMS_H_
 
-#ifndef VIEWIFY_SRC_TEST_ANY_ENUMS_H_
-#define VIEWIFY_SRC_TEST_ANY_ENUMS_H_
+#ifdef GUI_TEST
 
 namespace ii887522::viewify {
 
@@ -18,4 +18,4 @@ enum class Path : unsigned int {
 }  // namespace ii887522::viewify
 
 #endif
-#endif  // VIEWIFY_SRC_TEST_ANY_ENUMS_H_
+#endif  // VIEWIFY_SRC_GUITEST_ANY_ENUMS_H_

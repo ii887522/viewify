@@ -8,14 +8,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e5cb56dc-8885-4c16-9bb5-5da3cb97c772}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test Header Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Test Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files\Any">
       <UniqueIdentifier>{6cb3e681-7920-4e90-840f-a66d8ec5f1f4}</UniqueIdentifier>
     </Filter>
@@ -58,44 +50,64 @@
     <Filter Include="Source Files\View">
       <UniqueIdentifier>{2557f775-0083-45e1-b293-a704447759c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test Header Files\Any">
-      <UniqueIdentifier>{eaeb864d-b681-48e5-a541-1209ba855f8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Header Files\Functions">
-      <UniqueIdentifier>{b2f3ca17-c80f-40db-8c70-ab83b67329f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Header Files\Model">
-      <UniqueIdentifier>{be26eaa1-100c-43bb-9942-2a44b5376879}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Header Files\Struct">
-      <UniqueIdentifier>{3419e22c-97c2-4815-b85a-deaec55e934b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Source Files\Any">
-      <UniqueIdentifier>{c6a3fb23-a4a9-451d-b78d-c9e7720990a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Source Files\Functions">
-      <UniqueIdentifier>{624db1a6-1cbb-4034-acca-11cd0b162515}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Source Files\Model">
-      <UniqueIdentifier>{525a7983-8f12-48b1-bc3d-81af74c7e8d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Source Files\Struct">
-      <UniqueIdentifier>{5f8983f3-07a2-4b8b-b58d-2b01cdf02a34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Header Files\ViewGroupFactory">
-      <UniqueIdentifier>{4f67d421-2845-4737-bfc9-2bc93cbf6c4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test Resource Files">
-      <UniqueIdentifier>{46cd467e-a389-42e2-ae6a-7caf2a6704e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{6225f69f-c7dc-41ce-9358-bec237b3e61e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ViewGroup">
       <UniqueIdentifier>{d98ba57f-8dbf-4c99-a30a-70c0fec6ae8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test Source Files\ViewGroupFactory">
-      <UniqueIdentifier>{ccd20e5d-624e-46fa-8a6f-7a5ada50fc20}</UniqueIdentifier>
+    <Filter Include="Console Test Header Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Console Test Header Files\Any">
+      <UniqueIdentifier>{eaeb864d-b681-48e5-a541-1209ba855f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Header Files\Functions">
+      <UniqueIdentifier>{b2f3ca17-c80f-40db-8c70-ab83b67329f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Header Files\Model">
+      <UniqueIdentifier>{be26eaa1-100c-43bb-9942-2a44b5376879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Header Files\Struct">
+      <UniqueIdentifier>{3419e22c-97c2-4815-b85a-deaec55e934b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Console Test Source Files\Any">
+      <UniqueIdentifier>{c6a3fb23-a4a9-451d-b78d-c9e7720990a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Source Files\Functions">
+      <UniqueIdentifier>{624db1a6-1cbb-4034-acca-11cd0b162515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Source Files\Model">
+      <UniqueIdentifier>{525a7983-8f12-48b1-bc3d-81af74c7e8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Source Files\Struct">
+      <UniqueIdentifier>{5f8983f3-07a2-4b8b-b58d-2b01cdf02a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Resource Files">
+      <UniqueIdentifier>{46cd467e-a389-42e2-ae6a-7caf2a6704e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Header Files">
+      <UniqueIdentifier>{996f4ae2-3b92-43b0-95e5-0493bb355ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Source Files">
+      <UniqueIdentifier>{529781ba-97f8-428c-a540-32ead6b0b06a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Header Files\ViewGroupFactory">
+      <UniqueIdentifier>{3a97f188-dd69-402d-960b-479654117e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Source Files\Functions">
+      <UniqueIdentifier>{3a699000-e62b-4596-b49c-ce7d46a30360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Source Files\ViewGroupFactory">
+      <UniqueIdentifier>{d68e812a-9df1-46db-a7d5-c0b511867f91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Header Files\Any">
+      <UniqueIdentifier>{f81a7494-119f-47e7-90f2-59a35a4552c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -180,35 +192,8 @@
     <ClInclude Include="src\main\Struct\Size.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="src\test\Any\Map.test.h">
-      <Filter>Test Header Files\Any</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Functions\math_ext.test.h">
-      <Filter>Test Header Files\Functions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Model\ButtonModel.test.h">
-      <Filter>Test Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Model\ImageModel.test.h">
-      <Filter>Test Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Model\ModalModel.test.h">
-      <Filter>Test Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Struct\Point.test.h">
-      <Filter>Test Header Files\Struct</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\ViewGroupFactory\ViewifyViewGroupFactory.h">
-      <Filter>Test Header Files\ViewGroupFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Any\Enums.h">
-      <Filter>Test Header Files\Any</Filter>
-    </ClInclude>
     <ClInclude Include="src\main\Any\QuadTree.h">
       <Filter>Header Files\Any</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test\Any\QuadTree.test.h">
-      <Filter>Test Header Files\Any</Filter>
     </ClInclude>
     <ClInclude Include="src\main\Struct\BoundingBox.h">
       <Filter>Header Files\Struct</Filter>
@@ -218,6 +203,33 @@
     </ClInclude>
     <ClInclude Include="src\main\Functions\ttf_ext.h">
       <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Any\Map.test.h">
+      <Filter>Console Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Any\QuadTree.test.h">
+      <Filter>Console Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Functions\math_ext.test.h">
+      <Filter>Console Test Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Model\ButtonModel.test.h">
+      <Filter>Console Test Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Model\ImageModel.test.h">
+      <Filter>Console Test Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Model\ModalModel.test.h">
+      <Filter>Console Test Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Struct\Point.test.h">
+      <Filter>Console Test Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.h">
+      <Filter>GUI Test Header Files\ViewGroupFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\Any\Enums.h">
+      <Filter>GUI Test Header Files\Any</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -251,27 +263,6 @@
     <ClCompile Include="src\main\View\RectView.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="src\test\Any\Map.test.cpp">
-      <Filter>Test Source Files\Any</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\Functions\math_ext.test.cpp">
-      <Filter>Test Source Files\Functions</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\Functions\test.cpp">
-      <Filter>Test Source Files\Functions</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\Model\ButtonModel.test.cpp">
-      <Filter>Test Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\Model\ImageModel.test.cpp">
-      <Filter>Test Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\Model\ModalModel.test.cpp">
-      <Filter>Test Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\test\Struct\Point.test.cpp">
-      <Filter>Test Source Files\Struct</Filter>
-    </ClCompile>
     <ClCompile Include="src\main\View\ViewGroup.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -287,17 +278,41 @@
     <ClCompile Include="src\main\ViewGroup\Modal.cpp">
       <Filter>Source Files\ViewGroup</Filter>
     </ClCompile>
-    <ClCompile Include="src\test\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
-      <Filter>Test Source Files\ViewGroupFactory</Filter>
-    </ClCompile>
     <ClCompile Include="src\main\Any\QuadTree.cpp">
       <Filter>Source Files\Any</Filter>
     </ClCompile>
-    <ClCompile Include="src\test\Any\QuadTree.test.cpp">
-      <Filter>Test Source Files\Any</Filter>
-    </ClCompile>
     <ClCompile Include="src\main\Functions\ttf_ext.cpp">
       <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Any\Map.test.cpp">
+      <Filter>Console Test Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Any\QuadTree.test.cpp">
+      <Filter>Console Test Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Functions\math_ext.test.cpp">
+      <Filter>Console Test Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Functions\console_test.cpp">
+      <Filter>Console Test Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Model\ButtonModel.test.cpp">
+      <Filter>Console Test Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Model\ImageModel.test.cpp">
+      <Filter>Console Test Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Model\ModalModel.test.cpp">
+      <Filter>Console Test Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Struct\Point.test.cpp">
+      <Filter>Console Test Source Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiTest\Functions\gui_test.cpp">
+      <Filter>GUI Test Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
+      <Filter>GUI Test Source Files\ViewGroupFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

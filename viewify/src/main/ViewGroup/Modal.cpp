@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "Modal.h"
 #include <SDL.h>
 #include <nitro/Any/Reactive.h>
@@ -101,3 +103,5 @@ void Modal::render() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

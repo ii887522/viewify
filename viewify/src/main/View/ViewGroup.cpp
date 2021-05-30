@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "ViewGroup.h"
 #include <SDL.h>
 #include <functional>
@@ -109,3 +111,5 @@ ViewGroup::~ViewGroup() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

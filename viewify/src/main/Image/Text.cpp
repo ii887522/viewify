@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "Text.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -36,3 +38,5 @@ void Text::set(const string& value) {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

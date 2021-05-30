@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_IMAGE_TEXT_H_
 #define VIEWIFY_SRC_MAIN_IMAGE_TEXT_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <string>
@@ -86,4 +88,5 @@ class Text : public Image {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_IMAGE_TEXT_H_

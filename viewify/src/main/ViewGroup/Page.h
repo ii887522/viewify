@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEWGROUP_PAGE_H_
 #define VIEWIFY_SRC_MAIN_VIEWGROUP_PAGE_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <nitro/Any/Reactive.h>
 #include <functional>
@@ -84,4 +86,5 @@ template <typename T> class Page final : public ViewGroup {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEWGROUP_PAGE_H_

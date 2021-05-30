@@ -1,6 +1,6 @@
 // Copyright ii887522
 
-#ifdef TEST
+#ifdef GUI_TEST
 
 #include "ViewifyViewGroupFactory.h"
 #include <iostream>

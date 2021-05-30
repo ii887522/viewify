@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_BUTTON_H_
 #define VIEWIFY_SRC_MAIN_VIEW_BUTTON_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <functional>
 #include "../Any/View.h"
@@ -116,4 +118,5 @@ class Button final : public View {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_BUTTON_H_

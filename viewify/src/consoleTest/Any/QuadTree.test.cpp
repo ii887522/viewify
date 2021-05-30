@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifdef CONSOLE_TEST
+
 #include "QuadTree.test.h"
 #include <cassert>
 #include <vector>
@@ -1434,3 +1436,5 @@ void testQuadTree() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

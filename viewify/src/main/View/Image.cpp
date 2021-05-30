@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "Image.h"
 #include <SDL.h>
 #include <SDL_image.h>
@@ -70,3 +72,5 @@ Image::~Image() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

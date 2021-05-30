@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_BORDERVIEW_H_
 #define VIEWIFY_SRC_MAIN_VIEW_BORDERVIEW_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <cstddef>
 #include "../Any/View.h"
@@ -97,4 +99,5 @@ template <typename T = nullptr_t> class BorderView final : public View {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_BORDERVIEW_H_

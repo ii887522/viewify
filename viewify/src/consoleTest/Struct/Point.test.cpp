@@ -1,6 +1,6 @@
 // Copyright ii887522
 
-#ifdef TEST
+#ifdef CONSOLE_TEST
 
 #include "Point.test.h"
 #include "../../main/Struct/Point.h"

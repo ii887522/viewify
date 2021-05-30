@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_IMAGE_H_
 #define VIEWIFY_SRC_MAIN_VIEW_IMAGE_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include "../Any/View.h"
 #include "../Struct/Point.h"
@@ -93,4 +95,5 @@ class Image : public View {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_IMAGE_H_

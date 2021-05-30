@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_FACTORY_VIEWGROUPFACTORY_H_
 #define VIEWIFY_SRC_MAIN_FACTORY_VIEWGROUPFACTORY_H_
 
+#ifndef CONSOLE_TEST
+
 #include "../View/ViewGroup.h"
 #include <SDL.h>
 #include "../Struct/Size.h"
@@ -31,4 +33,5 @@ struct ViewGroupFactory {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_FACTORY_VIEWGROUPFACTORY_H_
