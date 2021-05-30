@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "Subsystems.h"
 #include <SDL.h>
 #include <SDL_image.h>
@@ -20,3 +22,5 @@ Subsystems::~Subsystems() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

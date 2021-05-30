@@ -3,5 +3,5 @@ node_modules
 libs
 Debug
 Release
-viewify/Test
+viewify/*Test
 x64

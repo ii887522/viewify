@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "RectView.h"
 #include <SDL.h>
 #include <functional>
@@ -30,3 +32,5 @@ Action RectView::postRender() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

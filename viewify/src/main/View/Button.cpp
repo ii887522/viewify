@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "Button.h"
 #include <functional>
 #include <SDL.h>
@@ -113,3 +115,5 @@ void Button::render() {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

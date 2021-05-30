@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "sdl_ext.h"  // NOLINT(build/include_subdir)
 #include <SDL.h>
 #include <SDL_image.h>
@@ -26,3 +28,5 @@ void snapshot(SDL_Renderer*const renderer, const Rect<int>& rect, const string& 
 }
 
 }  // namespace ii887522::viewify
+
+#endif

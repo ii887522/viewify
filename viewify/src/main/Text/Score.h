@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_TEXT_SCORE_H_
 #define VIEWIFY_SRC_MAIN_TEXT_SCORE_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <nitro/Any/allocator.h>
@@ -125,4 +127,5 @@ struct Score final : public Text {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_TEXT_SCORE_H_

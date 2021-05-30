@@ -1,6 +1,6 @@
 // Copyright ii887522
 
-#ifndef TEST
+#ifndef CONSOLE_TEST
 
 #include "ttf_ext.h"  // NOLINT(build/include_subdir)
 #include "../Struct/GlyphMetrics.h"

@@ -1,6 +1,6 @@
 // Copyright ii887522
 
-#ifdef TEST
+#ifdef CONSOLE_TEST
 
 #include "ModalModel.test.h"
 #include "../../main/Model/ModalModel.h"

@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "View.h"
 #include <SDL.h>
 #include "../Struct/Point.h"
@@ -45,3 +47,5 @@ Action View::postRender() {
 View::~View() { }
 
 }  // namespace ii887522::viewify
+
+#endif
