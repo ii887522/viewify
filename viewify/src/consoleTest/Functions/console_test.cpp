@@ -1,6 +1,6 @@
 // Copyright ii887522
 
-#ifdef TEST
+#ifdef CONSOLE_TEST
 
 #define ALLOCATOR_IMPLEMENTATIONS
 #include <nitro/Any/allocator.h>
@@ -11,18 +11,11 @@
 #include "../Model/ImageModel.test.h"
 #include "../Model/ButtonModel.test.h"
 #include "../Any/Map.test.h"
-#include "../../main/Any/Subsystems.h"
-#include "../../main/Any/App.h"
-#include "../../main/Struct/Size.h"
-#include "../ViewGroupFactory/ViewifyViewGroupFactory.h"
-#include <SDL.h>
-#include "../../main/Functions/control_flow.h"
-#include "../../main/Struct/Color.h"
 #include "../Any/QuadTree.test.h"
 
 namespace ii887522::viewify {
 
-static void consoleTest() {
+static int main(int, char**) {
   testPoint();
   testMathExt();
   testModalModel();
@@ -30,18 +23,7 @@ static void consoleTest() {
   testButtonModel();
   testMap();
   testQuadTree();
-}
-
-static void guiTest() {
-  const Subsystems subsystems;
-  ViewifyViewGroupFactory viewifyViewGroupFactory;
-  eventLoop(App{ "Test", Size{ 992, 992 }, Color{ 255u, 255u, 255u, 255u }, &viewifyViewGroupFactory });
-}
-
-static int main(int, char**) {
-  consoleTest();
-  guiTest();
-  return 0;
+  return EXIT_SUCCESS;
 }
 
 }  // namespace ii887522::viewify

@@ -1,5 +1,7 @@
 // Copyright ii887522
 
+#ifndef CONSOLE_TEST
+
 #include "control_flow.h"  // NOLINT(build/include_subdir)
 #include <SDL.h>
 #include "../Any/Enums.h"
@@ -23,3 +25,5 @@ void eventLoop(App&& app) {
 }
 
 }  // namespace ii887522::viewify
+
+#endif

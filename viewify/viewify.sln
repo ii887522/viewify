@@ -7,26 +7,32 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "viewify", "viewify.vcxproj"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ConsoleTest|x64 = ConsoleTest|x64
+		ConsoleTest|x86 = ConsoleTest|x86
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		GUITest|x64 = GUITest|x64
+		GUITest|x86 = GUITest|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-		Test|x64 = Test|x64
-		Test|x86 = Test|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.ConsoleTest|x64.ActiveCfg = ConsoleTest|x64
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.ConsoleTest|x64.Build.0 = ConsoleTest|x64
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.ConsoleTest|x86.ActiveCfg = ConsoleTest|Win32
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.ConsoleTest|x86.Build.0 = ConsoleTest|Win32
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Debug|x64.ActiveCfg = Debug|x64
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Debug|x64.Build.0 = Debug|x64
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Debug|x86.ActiveCfg = Debug|Win32
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Debug|x86.Build.0 = Debug|Win32
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.GUITest|x64.ActiveCfg = GUITest|x64
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.GUITest|x64.Build.0 = GUITest|x64
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.GUITest|x86.ActiveCfg = GUITest|Win32
+		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.GUITest|x86.Build.0 = GUITest|Win32
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Release|x64.ActiveCfg = Release|x64
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Release|x64.Build.0 = Release|x64
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Release|x86.ActiveCfg = Release|Win32
 		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Release|x86.Build.0 = Release|Win32
-		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Test|x64.ActiveCfg = Test|x64
-		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Test|x64.Build.0 = Test|x64
-		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Test|x86.ActiveCfg = Test|Win32
-		{0B9DE873-D9EE-4AAF-917A-DB82F217E38C}.Test|x86.Build.0 = Test|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

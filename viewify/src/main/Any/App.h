@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_ANY_APP_H_
 #define VIEWIFY_SRC_MAIN_ANY_APP_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <string>
 #include "../Struct/Size.h"
@@ -53,4 +55,5 @@ class App final {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_ANY_APP_H_

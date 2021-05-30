@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_
 #define VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <functional>
 #include "../Any/View.h"
@@ -44,4 +46,5 @@ class RectView final : public View {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_RECTVIEW_H_

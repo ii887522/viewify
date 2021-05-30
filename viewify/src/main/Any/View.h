@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_ANY_VIEW_H_
 #define VIEWIFY_SRC_MAIN_ANY_VIEW_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <nitro/Any/Reactive.h>
 #include "../Struct/Point.h"
@@ -57,4 +59,5 @@ class View {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_ANY_VIEW_H_

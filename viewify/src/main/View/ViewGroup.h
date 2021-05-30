@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_VIEW_VIEWGROUP_H_
 #define VIEWIFY_SRC_MAIN_VIEW_VIEWGROUP_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <vector>
 #include <functional>
@@ -55,4 +57,5 @@ class ViewGroup : public View {
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_VIEW_VIEWGROUP_H_

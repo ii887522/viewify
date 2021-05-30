@@ -3,6 +3,8 @@
 #ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
 #define VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
 
+#ifndef CONSOLE_TEST
+
 #include <SDL.h>
 #include <string>
 #include "../Struct/Point.h"
@@ -21,4 +23,5 @@ void snapshot(SDL_Renderer*const renderer, const Rect<int>&, const string& fileP
 
 }  // namespace ii887522::viewify
 
+#endif
 #endif  // VIEWIFY_SRC_MAIN_FUNCTIONS_SDL_EXT_H_
