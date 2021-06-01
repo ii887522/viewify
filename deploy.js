@@ -9,32 +9,41 @@ const { request } = octokitRequest
 
 const version = process.argv[2]
 const accessToken = process.argv[3]
+const projectName = 'viewify'
+const staticLibExtensionName = '.lib'
+const bundleOutDirPath = 'libs/'
+const archiveExtensionName = 'zip'
 
 async function bundleInclude() {
-  ensureDirSync(`libs/viewify-${version}/include/viewify/`)
-  return copy('viewify/src/main/', `libs/viewify-${version}/include/viewify/`, { recursive: true, filter: (src, dest) => {
+  const includeDirPath = `${bundleOutDirPath}${projectName}-${version}/include/`
+  ensureDirSync(`${includeDirPath}${projectName}/`)
+  return copy(`${projectName}/src/main/`, `${includeDirPath}${projectName}/`, { recursive: true, filter: (src, dest) => {
     return !src.endsWith('.cpp')
   } })
 }
 
 async function bundleX86Debug() {
-  ensureDirSync(`libs/viewify-${version}/lib/x86/Debug/`)
-  return copy('viewify/Debug/viewify.lib', `libs/viewify-${version}/lib/x86/Debug/viewify.lib`)
+  const x86DebugDirPath = `${bundleOutDirPath}${projectName}-${version}/lib/x86/Debug/`
+  ensureDirSync(x86DebugDirPath)
+  return copy(`${projectName}/Debug/${projectName}${staticLibExtensionName}`, `${x86DebugDirPath}${projectName}${staticLibExtensionName}`)
 }
 
 async function bundleX86Release() {
-  ensureDirSync(`libs/viewify-${version}/lib/x86/Release/`)
-  return copy('viewify/Release/viewify.lib', `libs/viewify-${version}/lib/x86/Release/viewify.lib`)
+  const x86ReleaseDirPath = `${bundleOutDirPath}${projectName}-${version}/lib/x86/Release/`
+  ensureDirSync(x86ReleaseDirPath)
+  return copy(`${projectName}/Release/${projectName}${staticLibExtensionName}`, `${x86ReleaseDirPath}${projectName}${staticLibExtensionName}`)
 }
 
 async function bundleX64Debug() {
-  ensureDirSync(`libs/viewify-${version}/lib/x64/Debug/`)
-  return copy('viewify/x64/Debug/viewify.lib', `libs/viewify-${version}/lib/x64/Debug/viewify.lib`)
+  const x64DebugDirPath = `${bundleOutDirPath}${projectName}-${version}/lib/x64/Debug/`
+  ensureDirSync(x64DebugDirPath)
+  return copy(`${projectName}/x64/Debug/${projectName}${staticLibExtensionName}`, `${x64DebugDirPath}${projectName}${staticLibExtensionName}`)
 }
 
 async function bundleX64Release() {
-  ensureDirSync(`libs/viewify-${version}/lib/x64/Release/`)
-  return copy('viewify/x64/Release/viewify.lib', `libs/viewify-${version}/lib/x64/Release/viewify.lib`)
+  const x64ReleaseDirPath = `${bundleOutDirPath}${projectName}-${version}/lib/x64/Release/`
+  ensureDirSync(x64ReleaseDirPath)
+  return copy(`${projectName}/x64/Release/${projectName}${staticLibExtensionName}`, `${x64ReleaseDirPath}${projectName}${staticLibExtensionName}`)
 }
 
 async function bundleX86() {
@@ -66,25 +75,26 @@ async function bundle() {
 }
 
 async function zip() {
-  const archive = archiver('zip', { zlib: { level: 9 } })
+  const archive = archiver(archiveExtensionName, { zlib: { level: 9 } })
   archive.on('warning', err => {
     if (err.code == 'ENOENT') console.log(err)
     else throw err
   }).on('error', err => {
     throw err
-  }).pipe(createWriteStream(`libs/viewify-${version}.zip`))
-  return archive.directory(`libs/viewify-${version}/`, `viewify-${version}/`).finalize()
+  }).pipe(createWriteStream(`${bundleOutDirPath}${projectName}-${version}.${archiveExtensionName}`))
+  return archive.directory(`${bundleOutDirPath}${projectName}-${version}/`, `${projectName}-${version}/`).finalize()
 }
 
 async function publish() {
+  const owner = 'ii887522'
   const result = await request('POST /repos/{owner}/{repo}/releases', {
     headers: {
       authorization: `token ${accessToken}`
     },
-    owner: 'ii887522',
-    repo: 'viewify',
+    owner,
+    repo: projectName,
     tag_name: `v${version}`,
-    name: `${version}`
+    name: version
   })
   return request('POST /repos/{owner}/{repo}/releases/{release_id}/assets{?name,label}', {
     headers: {
@@ -92,22 +102,17 @@ async function publish() {
       'content-type': 'application/zip'
     },
     baseUrl: 'https://uploads.github.com',
-    owner: 'ii887522',
-    repo: 'viewify',
+    owner,
+    repo: projectName,
     release_id: result.data.id,
-    name: `viewify-${version}.zip`,
-    data: await readFile(`libs/viewify-${version}.zip`)
+    name: `${projectName}-${version}.${archiveExtensionName}`,
+    data: await readFile(`${bundleOutDirPath}${projectName}-${version}.${archiveExtensionName}`)
   })
-}
-
-function clean() {
-  remove(`libs/viewify-${version}`)
-  remove(`libs/viewify-${version}.zip`)
 }
 
 (async () => {
   await bundle()
   await zip()
   await publish()
-  clean()
+  remove(bundleOutDirPath)
 })()
