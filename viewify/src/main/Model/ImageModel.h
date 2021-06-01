@@ -4,12 +4,13 @@
 #define VIEWIFY_SRC_MAIN_MODEL_IMAGEMODEL_H_
 
 #include <nitro/Any/AnimatedAny.h>
+#include "../Any/constants.h"
 
 using ii887522::nitro::AnimatedAny;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe
+/// <summary>Not Thread Safe</summary>
 class ImageModel final {
   // remove copy semantics
   ImageModel(const ImageModel&) = delete;
@@ -20,7 +21,7 @@ class ImageModel final {
   ImageModel& operator=(ImageModel&&) = delete;
 
  public:
-  // Not Thread Safe
+  /// <summary>Not Thread Safe</summary>
   class Builder final {
     // remove copy semantics
     Builder(const Builder&) = delete;
@@ -31,21 +32,28 @@ class ImageModel final {
     Builder& operator=(Builder&&) = delete;
 
     const unsigned int a;
-    unsigned int duration;  // animation duration
-    bool hasSetDuration;  // has set animation duration
+
+    /// <summary>Animation duration</summary>
+    unsigned int duration;
+
+    /// <summary>Has set animation duration</summary>
+    bool hasSetDuration;
 
    public:
-    explicit constexpr Builder(const unsigned int a = 255u) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
+    explicit constexpr Builder(const unsigned int a = static_cast<unsigned int>(MAX_A)) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
 
-    // Animation Duration. It must be called at least 1 time before building ImageModel object.
-    // Param value: it must not be assigned to 0
+    /// <summary>
+    ///   <para>Animation Duration.</para>
+    ///   <para>It must be called at least 1 time before building ImageModel object.</para>
+    /// </summary>
+    /// <param name="value">it must not be assigned to 0</param>
     constexpr Builder& setDuration(const unsigned int value) {
       duration = value;
       hasSetDuration = true;
       return *this;
     }
 
-    // It must be called to build ImageModel object.
+    /// <summary>It must be called to build ImageModel object.</summary>
     ImageModel build();
 
     friend class ImageModel;
@@ -62,7 +70,7 @@ class ImageModel final {
   }
 
   constexpr void show() {
-    a.set(255);
+    a.set(static_cast<int>(MAX_A));
   }
 
   constexpr void hide() {

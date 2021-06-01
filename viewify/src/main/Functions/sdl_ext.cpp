@@ -8,6 +8,7 @@
 #include <string>
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"
+#include "../Any/constants.h"
 
 using std::string;
 
@@ -20,7 +21,7 @@ Point<int> getMousePosition() {
 }
 
 void snapshot(SDL_Renderer*const renderer, const Rect<int>& rect, const string& filePath) {
-  SDL_Surface*const surface{ SDL_CreateRGBSurfaceWithFormat(0u, rect.size.w, rect.size.h, 32, SDL_PIXELFORMAT_RGBA32) };
+  SDL_Surface*const surface{ SDL_CreateRGBSurfaceWithFormat(NO_FLAGS, rect.size.w, rect.size.h, 32, SDL_PIXELFORMAT_RGBA32) };
   const SDL_Rect sdl_rect{ rect.position.x, rect.position.y, rect.size.w, rect.size.h };
   SDL_RenderReadPixels(renderer, &sdl_rect, SDL_PIXELFORMAT_RGBA32, surface->pixels, surface->pitch);
   IMG_SavePNG(surface, filePath.c_str());

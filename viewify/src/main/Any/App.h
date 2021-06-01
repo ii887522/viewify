@@ -12,13 +12,16 @@
 #include "../View/ViewGroup.h"
 #include "../Factory/ViewGroupFactory.h"
 #include "../Struct/Color.h"
+#include "constants.h"
 
 using std::string;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be used in main thread
-// See also View.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+///   <para>See also View.h for more details</para>
+/// </summary>
 class App final {
   // remove copy semantics
   App(const App&) = delete;
@@ -41,8 +44,8 @@ class App final {
   void render();
 
  public:
-  // Param sceneFactory: it must not be assigned to nullptr or integer
-  explicit App(const string& title, const Size<int>& size, const Color<unsigned int>& backgroundColor, ViewGroupFactory*const sceneFactory, const unsigned int windowFlags = 0u);
+  /// <param name="sceneFactory">It must not be assigned to nullptr or integer</param>
+  explicit App(const string& title, const Size<int>& size, const Color<unsigned int>& backgroundColor, ViewGroupFactory*const sceneFactory, const unsigned int windowFlags = NO_FLAGS);
 
   Action react(const SDL_Event& event);
   void step(const unsigned int dt);

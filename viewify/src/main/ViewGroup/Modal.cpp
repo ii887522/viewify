@@ -14,6 +14,8 @@
 #include "../View/ViewGroup.h"
 #include "../Any/Enums.h"
 #include "../Functions/sdl_ext.h"
+#include "../Any/typedefs.h"
+#include "../Any/constants.h"
 
 using ii887522::nitro::Reactive;
 using std::function;
@@ -22,8 +24,7 @@ using std::vector;
 namespace ii887522::viewify {
 
 Modal::Modal(SDL_Renderer*const renderer, const Size<int>& sceneSize, const Point<int>& position, const Paint<int, unsigned int>& paint, Reactive<bool>*const isShowing,
-  const unsigned int duration, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews) : ViewGroup{ renderer, position, makeViews }, sceneSize{ sceneSize },
-  paint{ paint }, isShowing{ *isShowing }, model{ duration } {
+  const unsigned int duration, const MakeViews& makeViews) : ViewGroup{ renderer, position, makeViews }, sceneSize{ sceneSize }, paint{ paint }, isShowing{ *isShowing }, model{ duration } {
   isShowing->watch([this](const bool& value, const int) {
     if (value) {
       model.show();
@@ -44,7 +45,7 @@ void Modal::darkenScene() {
 
 void Modal::renderBackground() {
   SDL_SetRenderDrawColor(
-    View::getRenderer(), static_cast<Uint8>(paint.color.r), static_cast<Uint8>(paint.color.g), static_cast<Uint8>(paint.color.b), static_cast<Uint8>(paint.color.a * model.getA() / 255.f));
+    View::getRenderer(), static_cast<Uint8>(paint.color.r), static_cast<Uint8>(paint.color.g), static_cast<Uint8>(paint.color.b), static_cast<Uint8>(paint.color.a * model.getA() / MAX_A));
   const SDL_Rect rect{ View::getPosition().get().x, View::getPosition().get().y, paint.size.w, paint.size.h };
   SDL_RenderFillRect(View::getRenderer(), &rect);
 }

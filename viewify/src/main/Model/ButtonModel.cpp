@@ -5,15 +5,15 @@
 #include <functional>
 #include <stdexcept>
 #include "../Struct/Rect.h"
+#include "../Any/constants.h"
 
 using std::function;
 using std::runtime_error;
 
 namespace ii887522::viewify {
 
-ButtonModel::Builder::Builder(const Rect<int>& rect) : rect{ rect }, a{ 255u }, aDuration{ 0u }, hasSetADuration{ false },
-  lightnessDuration{ 0u }, hasSetLightnessDuration{ false }, hasSetOnMouseMove{ false }, hasSetOnMouseOver{ false }, hasSetOnMouseOut{ false }, hasSetOnClick{ false }
-{ }
+ButtonModel::Builder::Builder(const Rect<int>& rect) : rect{ rect }, a{ static_cast<unsigned int>(MAX_A) }, aDuration{ 0u }, hasSetADuration{ false }, lightnessDuration{ 0u },
+  hasSetLightnessDuration{ false }, hasSetOnMouseMove{ false }, hasSetOnMouseOver{ false }, hasSetOnMouseOut{ false }, hasSetOnClick{ false } { }
 
 ButtonModel::Builder& ButtonModel::Builder::setOnMouseMove(const function<void()>& value) {
   onMouseMove = value;
