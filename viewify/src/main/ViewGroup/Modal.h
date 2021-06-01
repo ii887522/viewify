@@ -16,6 +16,7 @@
 #include "../Struct/Point.h"
 #include "../Model/ModalModel.h"
 #include "../Any/Enums.h"
+#include "../Any/typedefs.h"
 
 using std::function;
 using std::vector;
@@ -23,8 +24,10 @@ using ii887522::nitro::Reactive;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be used in main thread
-// See also ../View/ViewGroup.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+///   <para>See also ../View/ViewGroup.h for more details</para>
+/// </summary>
 class Modal final : public ViewGroup {
   // remove copy semantics
   Modal(const Modal&) = delete;
@@ -43,12 +46,15 @@ class Modal final : public ViewGroup {
   void renderBackground();
 
  public:
-  // Param renderer: it must not be assigned to nullptr or integer
-  // Param duration: animation duration and it must not be assigned to 0
-  // Param isShowing: it must not be assigned to nullptr or integer
-  // See also ../Any/View.h for more details
+  /// <summary>
+  ///   <para>See also ../Any/View.h for more details</para>
+  ///   <para>See also MakeViews for more details</para>
+  /// </summary>
+  /// <param name="renderer">It must not be assigned to nullptr or integer</param>
+  /// <param name="duration">Animation duration and it must not be assigned to 0</param>
+  /// <param name="isShowing">It must not be assigned to nullptr or integer</param>
   explicit Modal(SDL_Renderer*const renderer, const Size<int>& sceneSize, const Point<int>& position, const Paint<int, unsigned int>& paint, Reactive<bool>*const isShowing,
-    const unsigned int duration, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews = [](ViewGroup&, SDL_Renderer*const) {
+    const unsigned int duration, const MakeViews& = [](ViewGroup&, SDL_Renderer*const) {
       return vector<View*>{ };
     });
 

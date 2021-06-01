@@ -14,12 +14,12 @@ using std::vector;
 
 namespace ii887522::viewify {
 
-constexpr auto TOP_LEFT_INDEX = 0u;
-constexpr auto TOP_RIGHT_INDEX = 1u;
-constexpr auto BOTTOM_LEFT_INDEX = 2u;
-constexpr auto BOTTOM_RIGHT_INDEX = 3u;
+constexpr auto TOP_LEFT_I = 0u;
+constexpr auto TOP_RIGHT_I = 1u;
+constexpr auto BOTTOM_LEFT_I = 2u;
+constexpr auto BOTTOM_RIGHT_I = 3u;
 
-// Not Thread Safe
+/// <summary>Not Thread Safe</summary>
 class QuadTree final {
   // remove copy semantics
   QuadTree(const QuadTree&) = delete;
@@ -37,15 +37,14 @@ class QuadTree final {
   QuadTree* bottomRight;
   bool isParent;
 
-  // Param rect: it is a rectangle pointed to by this quad tree
-  //  it must not be assigned to integer or nullptr
+  /// <param name="rect">It is a rectangle pointed to by this quad tree. It must not be assigned to integer or nullptr.</param>
   explicit QuadTree(Rect<float>*const rect);
 
   void becomeParent();
   void free();
 
  public:
-  // Param rect: it is a container rectangle that contains this quad tree
+  /// <param name="rect">It is a container rectangle that contains this quad tree</param>
   explicit QuadTree(const Rect<float>& rect);
 
   void add(const Rect<float>& rect);

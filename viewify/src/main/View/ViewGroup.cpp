@@ -8,14 +8,15 @@
 #include <vector>
 #include "../Any/View.h"
 #include "../Any/Enums.h"
+#include "../Any/typedefs.h"
 
 using std::function;
 using std::vector;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews,
-  const function<Action(ViewGroup&)>& onPreRender, const function<Action(ViewGroup&)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& makeViews, const function<Action(ViewGroup& self)>& onPreRender,
+  const function<Action(ViewGroup& self)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
   for (auto view : makeViews(*this, renderer)) add(view);
 }
 

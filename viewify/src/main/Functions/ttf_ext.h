@@ -10,8 +10,8 @@
 
 namespace ii887522::viewify {
 
-// Param font: it must not be assigned to nullptr or integer
-// See also ../Struct/GlyphMetrics.h for more details
+/// <summary>See also ../Struct/GlyphMetrics.h for more details</summary>
+/// <param name="font">It must not be assigned to nullptr or integer</param>
 GlyphMetrics getGlyphMetrics(TTF_Font*const font, const char ch);
 
 }  // namespace ii887522::viewify

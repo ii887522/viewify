@@ -17,8 +17,10 @@ using std::function;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be used in main thread
-// See also ../Any/View.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+///   <para>See also ../Any/View.h for more details</para>
+/// </summary>
 class Button final : public View {
   // remove copy semantics
   Button(const Button&) = delete;
@@ -29,7 +31,7 @@ class Button final : public View {
   Button& operator=(Button&&) = delete;
 
  public:
-  // Not Thread Safe
+  /// <summary>Not Thread Safe</summary>
   class Builder final {
     // remove copy semantics
     Builder(const Builder&) = delete;
@@ -43,9 +45,15 @@ class Button final : public View {
     const Point<int> position;
     const Paint<int, unsigned int> paint;
     unsigned int a;
-    unsigned int aDuration;  // alpha animation duration
+
+    /// <summary>Alpha animation duration</summary>
+    unsigned int aDuration;
+
     bool hasSetADuration;
-    unsigned int lightnessDuration;  // lightness animation duration
+
+    /// <summary>Lightness animation duration</summary>
+    unsigned int lightnessDuration;
+
     bool hasSetLightnessDuration;
     function<void()> onMouseMove;
     bool hasSetOnMouseMove;
@@ -57,7 +65,7 @@ class Button final : public View {
     bool hasSetOnClick;
 
    public:
-    // Param renderer: it must not be assigned to nullptr or integer
+    /// <param name="renderer">It must not be assigned to nullptr or integer</param>
     explicit Builder(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&);
 
     constexpr Builder& setA(const unsigned int value) {
@@ -65,35 +73,37 @@ class Button final : public View {
       return *this;
     }
 
-    // Alpha animation duration. It must be called at least 1 time before building Button object.
-    // Param value: it must not be assigned to 0
+    /// <summary>Alpha animation duration.</summary>
+    /// <param name="value">It must not be assigned to 0</param>
     constexpr Builder& setADuration(const unsigned int value) {
       aDuration = value;
-      hasSetADuration = true;
       return *this;
     }
 
-    // Lightness animation duration. It must be called at least 1 time before building Button object.
-    // Param value: it must not be assigned to 0
+    /// <summary>
+    ///   <para>Lightness animation duration.</para>
+    ///   <para>It must be called at least 1 time before building Button object.</para>
+    /// </summary>
+    /// <param name="value">It must not be assigned to 0</param>
     constexpr Builder& setLightnessDuration(const unsigned int value) {
       lightnessDuration = value;
       hasSetLightnessDuration = true;
       return *this;
     }
 
-    // It must be called at least 1 time before building Button object.
+    /// <summary>It must be called at least 1 time before building Button object.</summary>
     Builder& setOnMouseMove(const function<void()>&);
 
-    // It must be called at least 1 time before building Button object.
+    /// <summary>It must be called at least 1 time before building Button object.</summary>
     Builder& setOnMouseOver(const function<void()>&);
 
-    // It must be called at least 1 time before building Button object.
+    /// <summary>It must be called at least 1 time before building Button object.</summary>
     Builder& setOnMouseOut(const function<void()>&);
 
-    // It must be called at least 1 time before building Button object.
+    /// <summary>It must be called at least 1 time before building Button object.</summary>
     Builder& setOnClick(const function<void()>&);
 
-    // It must be called to build Button object.
+    /// <summary>It must be called to build Button object.</summary>
     Button* build();
 
     friend class Button;

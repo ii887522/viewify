@@ -9,8 +9,10 @@
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be called in main thread
-// See also ../Any/View.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must only be called in main thread</para>
+///   <para>See also ../Any/View.h for more details</para>
+/// </summary>
 void eventLoop(App&& app);
 
 }  // namespace ii887522::viewify

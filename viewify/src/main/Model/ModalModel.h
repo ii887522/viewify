@@ -4,12 +4,13 @@
 #define VIEWIFY_SRC_MAIN_MODEL_MODALMODEL_H_
 
 #include <nitro/Any/AnimatedAny.h>
+#include "../Any/constants.h"
 
 using ii887522::nitro::AnimatedAny;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe
+/// <summary>Not Thread Safe</summary>
 class ModalModel final {
   // remove copy semantics
   ModalModel(const ModalModel&) = delete;
@@ -23,7 +24,7 @@ class ModalModel final {
   AnimatedAny<int> a;
 
  public:
-  // Param duration: animation duration and it must not be assigned to 0
+  /// <param name="duration">Animation duration and it must not be assigned to 0</param>
   explicit ModalModel(const unsigned int aDuration);
 
   constexpr unsigned int getSceneCoverA() const {
@@ -36,7 +37,7 @@ class ModalModel final {
 
   constexpr void show() {
     sceneCoverA.set(128);
-    a.set(255);
+    a.set(static_cast<int>(MAX_A));
   }
 
   constexpr void hide() {

@@ -8,6 +8,7 @@
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"
 #include "../Functions/math_ext.h"
+#include "../Any/constants.h"
 
 using std::function;
 using ii887522::nitro::AnimatedAny;
@@ -18,7 +19,7 @@ constexpr auto initialLightness{ 1.f };
 constexpr auto hoveredLightness{ .9f };
 constexpr auto pressedLightness{ .8f };
 
-// Not Thread Safe
+/// <summary>Not Thread Safe</summary>
 class ButtonModel final {
   // remove copy semantics
   ButtonModel(const ButtonModel&) = delete;
@@ -33,7 +34,7 @@ class ButtonModel final {
     INITIAL, HOVERED, PRESSED
   };
 
-  // Not Thread Safe
+  /// <summary>Not Thread Safe</summary>
   class Builder final {
     // remove copy semantics
     Builder(const Builder&) = delete;
@@ -45,10 +46,19 @@ class ButtonModel final {
 
     const Rect<int> rect;
     unsigned int a;
-    unsigned int aDuration;  // alpha animation duration
-    bool hasSetADuration;  // has set alpha animation duration
-    unsigned int lightnessDuration;  // lightness animation duration
-    bool hasSetLightnessDuration;  // has set lightness animation duration
+
+    /// <summary>Alpha animation duration</summary>
+    unsigned int aDuration;
+
+    /// <summary>Has set alpha animation duration</summary>
+    bool hasSetADuration;
+
+    /// <summary>Lightness animation duration</summary>
+    unsigned int lightnessDuration;
+
+    /// <summary>Has set lightness animation duration</summary>
+    bool hasSetLightnessDuration;
+
     function<void()> onMouseMove;
     bool hasSetOnMouseMove;
     function<void()> onMouseOver;
@@ -66,35 +76,41 @@ class ButtonModel final {
       return *this;
     }
 
-    // Alpha animation duration. It must be called at least 1 time before building ButtonModel object.
-    // Param value: it must not be assigned to 0
+    /// <summary>
+    ///   <para>Alpha animation duration.</para>
+    ///   <para>It must be called at least 1 time before building ButtonModel object.</para>
+    /// </summary>
+    /// <param name="value">It must not be assigned to 0</param>
     constexpr Builder& setADuration(const unsigned int value) {
       aDuration = value;
       hasSetADuration = true;
       return *this;
     }
 
-    // Lightness animation duration. It must be called at least 1 time before building ButtonModel object.
-    // Param value: it must not be assigned to 0
+    /// <summary>
+    ///   <para>Lightness animation duration.</para>
+    ///   <para>It must be called at least 1 time before building ButtonModel object.</para>
+    /// </summary>
+    /// <param name="value">It must not be assigned to 0</param>
     constexpr Builder& setLightnessDuration(const unsigned int value) {
       lightnessDuration = value;
       hasSetLightnessDuration = true;
       return *this;
     }
 
-    // It must be called at least 1 time before building ButtonModel object.
+    /// <summary>It must be called at least 1 time before building ButtonModel object.</summary>
     Builder& setOnMouseMove(const function<void()>&);
 
-    // It must be called at least 1 time before building ButtonModel object.
+    /// <summary>It must be called at least 1 time before building ButtonModel object.</summary>
     Builder& setOnMouseOver(const function<void()>&);
 
-    // It must be called at least 1 time before building ButtonModel object.
+    /// <summary>It must be called at least 1 time before building ButtonModel object.</summary>
     Builder& setOnMouseOut(const function<void()>&);
 
-    // It must be called at least 1 time before building ButtonModel object.
+    /// <summary>It must be called at least 1 time before building ButtonModel object.</summary>
     Builder& setOnClick(const function<void()>&);
 
-    // It must be called to build ButtonModel object.
+    /// <summary>It must be called to build ButtonModel object.</summary>
     ButtonModel build();
 
     friend class ButtonModel;
@@ -194,7 +210,7 @@ class ButtonModel final {
   }
 
   constexpr void show() {
-    a.set(255);
+    a.set(static_cast<int>(MAX_A));
   }
 
   constexpr void hide() {

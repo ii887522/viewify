@@ -14,6 +14,7 @@
 #include "../Any/View.h"
 #include "../Functions/sdl_ext.h"
 #include "../Any/Enums.h"
+#include "../Any/typedefs.h"
 
 using ii887522::nitro::Reactive;
 using std::function;
@@ -21,8 +22,10 @@ using std::vector;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be used in main thread
-// See also ../View/ViewGroup.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+///   <para>See also ../View/ViewGroup.h for more details</para>
+/// </summary>
 template <typename T> class Page final : public ViewGroup {
   // remove copy semantics
   Page(const Page&) = delete;
@@ -35,9 +38,10 @@ template <typename T> class Page final : public ViewGroup {
   bool isShowing;
 
  public:
-  // Param renderer: it must not be assigned to nullptr or integer
+  /// <summary>See also MakeViews for more details</summary>
+  /// <param name="renderer">It must not be assigned to nullptr or integer</param>
   explicit Page(SDL_Renderer*const renderer, const Point<int>& position, const T& path, Reactive<T>*const currentPath,
-    const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews = [](ViewGroup&, SDL_Renderer*const) {
+    const MakeViews& makeViews = [](ViewGroup& self, SDL_Renderer*const renderer) {
       return vector<View*>{ };
     }) : ViewGroup{ renderer, position, makeViews }, isShowing{ false } {
     currentPath->watch([this, path](const T& value, const int) {
