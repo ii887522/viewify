@@ -15,9 +15,9 @@ using ii887522::nitro::AnimatedAny;
 
 namespace ii887522::viewify {
 
-constexpr auto initialLightness{ 1.f };
-constexpr auto hoveredLightness{ .9f };
-constexpr auto pressedLightness{ .8f };
+constexpr auto INITIAL_LIGHTNESS{ 1.f };
+constexpr auto HOVERED_LIGHTNESS{ .9f };
+constexpr auto PRESSED_LIGHTNESS{ .8f };
 
 /// <summary>Not Thread Safe</summary>
 class ButtonModel final {
@@ -131,7 +131,7 @@ class ButtonModel final {
   constexpr void reactMouseMotionWhenInitial(const Point<int>& position) {
     if (!isOverlap(position, rect)) return;
     state = State::HOVERED;
-    lightness.set(hoveredLightness);
+    lightness.set(HOVERED_LIGHTNESS);
     onMouseMove();
     onMouseOver();
   }
@@ -142,7 +142,7 @@ class ButtonModel final {
       return;
     }
     state = State::INITIAL;
-    lightness.set(initialLightness);
+    lightness.set(INITIAL_LIGHTNESS);
     onMouseOut();
   }
 
@@ -152,7 +152,7 @@ class ButtonModel final {
       return;
     }
     state = State::INITIAL;
-    lightness.set(initialLightness);
+    lightness.set(INITIAL_LIGHTNESS);
     onMouseOut();
   }
 
@@ -194,19 +194,19 @@ class ButtonModel final {
   constexpr void reactLeftMouseButtonDown() {
     if (state != State::HOVERED) return;
     state = State::PRESSED;
-    lightness.set(pressedLightness);
+    lightness.set(PRESSED_LIGHTNESS);
   }
 
   constexpr void reactLeftMouseButtonUp() {
     if (state != State::PRESSED) return;
     state = State::HOVERED;
-    lightness.set(hoveredLightness);
+    lightness.set(HOVERED_LIGHTNESS);
     onClick();
   }
 
   constexpr void reactMouseLeaveWindow() {
     state = State::INITIAL;
-    lightness.set(initialLightness);
+    lightness.set(INITIAL_LIGHTNESS);
   }
 
   constexpr void show() {
@@ -215,7 +215,7 @@ class ButtonModel final {
 
   constexpr void hide() {
     state = State::INITIAL;
-    lightness.teleport(initialLightness);
+    lightness.teleport(INITIAL_LIGHTNESS);
     a.teleport(0);
   }
 
