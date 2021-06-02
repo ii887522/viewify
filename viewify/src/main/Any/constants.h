@@ -7,6 +7,7 @@ namespace ii887522::viewify {
 
 constexpr auto NO_FLAGS{ 0u };
 constexpr auto MAX_A{ 255.f };
+constexpr auto IMAGE_EXTENSION_NAME{ ".png" };
 
 }  // namespace ii887522::viewify
 

@@ -39,15 +39,15 @@ void QuadTree::add(const vector<Rect<float>>& p_rects) {
 }
 
 void QuadTree::add(const Rect<float>& rect) {
-  constexpr auto maxRectsSize{ 16u };
+  constexpr auto MAX_RECTS_SIZE{ 16u };
   if (isParent) {
     if (isOverlap(rects[TOP_LEFT_I], rect)) topLeft->add(rect);
     if (isOverlap(rects[TOP_RIGHT_I], rect)) topRight->add(rect);
     if (isOverlap(rects[BOTTOM_LEFT_I], rect)) bottomLeft->add(rect);
     if (isOverlap(rects[BOTTOM_RIGHT_I], rect)) bottomRight->add(rect);
-  } else if (rects.size() == maxRectsSize) {
-    vector<Rect<float>> aux(maxRectsSize);
-    memcpy(aux.data(), rects.data(), maxRectsSize * sizeof Rect<float>);
+  } else if (rects.size() == MAX_RECTS_SIZE) {
+    vector<Rect<float>> aux(MAX_RECTS_SIZE);
+    memcpy(aux.data(), rects.data(), MAX_RECTS_SIZE * sizeof Rect<float>);
     becomeParent();
     add(aux);
     add(rect);
