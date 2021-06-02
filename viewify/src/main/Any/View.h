@@ -14,10 +14,10 @@ using ii887522::nitro::Reactive;
 
 namespace ii887522::viewify {
 
-// It represents the basic building block for user interface components. A view occupies a rectangular area on the screen
-// and is responsible for drawing and event handling.
-//
-// Not Thread Safe: it must only be used in main thread
+/// <summary>
+///   <para>It represents the basic building block for user interface components. A view occupies a rectangular area on the screen and is responsible for drawing and event handling.</para>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+/// </summary>
 class View {
   // remove copy semantics
   View(const View&) = delete;
@@ -31,7 +31,7 @@ class View {
   Reactive<Point<int>> position;
 
  public:
-  // Param renderer: it must not be assigned to integer
+  /// <param name="renderer">It must not be assigned to integer</param>
   explicit View(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 });
 
   constexpr SDL_Renderer* getRenderer() const {

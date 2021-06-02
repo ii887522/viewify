@@ -7,7 +7,7 @@
 
 namespace ii887522::viewify {
 
-// Glyph is a single part of a texture atlas.
+/// <summary>Glyph is a single part of a texture atlas.</summary>
 struct GlyphMetrics final {
   BoundingBox<int> box;
   int advance;

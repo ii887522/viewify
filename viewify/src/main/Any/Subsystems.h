@@ -7,8 +7,10 @@
 
 namespace ii887522::viewify {
 
-// They are subsystems such as SDL, SDL_image, SDL_ttf and etc.
-// Not Thread Safe: it must only be used in main thread
+/// <summary>
+///   <para>They are subsystems such as SDL, SDL_image, SDL_ttf and etc.</para>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+/// </summary>
 struct Subsystems final {
   // remove copy semantics
   Subsystems(const Subsystems&) = delete;

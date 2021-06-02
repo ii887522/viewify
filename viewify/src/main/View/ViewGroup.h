@@ -10,32 +10,41 @@
 #include <functional>
 #include "../Any/View.h"
 #include "../Any/Enums.h"
+#include "../Any/typedefs.h"
 
 using std::vector;
 using std::function;
 
 namespace ii887522::viewify {
 
-// It is a special view that can contain other views (called children).
-// Not Thread Safe: it must not be assigned to integer
-// See also ../Any/View.h for more details
+/// <summary>
+///   <para>It is a special view that can contain other views (called children).</para>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+///   <para>See also ../Any/View.h for more details</para>
+/// </summary>
 class ViewGroup : public View {
-  vector<View*> views;  // See also ../Any/View.h for more details
-  const function<Action(ViewGroup&)> onPreRender;
-  const function<Action(ViewGroup&)> onPostRender;
+
+  /// <summary>See also ../Any/View.h for more details</summary>
+  vector<View*> views;
+
+  const function<Action(ViewGroup& self)> onPreRender;
+  const function<Action(ViewGroup& self)> onPostRender;
 
  public:
-  // Param renderer: it must not be assigned to nullptr or integer
-  // See also ../Any/View.h for more details
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const function<vector<View*>(ViewGroup&, SDL_Renderer*const)>& makeViews = [](ViewGroup&, SDL_Renderer*const) {
+  /// <summary>
+  ///   <para>See also ../Any/View.h for more details</para>
+  ///   <para>See also MakeViews for more details</para>
+  /// </summary>
+  /// <param name="renderer">It must not be assigned to nullptr or integer</param>
+  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& = [](ViewGroup&, SDL_Renderer*const) {
     return vector<View*>{ };
-  }, const function<Action(ViewGroup&)>& onPreRender = [](ViewGroup&) {
+  }, const function<Action(ViewGroup& self)>& onPreRender = [](ViewGroup&) {
     return Action::NONE;
-  }, const function<Action(ViewGroup&)>& onPostRender = [](ViewGroup&) {
+  }, const function<Action(ViewGroup& self)>& onPostRender = [](ViewGroup&) {
     return Action::NONE;
   });
 
-  // See also ../Any/View.h for more details
+  /// <summary>See also ../Any/View.h for more details</summary>
   explicit ViewGroup(ViewGroup&& that) noexcept;
 
   void add(View*const);

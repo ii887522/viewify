@@ -14,11 +14,11 @@ using std::string;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must be called in main thread
+/// <summary>Not Thread Safe: it must be called in main thread</summary>
 Point<int> getMousePosition();
 
-// Param renderer: it must not be assigned to nullptr or integer
-// Not Thread Safe: it must be called in main thread
+/// <summary>Not Thread Safe: it must be called in main thread</summary>
+/// <param name="renderer">It must not be assigned to nullptr or integer</param>
 void snapshot(SDL_Renderer*const renderer, const Rect<int>&, const string& filePath);
 
 }  // namespace ii887522::viewify

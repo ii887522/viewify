@@ -18,8 +18,10 @@ using std::function;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must not be assigned to integer
-// See also ../Any/View.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must not be assigned to integer</para>
+///   <para>See also ../Any/View.h for more details</para>
+/// </summary>
 class RectView final : public View {
   // remove copy semantics
   RectView(const RectView&) = delete;
@@ -34,7 +36,7 @@ class RectView final : public View {
   const function<Action(Rect<int>&, Color<unsigned int>&)> onPostRender;
 
  public:
-  // Param renderer: it must not be assigned to nullptr or integer
+  /// <param name="renderer">It must not be assigned to nullptr or integer</param>
   explicit RectView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&,
     const function<Action(Rect<int>&, Color<unsigned int>&)>& onPostRender = [](Rect<int>&, Color<unsigned int>&) {
       return Action::NONE;

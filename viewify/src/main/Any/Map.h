@@ -9,7 +9,7 @@
 
 namespace ii887522::viewify {
 
-// Not Thread Safe
+/// <summary>Not Thread Safe</summary>
 template <typename T> class Map final {
   // remove copy semantics
   Map(const Map&) = delete;
