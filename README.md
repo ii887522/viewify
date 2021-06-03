@@ -35,6 +35,9 @@ also make use of cpplint which is a [Visual Studio Code](https://code.visualstud
   - Extensions:
     - Markdown Editor
     - EditorConfig Language Service
+    - Line Endings Unifier
+    - Github Extension for Visual Studio
+    - OpenCppCoverage Plugin
   - Workloads:
     - Desktop development with C++
   - Individual components:
@@ -95,6 +98,11 @@ and find the cpplint executable.
 3. In the explorer panel of [Visual Studio Code](https://code.visualstudio.com/), navigate to `.vscode/settings.json` in the project directory and
 open it.
 4. Finally, paste the absolute path as a string value of `"cpplint.cpplintPath"` in `settings.json` and save it.
+
+### Pack project
+```sh
+pack
+```
 
 ### Build project
 ```sh
