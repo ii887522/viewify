@@ -15,9 +15,9 @@ using std::vector;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& makeViews, const function<Action(ViewGroup& self)>& onPreRender,
-  const function<Action(ViewGroup& self)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
-  for (auto view : makeViews(*this, renderer)) add(view);
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& makeViews, const function<Action(ViewGroup*const self)>& onPreRender,
+  const function<Action(ViewGroup*const self)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
+  for (auto view : makeViews(this, renderer)) add(view);
 }
 
 ViewGroup::ViewGroup(ViewGroup&& that) noexcept : View{ that.getRenderer(), that.getPosition().get() }, onPreRender{ that.onPreRender }, onPostRender{ that.onPostRender } {
