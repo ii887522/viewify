@@ -60,6 +60,7 @@ jobs:
         run: |
           env\Scripts\activate
           cpplint --recursive --linelength=256 ${{ env.project-name }}\src\
+          exit $LASTEXITCODE
           env\Scripts\deactivate
   build-test-app:
     runs-on: windows-latest
