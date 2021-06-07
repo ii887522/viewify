@@ -93,7 +93,7 @@ jobs:
           path: |
             ${{ env.project-name }}\Test
             ${{ env.project-name }}\x64\Test
-          key: ${{ runner.os }}-cpp-${{ hashFiles('${{ env.project-name }}\res\**\*', '${{ env.project-name }}\src\**\*') }}
+          key: ${{ runner.os }}-cpp-${{ hashFiles(format('{0}\res\**\*', env.project-name), format('{0}\src\**\*', env.project-name)) }}
       - name: Use MSBuild
         if: steps.outputs-cache.outputs.cache-hit != 'true'
         uses: microsoft/setup-msbuild@v1.0.2
@@ -113,7 +113,7 @@ jobs:
           path: |
             ${{ env.project-name }}\Test
             ${{ env.project-name }}\x64\Test
-          key: ${{ runner.os }}-cpp-${{ hashFiles('${{ env.project-name }}\res\**\*', '${{ env.project-name }}\src\**\*') }}
+          key: ${{ runner.os }}-cpp-${{ hashFiles(format('{0}\res\**\*', env.project-name), format('{0}\src\**\*', env.project-name)) }}
       - name: Test x86
         run: |
           cd ${{ env.project-name }}
@@ -149,7 +149,7 @@ jobs:
           path: |
             **\Debug
             **\Release
-          key: ${{ runner.os }}-cpp-${{ hashFiles('${{ env.project-name }}\res\**\*', '${{ env.project-name }}\src\**\*') }}
+          key: ${{ runner.os }}-cpp-${{ hashFiles(format('{0}\res\**\*', env.project-name), format('{0}\src\**\*', env.project-name)) }}
       - name: Use MSBuild
         if: steps.outputs-cache.outputs.cache-hit != 'true'
         uses: microsoft/setup-msbuild@v1.0.2
@@ -193,7 +193,7 @@ jobs:
           path: |
             **\Debug
             **\Release
-          key: ${{ runner.os }}-cpp-${{ hashFiles('${{ env.project-name }}\res\**\*', '${{ env.project-name }}\src\**\*') }}
+          key: ${{ runner.os }}-cpp-${{ hashFiles(format('{0}\res\**\*', env.project-name), format('{0}\src\**\*', env.project-name)) }}
       - name: Install dependencies
         run: npm ci
       - run: node deploy.js 1.6.0 ${{ secrets.DEPLOY_TOKEN }}
