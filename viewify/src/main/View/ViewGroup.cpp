@@ -15,9 +15,9 @@ using std::vector;
 
 namespace ii887522::viewify {
 
-ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& makeViews, const function<Action(ViewGroup& self)>& onPreRender,
-  const function<Action(ViewGroup& self)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
-  for (auto view : makeViews(*this, renderer)) add(view);
+ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& makeViews, const function<Action(ViewGroup*const self)>& onPreRender,
+  const function<Action(ViewGroup*const self)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
+  for (auto view : makeViews(this, renderer)) add(view);
 }
 
 ViewGroup::ViewGroup(ViewGroup&& that) noexcept : View{ that.getRenderer(), that.getPosition().get() }, onPreRender{ that.onPreRender }, onPostRender{ that.onPostRender } {
@@ -93,7 +93,7 @@ Action ViewGroup::preRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->preRender() == Action::QUIT) return Action::QUIT;
   }
-  return onPreRender(*this);
+  return onPreRender(this);
 }
 
 void ViewGroup::render() {
@@ -104,7 +104,7 @@ Action ViewGroup::postRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->postRender() == Action::QUIT) return Action::QUIT;
   }
-  return onPostRender(*this);
+  return onPostRender(this);
 }
 
 ViewGroup::~ViewGroup() {

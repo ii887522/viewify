@@ -1,7 +1,12 @@
 .vs
 node_modules
 libs
-Debug
-Release
-viewify/*Test
-x64
+viewify/**/*.dll
+viewify/**/*.tlog
+viewify/**/*.obj
+viewify/**/*.idb
+viewify/**/*.pdb
+viewify/**/*.exe*
+viewify/**/*.ilk
+viewify/**/*.log
+viewify/**/*.FileListAbsolute.txt

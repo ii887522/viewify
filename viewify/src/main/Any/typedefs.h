@@ -21,8 +21,9 @@ class ViewGroup;
 ///   <para>Not Thread Safe: it must only be used in main thread</para>
 ///   <para>See also ViewGroup for more details</para>
 /// </summary>
+/// <param name="self">It must not be assigned to nullptr or integer</param>
 /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-using MakeViews = function<vector<View*>(ViewGroup& self, SDL_Renderer*const renderer)>;
+using MakeViews = function<vector<View*>(ViewGroup*const self, SDL_Renderer*const renderer)>;
 
 }  // namespace ii887522::viewify
 

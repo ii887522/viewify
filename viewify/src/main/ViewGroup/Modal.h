@@ -54,7 +54,7 @@ class Modal final : public ViewGroup {
   /// <param name="duration">Animation duration and it must not be assigned to 0</param>
   /// <param name="isShowing">It must not be assigned to nullptr or integer</param>
   explicit Modal(SDL_Renderer*const renderer, const Size<int>& sceneSize, const Point<int>& position, const Paint<int, unsigned int>& paint, Reactive<bool>*const isShowing,
-    const unsigned int duration, const MakeViews& = [](ViewGroup&, SDL_Renderer*const) {
+    const unsigned int duration, const MakeViews& = [](ViewGroup*const, SDL_Renderer*const) {
       return vector<View*>{ };
     });
 
