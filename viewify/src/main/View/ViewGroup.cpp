@@ -93,7 +93,7 @@ Action ViewGroup::preRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->preRender() == Action::QUIT) return Action::QUIT;
   }
-  return onPreRender(*this);
+  return onPreRender(this);
 }
 
 void ViewGroup::render() {
@@ -104,7 +104,7 @@ Action ViewGroup::postRender() {
   for (auto i{ 0u }; i != views.size(); ++i) {
     if (views[i]->postRender() == Action::QUIT) return Action::QUIT;
   }
-  return onPostRender(*this);
+  return onPostRender(this);
 }
 
 ViewGroup::~ViewGroup() {
