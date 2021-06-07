@@ -23,7 +23,6 @@ namespace ii887522::viewify {
 ///   <para>See also ../Any/View.h for more details</para>
 /// </summary>
 class ViewGroup : public View {
-
   /// <summary>See also ../Any/View.h for more details</summary>
   vector<View*> views;
 
@@ -36,7 +35,7 @@ class ViewGroup : public View {
   ///   <para>See also MakeViews for more details</para>
   /// </summary>
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& = [](ViewGroup&, SDL_Renderer*const) {
+  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& = [](ViewGroup*const, SDL_Renderer*const) {
     return vector<View*>{ };
   }, const function<Action(ViewGroup& self)>& onPreRender = [](ViewGroup&) {
     return Action::NONE;
