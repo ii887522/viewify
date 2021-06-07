@@ -39,9 +39,10 @@ template <typename T> class Page final : public ViewGroup {
 
  public:
   /// <summary>See also MakeViews for more details</summary>
+  /// <param name="self>It must not be assigned to nullptr or integer</param>
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
   explicit Page(SDL_Renderer*const renderer, const Point<int>& position, const T& path, Reactive<T>*const currentPath,
-    const MakeViews& makeViews = [](ViewGroup& self, SDL_Renderer*const renderer) {
+    const MakeViews& makeViews = [](ViewGroup*const self, SDL_Renderer*const renderer) {
       return vector<View*>{ };
     }) : ViewGroup{ renderer, position, makeViews }, isShowing{ false } {
     currentPath->watch([this, path](const T& value, const int) {

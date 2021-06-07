@@ -12,7 +12,7 @@
 #include "../View/ViewGroup.h"
 #include "../Factory/ViewGroupFactory.h"
 #include "../Struct/Color.h"
-#include "constants.h"
+#include "constants.h"  // NOLINT(build/include_subdir)
 
 using std::string;
 

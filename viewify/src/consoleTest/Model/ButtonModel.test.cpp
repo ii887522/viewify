@@ -29,8 +29,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -45,8 +45,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -61,8 +61,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -77,8 +77,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -96,8 +96,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -114,8 +114,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 255);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto m{ 0u };
@@ -135,8 +135,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 255);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto m{ 0u };
@@ -159,8 +159,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 255);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto m{ 0u };
@@ -186,8 +186,8 @@ static void testBuild() {
         .build()
     };
     assert(model.getA() == 255);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   try {
     auto m{ 0u };
@@ -291,8 +291,8 @@ static void testBuild() {
                 .build()
             };
             assert(model.getA() == 255);
-            assert(model.getLightness() == initialLightness);
-            assert(model.getEndLightness() == initialLightness);
+            assert(model.getLightness() == INITIAL_LIGHTNESS);
+            assert(model.getEndLightness() == INITIAL_LIGHTNESS);
           }
           catch (const runtime_error&) {
             return;
@@ -319,33 +319,33 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactMouseMotion(Point{ 2, 2 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactMouseMotion(Point{ 2, 2 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactMouseMotion(Point{ 2, 2 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 2, 2 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -361,33 +361,33 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -403,33 +403,33 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -448,39 +448,39 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -500,39 +500,39 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -555,45 +555,45 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
   }
@@ -620,51 +620,51 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     assert(p == 1u);
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     assert(p == 1u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     assert(p == 2u);
@@ -696,40 +696,40 @@ static void testReactMouseMotion() {
     };
     model.reactMouseMotion(Point{ 0, 0 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
     assert(q == 0u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     assert(q == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     assert(q == 2u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 1u);
     assert(q == 2u);
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     assert(p == 1u);
@@ -737,16 +737,16 @@ static void testReactMouseMotion() {
     model.reactLeftMouseButtonDown();
     model.reactMouseMotion(Point{ 4, 4 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     assert(p == 1u);
     assert(q == 4u);
     model.reactMouseMotion(Point{ 8, 8 });
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 2u);
     assert(n == 0u);
     assert(p == 2u);
@@ -770,14 +770,14 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 2, 2 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -794,14 +794,14 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -818,14 +818,14 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -845,15 +845,15 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -877,16 +877,16 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     model.reactLeftMouseButtonUp();
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
   }
@@ -914,8 +914,8 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -923,8 +923,8 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -957,8 +957,8 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 0, 0 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -967,8 +967,8 @@ static void testReactLeftMouseButtonDown() {
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == pressedLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == PRESSED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -996,15 +996,15 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 1u);
     model.reactMouseMotion(Point{ 2, 2 });
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 2u);
   }
   {
@@ -1026,15 +1026,15 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 2u);
   }
   {
@@ -1056,15 +1056,15 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 2u);
   }
   {
@@ -1086,15 +1086,15 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1116,15 +1116,15 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1149,16 +1149,16 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 1u);
     assert(n == 1u);
     model.reactMouseMotion(Point{ 4, 4 });
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
   }
@@ -1187,8 +1187,8 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 1u);
     assert(n == 1u);
     assert(p == 1u);
@@ -1196,8 +1196,8 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 1u);
@@ -1230,8 +1230,8 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 1u);
     assert(n == 1u);
     assert(p == 1u);
@@ -1240,8 +1240,8 @@ static void testReactLeftMouseButtonUp() {
     model.reactLeftMouseButtonDown();
     model.reactLeftMouseButtonUp();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 1u);
@@ -1264,8 +1264,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1281,8 +1281,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1298,8 +1298,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -1318,8 +1318,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1339,8 +1339,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1363,8 +1363,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
   }
@@ -1391,8 +1391,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -1423,8 +1423,8 @@ static void testReactMouseLeaveWindow() {
     };
     model.reactMouseLeaveWindow();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -1447,8 +1447,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1464,8 +1464,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1481,8 +1481,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -1501,8 +1501,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1522,8 +1522,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1546,8 +1546,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
   }
@@ -1574,8 +1574,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -1606,8 +1606,8 @@ static void testShow() {
     };
     model.show();
     assert(model.getA() == 1);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -1630,8 +1630,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1647,8 +1647,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1664,8 +1664,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -1684,8 +1684,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1705,8 +1705,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1729,8 +1729,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
   }
@@ -1757,8 +1757,8 @@ static void testHide() {
     };
     model.hide();
     assert(model.getA() == 0);
-    assert(model.getLightness() == initialLightness);
-    assert(model.getEndLightness() == initialLightness);
+    assert(model.getLightness() == INITIAL_LIGHTNESS);
+    assert(model.getEndLightness() == INITIAL_LIGHTNESS);
     assert(m == 0u);
     assert(n == 0u);
     assert(p == 0u);
@@ -1782,23 +1782,23 @@ static void testStep() {
     model.step(15u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(20u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(25u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(30u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(35u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1816,23 +1816,23 @@ static void testStep() {
     model.step(15u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(20u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(25u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(30u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(35u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
   }
   {
     ButtonModel model{
@@ -1850,23 +1850,23 @@ static void testStep() {
     model.step(30u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(40u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(50u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(60u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     model.step(70u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
   }
   {
     auto n{ 0u };
@@ -1887,27 +1887,27 @@ static void testStep() {
     model.step(30u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(40u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(50u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(60u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(70u);
     assert(model.getA() == 0);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1929,27 +1929,27 @@ static void testStep() {
     model.step(30u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(n == 0u);
   }
   {
@@ -1974,31 +1974,31 @@ static void testStep() {
     model.step(30u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
   }
@@ -2027,35 +2027,35 @@ static void testStep() {
     model.step(30u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -2088,7 +2088,7 @@ static void testStep() {
     model.step(30u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9879f, .9881f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -2096,7 +2096,7 @@ static void testStep() {
     model.step(40u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9719f, .9721f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -2104,7 +2104,7 @@ static void testStep() {
     model.step(50u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9519f, .9521f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -2112,7 +2112,7 @@ static void testStep() {
     model.step(60u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .9279f, .9281f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
@@ -2120,7 +2120,7 @@ static void testStep() {
     model.step(70u);
     assert(model.getA() == 1);
     assert(isOverlapX(model.getLightness(), Range{ .89f, .91f }));
-    assert(model.getEndLightness() == hoveredLightness);
+    assert(model.getEndLightness() == HOVERED_LIGHTNESS);
     assert(m == 1u);
     assert(n == 0u);
     assert(p == 0u);
