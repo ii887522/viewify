@@ -110,9 +110,14 @@ async function publish() {
   })
 }
 
+function clean() {
+  remove(`${bundleOutDirPath}${projectName}-${version}`)
+  remove(`${bundleOutDirPath}${projectName}-${version}.${archiveExtensionName}`)
+}
+
 (async () => {
   await bundle()
   await zip()
   await publish()
-  remove(bundleOutDirPath)
+  clean()
 })()
