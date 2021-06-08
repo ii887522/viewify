@@ -9,4 +9,5 @@ viewify/**/*.pdb
 viewify/**/*.exe*
 viewify/**/*.ilk
 viewify/**/*.log
+viewify/**/*.lib*
 viewify/**/*.FileListAbsolute.txt
