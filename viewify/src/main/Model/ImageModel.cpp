@@ -1,7 +1,7 @@
 // Copyright ii887522
 
 #include "ImageModel.h"
-#include <nitro/Any/AnimatedAny.h>
+#include <nitro/nitro.h>
 #include <stdexcept>
 
 using std::runtime_error;

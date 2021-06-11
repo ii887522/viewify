@@ -56,22 +56,6 @@
     <Filter Include="Source Files\ViewGroup">
       <UniqueIdentifier>{d98ba57f-8dbf-4c99-a30a-70c0fec6ae8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Console Test Header Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Console Test Header Files\Any">
-      <UniqueIdentifier>{eaeb864d-b681-48e5-a541-1209ba855f8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Console Test Header Files\Functions">
-      <UniqueIdentifier>{b2f3ca17-c80f-40db-8c70-ab83b67329f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Console Test Header Files\Model">
-      <UniqueIdentifier>{be26eaa1-100c-43bb-9942-2a44b5376879}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Console Test Header Files\Struct">
-      <UniqueIdentifier>{3419e22c-97c2-4815-b85a-deaec55e934b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Console Test Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -204,32 +188,14 @@
     <ClInclude Include="src\main\Functions\ttf_ext.h">
       <Filter>Header Files\Functions</Filter>
     </ClInclude>
-    <ClInclude Include="src\consoleTest\Any\Map.test.h">
-      <Filter>Console Test Header Files\Any</Filter>
-    </ClInclude>
-    <ClInclude Include="src\consoleTest\Any\QuadTree.test.h">
-      <Filter>Console Test Header Files\Any</Filter>
-    </ClInclude>
-    <ClInclude Include="src\consoleTest\Functions\math_ext.test.h">
-      <Filter>Console Test Header Files\Functions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\consoleTest\Model\ButtonModel.test.h">
-      <Filter>Console Test Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="src\consoleTest\Model\ImageModel.test.h">
-      <Filter>Console Test Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="src\consoleTest\Model\ModalModel.test.h">
-      <Filter>Console Test Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="src\consoleTest\Struct\Point.test.h">
-      <Filter>Console Test Header Files\Struct</Filter>
-    </ClInclude>
     <ClInclude Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.h">
       <Filter>GUI Test Header Files\ViewGroupFactory</Filter>
     </ClInclude>
     <ClInclude Include="src\guiTest\Any\Enums.h">
       <Filter>GUI Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\viewify.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

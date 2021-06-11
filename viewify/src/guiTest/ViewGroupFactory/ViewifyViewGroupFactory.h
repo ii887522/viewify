@@ -5,7 +5,7 @@
 
 #ifdef GUI_TEST
 
-#include <nitro/Any/Reactive.h>
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <random>

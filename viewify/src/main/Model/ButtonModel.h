@@ -3,7 +3,7 @@
 #ifndef VIEWIFY_SRC_MAIN_MODEL_BUTTONMODEL_H_
 #define VIEWIFY_SRC_MAIN_MODEL_BUTTONMODEL_H_
 
-#include <nitro/Any/AnimatedAny.h>
+#include <nitro/nitro.h>
 #include <functional>
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"

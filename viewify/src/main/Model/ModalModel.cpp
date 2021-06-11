@@ -1,7 +1,7 @@
 // Copyright ii887522
 
 #include "ModalModel.h"
-#include <nitro/Any/AnimatedAny.h>
+#include <nitro/nitro.h>
 
 using ii887522::nitro::AnimatedAny;
 
