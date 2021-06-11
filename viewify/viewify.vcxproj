@@ -35,13 +35,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\consoleTest\Any\Map.test.h" />
-    <ClInclude Include="src\consoleTest\Any\QuadTree.test.h" />
-    <ClInclude Include="src\consoleTest\Functions\math_ext.test.h" />
-    <ClInclude Include="src\consoleTest\Model\ButtonModel.test.h" />
-    <ClInclude Include="src\consoleTest\Model\ImageModel.test.h" />
-    <ClInclude Include="src\consoleTest\Model\ModalModel.test.h" />
-    <ClInclude Include="src\consoleTest\Struct\Point.test.h" />
     <ClInclude Include="src\guiTest\Any\Enums.h" />
     <ClInclude Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.h" />
     <ClInclude Include="src\main\Any\App.h" />
@@ -70,6 +63,7 @@
     <ClInclude Include="src\main\Text\Score.h" />
     <ClInclude Include="src\main\ViewGroup\Modal.h" />
     <ClInclude Include="src\main\ViewGroup\Page.h" />
+    <ClInclude Include="src\main\viewify.h" />
     <ClInclude Include="src\main\View\BorderView.h" />
     <ClInclude Include="src\main\View\Button.h" />
     <ClInclude Include="src\main\View\Image.h" />
@@ -234,7 +228,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -248,18 +242,18 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CONSOLE_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=32768u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CONSOLE_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=1048576u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.3.1\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.3.2\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -276,12 +270,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x86;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x86;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x86;$(ProjectDir)..\libs\nitro-1.3.1\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x86;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x86;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x86;$(ProjectDir)..\libs\nitro-1.3.2\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -301,7 +295,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -323,7 +317,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -337,18 +331,18 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CONSOLE_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CONSOLE_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=1048576u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.3.1\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.3.2\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -365,12 +359,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x64;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x64;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x64;$(ProjectDir)..\libs\nitro-1.3.1\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x64;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x64;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x64;$(ProjectDir)..\libs\nitro-1.3.2\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -390,7 +384,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

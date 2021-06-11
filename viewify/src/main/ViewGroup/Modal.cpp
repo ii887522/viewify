@@ -4,7 +4,7 @@
 
 #include "Modal.h"
 #include <SDL.h>
-#include <nitro/Any/Reactive.h>
+#include <nitro/nitro.h>
 #include <functional>
 #include <vector>
 #include "../Struct/Size.h"

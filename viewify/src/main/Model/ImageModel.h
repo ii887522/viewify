@@ -3,7 +3,7 @@
 #ifndef VIEWIFY_SRC_MAIN_MODEL_IMAGEMODEL_H_
 #define VIEWIFY_SRC_MAIN_MODEL_IMAGEMODEL_H_
 
-#include <nitro/Any/AnimatedAny.h>
+#include <nitro/nitro.h>
 #include "../Any/constants.h"
 
 using ii887522::nitro::AnimatedAny;

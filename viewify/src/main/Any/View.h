@@ -6,7 +6,7 @@
 #ifndef CONSOLE_TEST
 
 #include <SDL.h>
-#include <nitro/Any/Reactive.h>
+#include <nitro/nitro.h>
 #include "../Struct/Point.h"
 #include "../Any/Enums.h"
 
