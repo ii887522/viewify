@@ -3,7 +3,7 @@
 #ifndef VIEWIFY_SRC_MAIN_STRUCT_BOUNDINGBOX_H_
 #define VIEWIFY_SRC_MAIN_STRUCT_BOUNDINGBOX_H_
 
-#include <nitro/Struct/Range.h>
+#include <nitro/nitro.h>
 
 using ii887522::nitro::Range;
 

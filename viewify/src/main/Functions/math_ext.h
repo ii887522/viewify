@@ -3,8 +3,7 @@
 #ifndef VIEWIFY_SRC_MAIN_FUNCTIONS_MATH_EXT_H_
 #define VIEWIFY_SRC_MAIN_FUNCTIONS_MATH_EXT_H_
 
-#include <nitro/Struct/Range.h>
-#include <nitro/Functions/math_ext.h>
+#include <nitro/nitro.h>
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"
 

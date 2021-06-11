@@ -3,7 +3,7 @@
 #ifdef GUI_TEST
 
 #define ALLOCATOR_IMPLEMENTATIONS
-#include <nitro/Any/allocator.h>
+#include <nitro/nitro.h>
 
 #include <SDL.h>
 #include "../../main/Any/Subsystems.h"

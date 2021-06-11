@@ -1,6 +1,6 @@
 'use strict'
 
-import { options, dependencies, zip, dll } from '@ii887522/packify'
+import { options, dependencies, zip, file, dll } from '@ii887522/packify'
 
 const projectDirPath = 'viewify'
 
@@ -11,9 +11,9 @@ options.x64DllOutDirPaths = [`${projectDirPath}/x64/Debug/`, `${projectDirPath}/
 const sdl2Version = '2.0.12'
 const sdl2ImageVersion = '2.0.5'
 const sdl2TTFVersion = '2.0.15'
-const nitroVersion = '1.3.1'
+const nitroVersion = '1.3.2'
 const texturePackerVersion = '1.1.3'
-const fontPackerVersion = '1.1.1'
+const fontPackerVersion = '1.2.0'
 
 dependencies(async () => {
   await Promise.all([
@@ -23,6 +23,7 @@ dependencies(async () => {
     zip(`https://github.com/ii887522/nitro/releases/download/v${nitroVersion}/nitro-${nitroVersion}.zip`),
     zip(`https://github.com/ii887522/texture-packer/releases/download/v${texturePackerVersion}/texture-packer-${texturePackerVersion}.zip`),
     zip(`https://github.com/ii887522/font-packer/releases/download/v${fontPackerVersion}/font-packer-${fontPackerVersion}.zip`),
+    file('https://github.com/catchorg/Catch2/releases/download/v2.13.6/catch.hpp')
   ])
   dll('x86', `SDL2-${sdl2Version}/lib/x86/SDL2.dll`)
   dll('x64', `SDL2-${sdl2Version}/lib/X64/SDL2.dll`)
