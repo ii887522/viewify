@@ -6,6 +6,7 @@
 #include <nitro/nitro.h>
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"
+#include "../Any/constants.h"
 
 using ii887522::nitro::Range;
 using ii887522::nitro::isOverlapX;
@@ -25,6 +26,17 @@ template <typename T> constexpr bool isOverlap(const Rect<T>& self, const Rect<T
 
 constexpr int distanceSqr(const Point<int>& l, const Point<int>& r) {
   return (r.x - l.x) * (r.x - l.x) + (r.y - l.y) * (r.y - l.y);
+}
+
+/// <summary>See also ../Struct/Glyph.h for more details</summary>
+/// <param name="fontName">FontName enum ordinal</param>
+constexpr unsigned int getGlyphI(const unsigned int fontName, const char ch) {
+  return fontName * CHAR_COUNT + ch - MIN_CHAR;
+}
+
+/// <summary>Kerning is the process of adjusting the glyph position to reduce spaces between characters to produce a nice looking text.</summary>
+constexpr unsigned int getKerningSizeI(const char prevCh, const char nextCh) {
+  return (prevCh - MIN_CHAR) * CHAR_COUNT + nextCh - MIN_CHAR;
 }
 
 }  // namespace ii887522::viewify
