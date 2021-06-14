@@ -8,6 +8,7 @@
 #include "../../main/Struct/Point.h"
 #include "../../main/Struct/Size.h"
 #include "../../main/Struct/Rect.h"
+#include "../Any/FontName.h"
 
 using ii887522::nitro::Range;
 
@@ -40,6 +41,22 @@ TEST_CASE("test distanceSqr() function") {
   REQUIRE(distanceSqr(Point{ 1, 1 }, Point{ 0, 0 }) == 2);
   REQUIRE(distanceSqr(Point{ 1, 1 }, Point{ 1, 0 }) == 1);
   REQUIRE(distanceSqr(Point{ 1, 1 }, Point{ 1, 1 }) == 0);
+}
+
+TEST_CASE("test getGlyphI() function") {
+  REQUIRE(getGlyphI(static_cast<unsigned int>(FontName::_ARIAL), ' ') == 0u);
+  REQUIRE(getGlyphI(static_cast<unsigned int>(FontName::_ARIAL), '!') == 1u);
+  REQUIRE(getGlyphI(static_cast<unsigned int>(FontName::_ARIAL), '"') == 2u);
+  REQUIRE(getGlyphI(static_cast<unsigned int>(FontName::_BASKVILL), '"') == 97u);
+  REQUIRE(getGlyphI(static_cast<unsigned int>(FontName::_BAUHS93), '"') == 192u);
+}
+
+TEST_CASE("test getKerningSizeI() function") {
+  REQUIRE(getKerningSizeI(' ', ' ') == 0u);
+  REQUIRE(getKerningSizeI(' ', '!') == 1u);
+  REQUIRE(getKerningSizeI(' ', '"') == 2u);
+  REQUIRE(getKerningSizeI('!', '"') == 97u);
+  REQUIRE(getKerningSizeI('"', '"') == 192u);
 }
 
 }  // namespace ii887522::viewify

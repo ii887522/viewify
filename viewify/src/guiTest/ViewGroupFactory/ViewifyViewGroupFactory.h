@@ -14,6 +14,8 @@
 #include "../../main/Struct/Size.h"
 #include "../../main/Any/Map.h"
 #include "../Any/Enums.h"
+#include "../../main/Atlas/TextureAtlas.h"
+#include "../../main/Atlas/GlyphAtlas.h"
 
 using ii887522::nitro::Reactive;
 using std::uniform_int_distribution;
@@ -21,7 +23,7 @@ using std::default_random_engine;
 
 namespace ii887522::viewify {
 
-// See also ../../main/View/ViewGroup.h for more details
+/// <summary>See also ../../main/View/ViewGroup.h for more details</summary>
 class ViewifyViewGroupFactory final : public ViewGroupFactory {
   // remove copy semantics
   ViewifyViewGroupFactory(const ViewifyViewGroupFactory&) = delete;
@@ -31,11 +33,6 @@ class ViewifyViewGroupFactory final : public ViewGroupFactory {
   ViewifyViewGroupFactory(ViewifyViewGroupFactory&&) = delete;
   ViewifyViewGroupFactory& operator=(ViewifyViewGroupFactory&&) = delete;
 
-  const Size<int> modalSize1;
-  const Size<int> modalSize2;
-  const Size<int> navButtonSize;
-  TTF_Font*const headFont;
-  TTF_Font*const bodyFont;
   Reactive<bool> canIncrementScore0;
   Reactive<bool> canResetScore0;
   Reactive<bool> canIncrementScore1;
@@ -51,13 +48,15 @@ class ViewifyViewGroupFactory final : public ViewGroupFactory {
   SDL_Cursor*const pointer;
   uniform_int_distribution<unsigned int> colorComponents;
   default_random_engine randomEngine;
+  TextureAtlas* textureAtlas;
+  GlyphAtlas* glyphAtlas;
 
  public:
-  // See also ../../main/View/ViewGroup.h for more details
+  /// <summary>See also ../../main/View/ViewGroup.h for more details</summary>
   ViewifyViewGroupFactory();
 
-  // Param renderer: it must not be assigned to integer
-  // See also ../View/ViewGroup.h for more details
+  /// <summary>See also ../View/ViewGroup.h for more details</summary>
+  /// <param name="renderer">It must not be assigned to integer</param>
   ViewGroup make(SDL_Renderer*const renderer, const Size<int>& size) override;
 
   ~ViewifyViewGroupFactory();

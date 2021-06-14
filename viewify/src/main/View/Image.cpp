@@ -16,26 +16,19 @@ using std::runtime_error;
 namespace ii887522::viewify {
 
 Image* Image::Builder::build() {
-  if (hasSetDuration) return new Image{ *this };
-  throw runtime_error{ "Image duration is required!" };
+  return new Image{ *this };
 }
 
-Image::Image(const Builder& builder) :
-  View{ builder.renderer, builder.position - (builder.align == Align::LEFT ? Size{ 0, 0 } : Size{ builder.surface->w >> 1u, 0 }) },
-  model{ ImageModel::Builder{ builder.a }.setDuration(builder.duration).build() }, surface{ builder.surface },
-  texture{ SDL_CreateTextureFromSurface(builder.renderer, surface) }, align{ builder.align }, rotation{ builder.rotation } { }
+Image::Image(const Builder& builder) : View{
+  builder.atlas->getRenderer(),
+  builder.position - (builder.align == Align::LEFT ?
+    Size{ 0, 0 } : Size{ builder.atlas->getSpriteUnrotatedSize(builder.name).w >> 1u  /* which means builder.atlas->getSpriteUnrotatedSize(builder.name).w / 2 */, 0 }) },
+  atlas{ builder.atlas }, model{ ImageModel::Builder{ builder.a }.setDuration(builder.duration).build() }, name{ builder.name }, align{ builder.align }, rotation{ builder.rotation } { }
 
-void Image::free() {
-  SDL_DestroyTexture(texture);
-  SDL_FreeSurface(surface);
-}
-
-void Image::set(SDL_Surface*const p_surface) {
-  const Point centerPosition{ getPosition().get() + Size{ surface->w >> 1u, 0 } };
-  free();
-  surface = p_surface;
-  texture = SDL_CreateTextureFromSurface(getRenderer(), surface);
-  if (align == Align::CENTER) getPosition().set(centerPosition - Size{ surface->w >> 1u, 0 });
+void Image::set(const unsigned int p_name) {
+  const auto centerPosition{ getPosition().get() + Size{ atlas->getSpriteUnrotatedSize(name).w >> 1u  /* which means atlas->getSpriteUnrotatedSize(name).w / 2 */, 0 } };
+  name = p_name;
+  if (align == Align::CENTER) getPosition().set(centerPosition - Size{ atlas->getSpriteUnrotatedSize(p_name).w >> 1u  /* which means atlas->getSpriteUnrotatedSize(p_name).w / 2 */, 0 });
 }
 
 void Image::show() {
@@ -51,24 +44,7 @@ void Image::step(const unsigned int dt) {
 }
 
 void Image::render() {
-  SDL_SetTextureAlphaMod(texture, static_cast<Uint8>(model.getA()));
-  SDL_FRect rect;
-  rect.w = static_cast<float>(surface->w);
-  rect.h = static_cast<float>(surface->h);
-  switch (rotation) {
-  case Rotation::NONE: case Rotation::HALF:
-    rect.x = static_cast<float>(getPosition().get().x);
-    rect.y = static_cast<float>(getPosition().get().y);
-    break;
-  case Rotation::QUARTER_CLOCKWISE: case Rotation::QUARTER_COUNTERCLOCKWISE:
-    rect.x = getPosition().get().x - ((rect.w - rect.h) * .5f);
-    rect.y = getPosition().get().y + ((rect.w - rect.h) * .5f);
-  }
-  SDL_RenderCopyExF(getRenderer(), texture, nullptr, &rect, static_cast<double>(static_cast<unsigned int>(rotation) * 90u), nullptr, SDL_FLIP_NONE);
-}
-
-Image::~Image() {
-  free();
+  atlas->render(name, getPosition().get(), model.getA(), rotation);
 }
 
 }  // namespace ii887522::viewify

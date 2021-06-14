@@ -10,12 +10,16 @@
 #include <nitro/nitro.h>
 #include <functional>
 #include <string>
-#include "../Image/Text.h"
+#include <stdexcept>
+#include "../View/Text.h"
 #include "../Struct/Point.h"
 #include "../Struct/Color.h"
+#include "../Atlas/GlyphAtlas.h"
+#include "../Any/constants.h"
 
 using std::to_string;
 using std::function;
+using std::runtime_error;
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
 using ii887522::nitro::beginShortTermAlloc;
 using ii887522::nitro::endShortTermAlloc;
@@ -23,7 +27,7 @@ using ii887522::nitro::endShortTermAlloc;
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be used in main thread
+/// <summary>Not Thread Safe: it must only be used in main thread</summary>
 struct Score final : public Text {
   // remove copy semantics
   Score(const Score&) = delete;
@@ -33,7 +37,7 @@ struct Score final : public Text {
   Score(Score&&) = delete;
   Score& operator=(Score&&) = delete;
 
-  // Not Thread Safe
+  /// <summary>Not Thread Safe</summary>
   class Builder final {
     // remove copy semantics
     Builder(const Builder&) = delete;
@@ -43,42 +47,65 @@ struct Score final : public Text {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
-    SDL_Renderer*const renderer;
-    TTF_Font*const font;
+    /// <summary>See also ../Atlas/GlyphAtlas.h for more details.</summary>
+    GlyphAtlas*const atlas;
+
+    /// <summary>FontName enum ordinal</summary>
+    const unsigned int fontName;
+
+    unsigned int fontSize;
+    bool hasSetFontSize;
     const Point<int> position;
     const Color<unsigned int> color;
     Reactive<bool>* canIncrement;
     bool hasSetCanIncrement;
     Reactive<bool>* canReset;
     bool hasSetCanReset;
-    const unsigned int max;
+    unsigned int max;
+    bool hasSetMax;
     const function<void()> onValueMax;
 
    public:
-    // Param renderer: it must not be assigned to nullptr or integer
-    // Param font: it must not be assigned to nullptr or integer
-    explicit Builder(SDL_Renderer*const renderer, TTF_Font*const font, const Point<int>& position, const Color<unsigned int>& color, const unsigned int max,
-      const function<void()>& onValueMax) : renderer{ renderer }, font{ font }, position{ position }, color{ color }, canIncrement{ nullptr },
-      hasSetCanIncrement{ false }, canReset{ nullptr }, hasSetCanReset{ false }, max{ max }, onValueMax{ onValueMax } { }
+    /// <summary>See also ../Atlas/GlyphAtlas.h for more details</summary>
+    /// <param name="fontName">FontName enum ordinal</param>
+    explicit Builder(GlyphAtlas*const atlas, const unsigned int fontName, const Point<int>& position, const Color<unsigned int>& color, const function<void()>& onValueMax) : atlas{ atlas },
+      fontName{ fontName }, position{ position }, color{ color }, canIncrement{ nullptr }, hasSetCanIncrement{ false }, canReset{ nullptr }, hasSetCanReset{ false }, max{ max },
+      onValueMax{ onValueMax } { }
 
-    // Param value: it must not be assigned to nullptr or integer
-    // It must be called at least 1 time before building Score object.
+    /// <summary>It must be called at least 1 time before building Score object.</summary>
+    constexpr Builder& setFontSize(const unsigned int value) {
+      fontSize = value;
+      hasSetFontSize = true;
+      return *this;
+    }
+
+    /// <summary>It must be called at least 1 time before building Score object.</summary>
+    constexpr Builder& setMax(const unsigned int value) {
+      max = value;
+      hasSetMax = true;
+      return *this;
+    }
+
+    /// <summary>It must be called at least 1 time before building Score object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
     constexpr Builder& setCanIncrement(Reactive<bool>*const value) {
       canIncrement = value;
       hasSetCanIncrement = true;
       return *this;
     }
 
-    // Param value: it must not be assigned to nullptr or integer
-    // It must be called at least 1 time before building Score object.
+    /// <summary>It must be called at least 1 time before building Score object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
     constexpr Builder& setCanReset(Reactive<bool>*const value) {
       canReset = value;
       hasSetCanReset = true;
       return *this;
     }
 
-    // It must be called to build Score object.
+    /// <summary>It must be called to build Score object.</summary>
     Score* build() {
+      if (!hasSetFontSize) throw runtime_error{ "Score fontSize is required!" };
+      if (!hasSetMax) throw runtime_error{ "Score max is required!" };
       if (!hasSetCanIncrement) throw runtime_error{ "Score canIncrement is required!" };
       if (!hasSetCanReset) throw runtime_error{ "Score canReset is required!" };
       return new Score{ *this };
@@ -90,33 +117,34 @@ struct Score final : public Text {
  private:
   unsigned int value;
 
-  explicit Score(const Builder& builder) : Text{
-    Text::Builder{ builder.renderer, builder.font, builder.position, "Score: 0", builder.color, Align::CENTER }
-        .setA(255u)
+  explicit Score(const Builder& builder, const string& label = "Score") : Text{
+      Text::Builder{ builder.atlas, builder.fontName, builder.position, label + ": 0", builder.color, Align::CENTER }
+        .setFontSize(builder.fontSize)
+        .setA(static_cast<unsigned int>(MAX_A))
         .setDuration(1u)
     }, value{ 0u } {
     builder.canIncrement->watch(
-      [this, &canIncrement{ *builder.canIncrement }, onValueMax{ builder.onValueMax }, max{ builder.max }](const bool& p_value,
+      [this, label, &canIncrement{ *builder.canIncrement }, onValueMax{ builder.onValueMax }, max{ builder.max }](const bool& p_value,
         const int) {
       if (!p_value) return;
       ++value;
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
 #endif
-      set(string { "Score: " } + to_string(value));
+      set(label + ": " + to_string(value));
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       endShortTermAlloc();
 #endif
       if (value == max) onValueMax();
       canIncrement.set(false);
     });
-    builder.canReset->watch([this](const bool& p_value, const int) {
+    builder.canReset->watch([this, label](const bool& p_value, const int) {
       if (!p_value) return;
       value = 0u;
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
 #endif
-      set(string { "Score: " } + to_string(value));
+      set(label + ": " + to_string(value));
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       endShortTermAlloc();
 #endif

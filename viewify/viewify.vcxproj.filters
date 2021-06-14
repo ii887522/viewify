@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Header Files">
@@ -16,9 +16,6 @@
     </Filter>
     <Filter Include="Header Files\Functions">
       <UniqueIdentifier>{356585ed-69e5-4f45-85c4-6c669ffa35b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Image">
-      <UniqueIdentifier>{9c050af2-5f76-43dc-8001-6b06463727fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model">
       <UniqueIdentifier>{d586c314-8e41-4b5f-bfb0-42c9988ed15a}</UniqueIdentifier>
@@ -40,9 +37,6 @@
     </Filter>
     <Filter Include="Source Files\Functions">
       <UniqueIdentifier>{890d3590-542c-4c28-89de-ddee1181defd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Image">
-      <UniqueIdentifier>{a5640fd0-e283-4c28-9d96-468c09de6770}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{5dee731c-eb8c-4d7f-9bd7-7b8eeca9ad65}</UniqueIdentifier>
@@ -72,9 +66,6 @@
     <Filter Include="Console Test Source Files\Struct">
       <UniqueIdentifier>{5f8983f3-07a2-4b8b-b58d-2b01cdf02a34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test Resource Files">
-      <UniqueIdentifier>{46cd467e-a389-42e2-ae6a-7caf2a6704e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUI Test Header Files">
       <UniqueIdentifier>{996f4ae2-3b92-43b0-95e5-0493bb355ce5}</UniqueIdentifier>
     </Filter>
@@ -92,6 +83,21 @@
     </Filter>
     <Filter Include="GUI Test Header Files\Any">
       <UniqueIdentifier>{f81a7494-119f-47e7-90f2-59a35a4552c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Assets">
+      <UniqueIdentifier>{85340b5f-f576-4d69-9809-3125bd8ecc69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Atlas">
+      <UniqueIdentifier>{588ad637-a3dc-4693-91da-cde24091c0a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Atlas">
+      <UniqueIdentifier>{9a9afb16-c318-49cf-8737-0d5554bdf38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Header Files">
+      <UniqueIdentifier>{a004ddc3-b1f0-4cfc-8c4b-1fc7d6043f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console Test Header Files\Any">
+      <UniqueIdentifier>{be291439-d6d5-4874-bf2f-c2ebbcc4899c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="src\main\Functions\sdl_ext.h">
       <Filter>Header Files\Functions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\main\Image\Text.h">
-      <Filter>Header Files\Image</Filter>
     </ClInclude>
     <ClInclude Include="src\main\Model\ButtonModel.h">
       <Filter>Header Files\Model</Filter>
@@ -197,6 +200,36 @@
     <ClInclude Include="src\main\viewify.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\main\Any\Atlas.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\View\Text.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Any\typedefs.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Atlas\GlyphAtlas.h">
+      <Filter>Header Files\Atlas</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Atlas\TextureAtlas.h">
+      <Filter>Header Files\Atlas</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Any\constants.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\Any\FontName.h">
+      <Filter>GUI Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\Any\SpriteName.h">
+      <Filter>GUI Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\consoleTest\Any\FontName.h">
+      <Filter>Console Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Model\TextModel.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp">
@@ -207,9 +240,6 @@
     </ClCompile>
     <ClCompile Include="src\main\Functions\sdl_ext.cpp">
       <Filter>Source Files\Functions</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main\Image\Text.cpp">
-      <Filter>Source Files\Image</Filter>
     </ClCompile>
     <ClCompile Include="src\main\Model\ButtonModel.cpp">
       <Filter>Source Files\Model</Filter>
@@ -280,18 +310,36 @@
     <ClCompile Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
       <Filter>GUI Test Source Files\ViewGroupFactory</Filter>
     </ClCompile>
+    <ClCompile Include="src\main\Atlas\GlyphAtlas.cpp">
+      <Filter>Source Files\Atlas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Atlas\TextureAtlas.cpp">
+      <Filter>Source Files\Atlas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Any\Atlas.cpp">
+      <Filter>Source Files\Any</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\View\Text.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Model\TextModel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\consoleTest\Model\TextModel.test.cpp">
+      <Filter>Console Test Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="res\test\arial.ttf">
-      <Filter>Test Resource Files</Filter>
+    <Font Include="assets\test\arial.ttf">
+      <Filter>Test Assets</Filter>
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\test\placeholder1.png">
-      <Filter>Test Resource Files</Filter>
+    <Image Include="assets\test\placeholder1.png">
+      <Filter>Test Assets</Filter>
     </Image>
-    <Image Include="res\test\placeholder2.png">
-      <Filter>Test Resource Files</Filter>
+    <Image Include="assets\test\placeholder2.png">
+      <Filter>Test Assets</Filter>
     </Image>
   </ItemGroup>
 </Project>
