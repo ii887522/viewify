@@ -35,23 +35,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\consoleTest\Any\FontName.h" />
     <ClInclude Include="src\guiTest\Any\Enums.h" />
+    <ClInclude Include="src\guiTest\Any\FontName.h" />
+    <ClInclude Include="src\guiTest\Any\SpriteName.h" />
     <ClInclude Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.h" />
     <ClInclude Include="src\main\Any\App.h" />
+    <ClInclude Include="src\main\Any\Atlas.h" />
+    <ClInclude Include="src\main\Any\constants.h" />
     <ClInclude Include="src\main\Any\Enums.h" />
     <ClInclude Include="src\main\Any\Map.h" />
     <ClInclude Include="src\main\Any\QuadTree.h" />
     <ClInclude Include="src\main\Any\Subsystems.h" />
+    <ClInclude Include="src\main\Any\typedefs.h" />
     <ClInclude Include="src\main\Any\View.h" />
+    <ClInclude Include="src\main\Atlas\GlyphAtlas.h" />
+    <ClInclude Include="src\main\Atlas\TextureAtlas.h" />
     <ClInclude Include="src\main\Factory\ViewGroupFactory.h" />
     <ClInclude Include="src\main\Functions\control_flow.h" />
     <ClInclude Include="src\main\Functions\math_ext.h" />
     <ClInclude Include="src\main\Functions\sdl_ext.h" />
     <ClInclude Include="src\main\Functions\ttf_ext.h" />
-    <ClInclude Include="src\main\Image\Text.h" />
     <ClInclude Include="src\main\Model\ButtonModel.h" />
     <ClInclude Include="src\main\Model\ImageModel.h" />
     <ClInclude Include="src\main\Model\ModalModel.h" />
+    <ClInclude Include="src\main\Model\TextModel.h" />
     <ClInclude Include="src\main\Struct\Border.h" />
     <ClInclude Include="src\main\Struct\BoundingBox.h" />
     <ClInclude Include="src\main\Struct\Color.h" />
@@ -68,6 +76,7 @@
     <ClInclude Include="src\main\View\Button.h" />
     <ClInclude Include="src\main\View\Image.h" />
     <ClInclude Include="src\main\View\RectView.h" />
+    <ClInclude Include="src\main\View\Text.h" />
     <ClInclude Include="src\main\View\ViewGroup.h" />
   </ItemGroup>
   <ItemGroup>
@@ -78,33 +87,38 @@
     <ClCompile Include="src\consoleTest\Model\ButtonModel.test.cpp" />
     <ClCompile Include="src\consoleTest\Model\ImageModel.test.cpp" />
     <ClCompile Include="src\consoleTest\Model\ModalModel.test.cpp" />
+    <ClCompile Include="src\consoleTest\Model\TextModel.test.cpp" />
     <ClCompile Include="src\consoleTest\Struct\Point.test.cpp" />
     <ClCompile Include="src\guiTest\Functions\gui_test.cpp" />
     <ClCompile Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.cpp" />
     <ClCompile Include="src\main\Any\App.cpp" />
+    <ClCompile Include="src\main\Any\Atlas.cpp" />
     <ClCompile Include="src\main\Any\QuadTree.cpp" />
     <ClCompile Include="src\main\Any\Subsystems.cpp" />
     <ClCompile Include="src\main\Any\View.cpp" />
+    <ClCompile Include="src\main\Atlas\GlyphAtlas.cpp" />
+    <ClCompile Include="src\main\Atlas\TextureAtlas.cpp" />
     <ClCompile Include="src\main\Factory\ViewGroupFactory.cpp" />
     <ClCompile Include="src\main\Functions\control_flow.cpp" />
     <ClCompile Include="src\main\Functions\sdl_ext.cpp" />
     <ClCompile Include="src\main\Functions\ttf_ext.cpp" />
-    <ClCompile Include="src\main\Image\Text.cpp" />
     <ClCompile Include="src\main\Model\ButtonModel.cpp" />
     <ClCompile Include="src\main\Model\ImageModel.cpp" />
     <ClCompile Include="src\main\Model\ModalModel.cpp" />
+    <ClCompile Include="src\main\Model\TextModel.cpp" />
     <ClCompile Include="src\main\ViewGroup\Modal.cpp" />
     <ClCompile Include="src\main\View\Button.cpp" />
     <ClCompile Include="src\main\View\Image.cpp" />
     <ClCompile Include="src\main\View\RectView.cpp" />
+    <ClCompile Include="src\main\View\Text.cpp" />
     <ClCompile Include="src\main\View\ViewGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="res\test\arial.ttf" />
+    <Font Include="assets\test\arial.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\test\placeholder1.png" />
-    <Image Include="res\test\placeholder2.png" />
+    <Image Include="assets\test\placeholder1.png" />
+    <Image Include="assets\test\placeholder2.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -228,7 +242,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.2\include;$(ProjectDir)..\libs\viewify-1.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -264,13 +278,13 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GUI_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;SHORT_TERM_ALLOCATOR_SIZE=128u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GUI_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=131072u;SHORT_TERM_ALLOCATOR_SIZE=128u;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.2\include;$(ProjectDir)..\libs\viewify-1.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -295,7 +309,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.2\include;$(ProjectDir)..\libs\viewify-1.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -317,7 +331,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.2\include;$(ProjectDir)..\libs\viewify-1.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -353,13 +367,13 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GUI_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=65536u;SHORT_TERM_ALLOCATOR_SIZE=128u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GUI_TEST;LINEAR_ALLOCATOR;LONG_TERM_ALLOCATOR_SIZE=131072u;SHORT_TERM_ALLOCATOR_SIZE=128u;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.2\include;$(ProjectDir)..\libs\viewify-1.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -384,7 +398,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.3.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.2\include;$(ProjectDir)..\libs\viewify-1.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

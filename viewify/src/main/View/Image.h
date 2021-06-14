@@ -10,11 +10,15 @@
 #include "../Struct/Point.h"
 #include "../Model/ImageModel.h"
 #include "../Any/Enums.h"
+#include "../Atlas/TextureAtlas.h"
+#include "../Any/constants.h"
 
 namespace ii887522::viewify {
 
-// Not Thread Safe: it must only be used in main thread
-// See also ../Any/View.h for more details
+/// <summary>
+///   <para>Not Thread Safe: it must only be used in main thread</para>
+///   <para>See also ../Any/View.h for more details</para>
+/// </summary>
 class Image : public View {
   // remove copy semantics
   Image(const Image&) = delete;
@@ -25,7 +29,7 @@ class Image : public View {
   Image& operator=(Image&&) = delete;
 
  public:
-  // Not Thread Safe
+  /// <summary>Not Thread Safe</summary>
   class Builder final {
     // remove copy semantics
     Builder(const Builder&) = delete;
@@ -35,62 +39,75 @@ class Image : public View {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
-    SDL_Renderer*const renderer;
-    SDL_Surface*const surface;
+    /// <summary>See also ../Any/TextureAtlas.h for more details</summary>
+    TextureAtlas*const atlas;
+
+    /// <summary>
+    ///   <para>SpriteName enum ordinal</para>
+    ///   <para>See also ../Struct/Sprite.h for more details</para>
+    /// </summary>
+    const unsigned int name;
+
     const Point<int> position;
     unsigned int a;
-    unsigned int duration;  // animation duration
-    bool hasSetDuration;  // has set animation duration
+
+    /// <summary>animation duration</summary>
+    unsigned int duration;
+
     const Align align;
     const Rotation rotation;
 
    public:
-    // Param renderer: it must not be assigned to nullptr or integer
-    // Param surface: it must not be assigned to nullptr or integer
-    explicit constexpr Builder(SDL_Renderer*const renderer, SDL_Surface*const surface, const Point<int>& position,
-      const Align align = Align::LEFT, const Rotation rotation = Rotation::NONE) : renderer{ renderer }, surface{ surface }, position{ position }, a{ 255u }, duration{ 0u },
-      hasSetDuration{ false }, align{ align }, rotation{ rotation } { }
+    /// <param name="atlas">It must not be assigned to integer or nullptr</param>
+    explicit constexpr Builder(TextureAtlas*const atlas, const unsigned int name, const Point<int>& position, const Align align = Align::LEFT, const Rotation rotation = Rotation::NONE) :
+      atlas{ atlas }, name{ name }, position{ position }, a{ static_cast<unsigned int>(MAX_A) }, duration{ 1u }  /* See also setDuration(const unsigned int) for more details */,
+      align{ align }, rotation{rotation} { }
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;
       return *this;
     }
 
-    // Animation duration. It must be called at least 1 time before building Image object.
-    // Param value: it must not be assigned to 0
+    /// <summary>Animation duration.</summary>
+    /// <param name="value">It must not be assigned to 0</param>
     constexpr Builder& setDuration(const unsigned int value) {
       duration = value;
-      hasSetDuration = true;
       return *this;
     }
 
-    // It must be called to build Image object.
+    /// <summary>It must be called to build Image object.</summary>
     Image* build();
 
     friend class Image;
   };
 
  private:
+  /// <summary>See also ../Any/TextureAtlas.h for more details</summary>
+  TextureAtlas*const atlas;
+
   ImageModel model;
-  SDL_Surface* surface;
-  SDL_Texture* texture;
+
+  /// <summary>
+  ///   <para>SpriteName enum ordinal</para>
+  ///   <para>See also ../Struct/Sprite.h for more details</para>
+  /// </summary>
+  unsigned int name;
+
   const Align align;
   const Rotation rotation;
-
-  void free();
 
  protected:
   explicit Image(const Builder&);
 
-  // Param p_surface: it must not be assigned to integer
-  void set(SDL_Surface*const p_surface);
+  /// <summary>See also ../Struct/Sprite.h for more details</summary>
+  /// <param name="name">SpriteName enum ordinal</param>
+  void set(const unsigned int name);
 
  public:
   void show() override;
   void hide() override;
   void step(const unsigned int dt) override;
   void render() override;
-  ~Image();
 };
 
 }  // namespace ii887522::viewify
