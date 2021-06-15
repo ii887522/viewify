@@ -124,9 +124,8 @@ struct Score final : public Text {
         .setDuration(1u)
     }, value{ 0u } {
     builder.canIncrement->watch(
-      [this, label, &canIncrement{ *builder.canIncrement }, onValueMax{ builder.onValueMax }, max{ builder.max }](const bool& p_value,
-        const int) {
-      if (!p_value) return;
+      [this, label, &canIncrement{ *builder.canIncrement }, onValueMax{ builder.onValueMax }, max{ builder.max }](const bool&, const bool& newValue, const int) {
+      if (!newValue) return;
       ++value;
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();
@@ -138,8 +137,8 @@ struct Score final : public Text {
       if (value == max) onValueMax();
       canIncrement.set(false);
     });
-    builder.canReset->watch([this, label](const bool& p_value, const int) {
-      if (!p_value) return;
+    builder.canReset->watch([this, label](const bool&, const bool& newValue, const int) {
+      if (!newValue) return;
       value = 0u;
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
       beginShortTermAlloc();

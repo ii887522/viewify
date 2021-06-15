@@ -45,9 +45,9 @@ template <typename T> class Page final : public ViewGroup {
     const MakeViews& makeViews = [](ViewGroup*const self, SDL_Renderer*const renderer) {
       return vector<View*>{ };
     }) : ViewGroup{ renderer, position, makeViews }, isShowing{ false } {
-    currentPath->watch([this, path](const T& value, const int) {
+    currentPath->watch([this, path](const T&, const T& newValue, const int) {
       const auto wasShowing{ isShowing };
-      isShowing = value == path;
+      isShowing = newValue == path;
       if (!wasShowing && isShowing) this->show();
       else if (wasShowing && !isShowing) this->hide();
       ViewGroup::reactMouseMotion(SDL_MouseMotionEvent{ .x = getMousePosition().x, .y = getMousePosition().y });
