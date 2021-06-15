@@ -46,7 +46,11 @@ class ViewGroup : public View {
   /// <summary>See also ../Any/View.h for more details</summary>
   explicit ViewGroup(ViewGroup&& that) noexcept;
 
-  void add(View*const);
+  void add(const vector<View*>&);
+
+  /// <param name="view">It must not be assigned to nullptr or integer</param>
+  void add(View*const view);
+
   void clear();
   Action reactKeyDown(const SDL_KeyboardEvent& keyEvent) override;
   Action reactMouseMotion(const SDL_MouseMotionEvent& motionEvent) override;

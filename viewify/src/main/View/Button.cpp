@@ -68,8 +68,8 @@ Button::Button(const Builder& builder) : View{ builder.renderer, builder.positio
     .setOnClick(builder.onClick)
     .build()
   }, color{ builder.paint.color } {
-  getPosition().watch([this](const Point<int>& value, const int) {
-    model.setPosition(value);
+  getPosition().watch([this](const Point<int>&, const Point<int>& newValue, const int) {
+    model.setPosition(newValue);
   });
 }
 
