@@ -25,8 +25,8 @@ namespace ii887522::viewify {
 
 Modal::Modal(SDL_Renderer*const renderer, const Size<int>& sceneSize, const Point<int>& position, const Paint<int, unsigned int>& paint, Reactive<bool>*const isShowing,
   const unsigned int duration, const MakeViews& makeViews) : ViewGroup{ renderer, position, makeViews }, sceneSize{ sceneSize }, paint{ paint }, isShowing{ *isShowing }, model{ duration } {
-  isShowing->watch([this](const bool& value, const int) {
-    if (value) {
+  isShowing->watch([this](const bool&, const bool& newValue, const int) {
+    if (newValue) {
       model.show();
       ViewGroup::show();
       ViewGroup::reactMouseMotion(SDL_MouseMotionEvent{ .x = getMousePosition().x, .y = getMousePosition().y });
