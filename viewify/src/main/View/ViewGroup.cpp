@@ -36,7 +36,10 @@ void ViewGroup::add(const vector<View*>& p_views) {
 
 void ViewGroup::add(View*const view) {
   views.push_back(view);
-  view->getPosition().set(getPosition().get() + view->getPosition().get());
+  view->getPosition().watch([=](const Point<int>&, const Point<int>& newValue, const int handlerI) {
+    view->getPosition().set(getPosition().get() + newValue, handlerI);
+  });
+  view->getPosition().set(view->getPosition().get());
 }
 
 void ViewGroup::clear() {
