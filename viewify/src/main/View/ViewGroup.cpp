@@ -18,8 +18,8 @@ namespace ii887522::viewify {
 ViewGroup::ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& makeViews, const function<Action(ViewGroup*const self)>& onPreRender,
   const function<Action(ViewGroup*const self)>& onPostRender) : View{ renderer, position }, onPreRender{ onPreRender }, onPostRender{ onPostRender } {
   add(makeViews(this, renderer));
-  getPosition().watch([this](const Point<int>& oldValue, const Point<int>& newValue, const int) {
-    for (const auto view : views) view->getPosition().set(view->getPosition().get() + newValue - oldValue);
+  getPosition().watch([this](const Point<int>& oldValue, const Point<int>&, const int) {
+    for (const auto view : views) view->getPosition().set(view->getPosition().get() - oldValue);
   });
   getPosition().set(getPosition().get());
 }
