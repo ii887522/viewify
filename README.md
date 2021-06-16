@@ -11,6 +11,7 @@ It is a GUI framework based on SDL 2 that can help developers create desktop cli
 - [Build ms-build-tools docker image](https://github.com/ii887522/viewify#build-ms-build-tools-docker-image)
 - [Install dependencies](https://github.com/ii887522/viewify#build-ms-build-tools-docker-image)
 - [Set correct cpplint executable path in .vscode/settings.json](https://github.com/ii887522/viewify#set-correct-cpplint-executable-path-in-vscodesettingsjson)
+- [Pack project](https://github.com/ii887522/viewify#pack-project)
 - [Build project](https://github.com/ii887522/viewify#build-project)
 - [Deploy project](https://github.com/ii887522/viewify#deploy-project)
 
