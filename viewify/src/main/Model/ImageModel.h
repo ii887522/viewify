@@ -40,7 +40,7 @@ class ImageModel final {
     bool hasSetDuration;
 
    public:
-    explicit constexpr Builder(const unsigned int a = static_cast<unsigned int>(MAX_A)) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
+    explicit constexpr Builder(const unsigned int a = static_cast<unsigned int>(MAX_COLOR.a)) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
 
     /// <summary>
     ///   <para>Animation Duration.</para>
@@ -70,7 +70,7 @@ class ImageModel final {
   }
 
   constexpr void show() {
-    a.set(static_cast<int>(MAX_A));
+    a.set(static_cast<int>(MAX_COLOR.a));
   }
 
   constexpr void hide() {

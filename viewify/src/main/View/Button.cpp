@@ -20,7 +20,7 @@ using std::runtime_error;
 namespace ii887522::viewify {
 
 Button::Builder::Builder(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>& paint) :
-  renderer{ renderer }, position{ position }, paint{ paint }, onClick{ onClick }, a{ static_cast<unsigned int>(MAX_A) },
+  renderer{ renderer }, position{ position }, paint{ paint }, onClick{ onClick }, a{ static_cast<unsigned int>(MAX_COLOR.a) },
   aDuration{ 1u  /* See also Button::Builder::setADuration(const unsigned int) for more details */ }, hasSetADuration{ false }, lightnessDuration{ 0u }, hasSetLightnessDuration{ false },
   hasSetOnMouseMove{ false }, hasSetOnMouseOver{ false }, hasSetOnMouseOut{ false }, hasSetOnClick{ false } { }
 
@@ -95,6 +95,7 @@ Action Button::reactMouseLeaveWindow(const SDL_WindowEvent&) {
 
 void Button::show() {
   model.show();
+  model.getOnMouseOver()();
 }
 
 void Button::hide() {
@@ -109,7 +110,7 @@ void Button::step(const unsigned int dt) {
 void Button::render() {
   SDL_SetRenderDrawColor(
     getRenderer(), static_cast<Uint8>(color.r * model.getLightness()), static_cast<Uint8>(color.g * model.getLightness()),
-    static_cast<Uint8>(color.b * model.getLightness()), static_cast<Uint8>(color.a * model.getA() / MAX_A));
+    static_cast<Uint8>(color.b * model.getLightness()), static_cast<Uint8>(color.a * model.getA() / MAX_COLOR.a));
   const SDL_Rect rect{ getPosition().get().x, getPosition().get().y, model.getRect().size.w, model.getRect().size.h };
   SDL_RenderFillRect(getRenderer(), &rect);
 }

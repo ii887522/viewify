@@ -13,6 +13,7 @@
 #include "../Struct/Point.h"
 #include "../Struct/Paint.h"
 #include "../Any/Map.h"
+#include "../Any/constants.h"
 
 using std::nullptr_t;
 
@@ -31,31 +32,69 @@ template <typename T = nullptr_t> class BorderView final : public View {
   BorderView(BorderView&&) = delete;
   BorderView& operator=(BorderView&&) = delete;
 
+ public:
+  /// <summary>Not Thread Safe</summary>
+  class Builder final {
+    // remove copy semantics
+    Builder(const Builder&) = delete;
+    Builder& operator=(const Builder&) = delete;
+
+    // remove move semantics
+    Builder(Builder&&) = delete;
+    Builder& operator=(Builder&&) = delete;
+
+    SDL_Renderer*const renderer;
+    const Point<int> position;
+    const Paint<int, unsigned int> paint;
+    const int width;
+    Map<T>* map;
+    const T cellValue;
+
+   public:
+    /// <param name="renderer">It must not be assigned to nullptr or integer</param>
+    explicit constexpr Builder(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 },
+      const Paint<int, unsigned int>& paint = Paint{ Size{ 3, 3 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } }, const int width = 1, const T& cellValue = nullptr) :
+      renderer{ renderer }, position{ position }, paint{ paint }, width{ width }, map{ nullptr }, cellValue{ cellValue } { }
+
+    constexpr Builder& setMap(Map<T>*const value) {
+      map = value;
+      return *this;
+    }
+
+    BorderView* build() {
+      return new BorderView{ *this };
+    }
+
+    friend class BorderView;
+  };
+
+ private:
   const Border model;
   const Color<unsigned int> color;
 
+  explicit BorderView(const Builder& builder) : View{ builder.renderer, builder.position }, model{ Rect{ builder.position, builder.paint.size }, builder.width },
+    color{ builder.paint.color } {
+    if (builder.map) setCells(builder.map, builder.cellValue);
+  }
+
   /// <param name="map">It must not be assigned to nullptr or integer</param>
   constexpr void setTopCells(Map<T>*const map, const T& cellValue) const {
-    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.w / model.width); ++i)
-      map->set(Point{ i, 0u }, cellValue);
+    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.w / model.width); ++i) (*map)[Point{ i, 0u }] = cellValue;
   }
 
   /// <param name="map">It must not be assigned to nullptr or integer</param>
   constexpr void setRightCells(Map<T>*const map, const T& cellValue) const {
-    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.h / model.width); ++i)
-      map->set(Point{ model.rect.size.w / model.width - 1u, i }, cellValue);
+    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.h / model.width); ++i) (*map)[Point{ model.rect.size.w / model.width - 1u, i }] = cellValue;
   }
 
   /// <param name="map">It must not be assigned to nullptr or integer</param>
   constexpr void setBottomCells(Map<T>*const map, const T& cellValue) const {
-    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.w / model.width); ++i)
-      map->set(Point{ i, model.rect.size.h / model.width - 1u }, cellValue);
+    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.w / model.width); ++i) (*map)[Point{ i, model.rect.size.h / model.width - 1u }] = cellValue;
   }
 
   /// <param name="map">It must not be assigned to nullptr or integer</param>
   constexpr void setLeftCells(Map<T>*const map, const T& cellValue) const {
-    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.h / model.width); ++i)
-      map->set(Point{ 0u, i }, cellValue);
+    for (auto i{ 0u }; i != static_cast<unsigned int>(model.rect.size.h / model.width); ++i) (*map)[Point{ 0u, i }] = cellValue;
   }
 
   /// <param name="map">It must not be assigned to nullptr or integer</param>
@@ -67,13 +106,6 @@ template <typename T = nullptr_t> class BorderView final : public View {
   }
 
  public:
-  /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-  explicit BorderView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>& paint, const int width,
-    Map<T>*const map = nullptr, const T& cellValue = nullptr) : View{ renderer, position }, model{ Rect{ position, paint.size }, width },
-    color{ paint.color } {
-    if (map) setCells(map, cellValue);
-  }
-
   void render() override {
     SDL_SetRenderDrawColor(getRenderer(), static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b), static_cast<Uint8>(color.a));
     const SDL_Rect rects[]{

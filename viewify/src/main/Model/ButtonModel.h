@@ -5,6 +5,7 @@
 
 #include <nitro/nitro.h>
 #include <functional>
+#include "../Struct/Size.h"
 #include "../Struct/Point.h"
 #include "../Struct/Rect.h"
 #include "../Functions/math_ext.h"
@@ -69,7 +70,7 @@ class ButtonModel final {
     bool hasSetOnClick;
 
    public:
-    explicit Builder(const Rect<int>&);
+    explicit Builder(const Rect<int>& = Rect{ Point{ 0, 0 }, Size{ 1, 1 } });
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;
@@ -177,6 +178,10 @@ class ButtonModel final {
     return a.get();
   }
 
+  constexpr const function<void()>& getOnMouseOver() const {
+    return onMouseOver;
+  }
+
   constexpr const function<void()>& getOnMouseOut() const {
     return onMouseOut;
   }
@@ -210,7 +215,7 @@ class ButtonModel final {
   }
 
   constexpr void show() {
-    a.set(static_cast<int>(MAX_A));
+    a.set(static_cast<int>(MAX_COLOR.a));
   }
 
   constexpr void hide() {

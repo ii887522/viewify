@@ -25,7 +25,7 @@ class ModalModel final {
 
  public:
   /// <param name="duration">Animation duration and it must not be assigned to 0</param>
-  explicit ModalModel(const unsigned int aDuration);
+  explicit ModalModel(const unsigned int aDuration = 1u);
 
   constexpr unsigned int getSceneCoverA() const {
     return static_cast<unsigned int>(sceneCoverA.get());
@@ -37,7 +37,7 @@ class ModalModel final {
 
   constexpr void show() {
     sceneCoverA.set(128);
-    a.set(static_cast<int>(MAX_A));
+    a.set(static_cast<int>(MAX_COLOR.a));
   }
 
   constexpr void hide() {

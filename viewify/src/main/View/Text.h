@@ -42,35 +42,61 @@ class Text : public View {
     Builder& operator=(Builder&&) = delete;
 
     /// <summary>See also ../Atlas/GlyphAtlas.h for more details</summary>
-    GlyphAtlas*const atlas;
+    GlyphAtlas* atlas;
+
+    /// <summary>See also ../Atlas/GlyphAtlas.h for more details</summary>
+    bool hasSetAtlas;
 
     /// <summary>FontName enum ordinal</summary>
-    const unsigned int fontName;
+    unsigned int fontName;
 
-    const Point<int> position;
-    const string value;
-    const Color<unsigned int> color;
+    /// <summary>FontName enum ordinal</summary>
+    bool hasSetFontName;
+
     unsigned int fontSize;
     bool hasSetFontSize;
+    const Point<int> position;
+    const string value;
+    Color<unsigned int> color;
     unsigned int a;
 
     /// <summary>Animation duration</summary>
     unsigned int duration;
 
-    const Align align;
+    Align align;
 
    public:
-    /// <summary>See also ../Atlas/GlyphAtlas.h for more details</summary>
-    /// <param name="atlas">It must not be assigned to integer or nullptr</param>
-    /// <param name="fontName">FontName enum ordinal</param>
     /// <param name="value">It must not be assigned to ""</param>
-    explicit Builder(GlyphAtlas*const atlas, const unsigned int fontName, const Point<int>& position, const string& value = " ",
-      const Color<unsigned int>& = Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_A) }, const Align = Align::LEFT);
+    explicit Builder(const Point<int>& position = Point{ 0, 0 }, const string& value = " ");
+
+    /// <summary>
+    ///   <para>It must be called at least 1 time before building Text object.</para>
+    ///   <para>See also ../Atlas/GlyphAtlas.h for more details</para>
+    /// </summary>
+    /// <param name="p_value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setGlyphAtlas(GlyphAtlas*const p_value) {
+      atlas = p_value;
+      hasSetAtlas = true;
+      return *this;
+    }
+
+    /// <summary>It must be called at least 1 time before building Text object.</summary>
+    /// <param name="p_value">FontName enum ordinal</param>
+    constexpr Builder& setFontName(const unsigned int p_value) {
+      fontName = p_value;
+      hasSetFontName = true;
+      return *this;
+    }
 
     /// <summary>It must be called at least 1 time before building Text object.</summary>
     constexpr Builder& setFontSize(const unsigned int p_value) {
       fontSize = p_value;
       hasSetFontSize = true;
+      return *this;
+    }
+
+    constexpr Builder& setColor(const Color<unsigned int>& p_value) {
+      color = p_value;
       return *this;
     }
 
@@ -83,6 +109,11 @@ class Text : public View {
     /// <param name="p_value">It must not be assigned to 0</param>
     constexpr Builder& setDuration(const unsigned int p_value) {
       duration = p_value;
+      return *this;
+    }
+
+    constexpr Builder& setAlign(const Align p_value) {
+      align = p_value;
       return *this;
     }
 

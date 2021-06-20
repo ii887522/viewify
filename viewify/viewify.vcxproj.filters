@@ -99,6 +99,18 @@
     <Filter Include="Console Test Header Files\Any">
       <UniqueIdentifier>{be291439-d6d5-4874-bf2f-c2ebbcc4899c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI Test Header Files\Page">
+      <UniqueIdentifier>{de04d87c-5a37-464a-85e4-f85a211c9a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Test Source Files\Page">
+      <UniqueIdentifier>{ba926899-c5cc-4fd3-8c2c-f7a3b1cdf590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ComponentFactory">
+      <UniqueIdentifier>{b078f9f4-dd83-4b1b-83c9-d292c74aec13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ComponentFactory">
+      <UniqueIdentifier>{c6398fc5-69bf-4370-8d1b-6a2a624be01e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main\Any\App.h">
@@ -191,9 +203,6 @@
     <ClInclude Include="src\main\Functions\ttf_ext.h">
       <Filter>Header Files\Functions</Filter>
     </ClInclude>
-    <ClInclude Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.h">
-      <Filter>GUI Test Header Files\ViewGroupFactory</Filter>
-    </ClInclude>
     <ClInclude Include="src\guiTest\Any\Enums.h">
       <Filter>GUI Test Header Files\Any</Filter>
     </ClInclude>
@@ -229,6 +238,30 @@
     </ClInclude>
     <ClInclude Include="src\main\Model\TextModel.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\Page\Page1Factory.h">
+      <Filter>GUI Test Header Files\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.h">
+      <Filter>GUI Test Header Files\ViewGroupFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\Page\Page2Factory.h">
+      <Filter>GUI Test Header Files\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="src\guiTest\Any\constants.h">
+      <Filter>GUI Test Header Files\Any</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Factory\ComponentFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\ComponentFactory\ListFactory.h">
+      <Filter>Header Files\ComponentFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\ComponentFactory\ListItemFactory.h">
+      <Filter>Header Files\ComponentFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Factory\PageFactory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -307,9 +340,6 @@
     <ClCompile Include="src\guiTest\Functions\gui_test.cpp">
       <Filter>GUI Test Source Files\Functions</Filter>
     </ClCompile>
-    <ClCompile Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
-      <Filter>GUI Test Source Files\ViewGroupFactory</Filter>
-    </ClCompile>
     <ClCompile Include="src\main\Atlas\GlyphAtlas.cpp">
       <Filter>Source Files\Atlas</Filter>
     </ClCompile>
@@ -328,9 +358,30 @@
     <ClCompile Include="src\consoleTest\Model\TextModel.test.cpp">
       <Filter>Console Test Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="src\guiTest\Page\Page1Factory.cpp">
+      <Filter>GUI Test Source Files\Page</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.cpp">
+      <Filter>GUI Test Source Files\ViewGroupFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\guiTest\Page\Page2Factory.cpp">
+      <Filter>GUI Test Source Files\Page</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\ComponentFactory\ListFactory.cpp">
+      <Filter>Source Files\ComponentFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\ComponentFactory\ListItemFactory.cpp">
+      <Filter>Source Files\ComponentFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Factory\ComponentFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\test\arial.ttf">
+      <Filter>Test Assets</Filter>
+    </Font>
+    <Font Include="assets\test\BELL.TTF">
       <Filter>Test Assets</Filter>
     </Font>
   </ItemGroup>

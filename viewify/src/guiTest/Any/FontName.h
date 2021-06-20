@@ -7,6 +7,7 @@ namespace ii887522::viewify {
 
 enum class FontName : unsigned int {
   _ARIAL,
+  _BELL,
 };
 
 }  // namespace ii887522::viewify
