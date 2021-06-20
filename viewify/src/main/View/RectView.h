@@ -12,7 +12,9 @@
 #include "../Struct/Point.h"
 #include "../Struct/Paint.h"
 #include "../Struct/Color.h"
+#include "../Struct/Size.h"
 #include "../Any/Enums.h"
+#include "../Any/constants.h"
 
 using std::function;
 
@@ -37,7 +39,8 @@ class RectView final : public View {
 
  public:
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-  explicit RectView(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&,
+   explicit RectView(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 },
+    const Paint<int, unsigned int>& = Paint{ Size{ 1, 1 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } },
     const function<Action(Rect<int>&, Color<unsigned int>&)>& onPostRender = [](Rect<int>&, Color<unsigned int>&) {
       return Action::NONE;
     });

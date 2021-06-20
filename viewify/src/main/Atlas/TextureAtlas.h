@@ -62,9 +62,48 @@ class TextureAtlas final : public Atlas {
     return sprites[name].isRotated ? Size{ sprites[name].rect.size.h, sprites[name].rect.size.w } : Size{ sprites[name].rect.size.w, sprites[name].rect.size.h };
   }
 
-  /// <summary>See also ii887522::texturePacker::Sprite for more details</summary>
-  /// <param name="name">SpriteName enum ordinal</param>
-  void render(const unsigned int name, const Point<int>& position, const unsigned int a = static_cast<unsigned int>(MAX_A), const Rotation = Rotation::NONE);
+  /// <summary>Not Thread Safe</summary>
+  class Renderer final {
+    // remove copy semantics
+    Renderer(const Renderer&) = delete;
+    Renderer& operator=(const Renderer&) = delete;
+
+    // remove move semantics
+    Renderer(Renderer&&) = delete;
+    Renderer& operator=(Renderer&&) = delete;
+
+    const unsigned int name;
+    Point<int> position;
+    unsigned int a;
+    Rotation rotation;
+
+   public:
+    /// <summary>See also ii887522::texturePacker::Sprite for more details</summary>
+    /// <param name="name">SpriteName enum ordinal</param>
+    explicit constexpr Renderer(const unsigned int name) : name{ name }, position{ 0, 0 }, a{ static_cast<unsigned int>(MAX_COLOR.a) }, rotation{ Rotation::NONE } { }
+
+    constexpr Renderer& setPosition(const Point<int>& value) {
+      position = value;
+      return *this;
+    }
+
+    constexpr Renderer& setA(const unsigned int value) {
+      a = value;
+      return *this;
+    }
+
+    constexpr Renderer& setRotation(const Rotation value) {
+      rotation = value;
+      return *this;
+    }
+
+    /// <summary>
+    ///   <para>It must be called to render a sprite.</para>
+    ///   <para>See also ii887522::texturePacker::Sprite for more details</para>
+    /// </summary>
+    /// <param name="self">It must not be assigned to nullptr or integer</param>
+    void render(TextureAtlas*const self);
+  };
 };
 
 }  // namespace ii887522::viewify

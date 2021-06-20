@@ -1,4 +1,8 @@
 {
   "cpplint.cpplintPath": "",
-  "cpplint.lineLength": 256
+  "cpplint.lineLength": 256,
+  "files.associations": {
+    "*.asm": "asm",
+    "random": "cpp"
+  }
 }

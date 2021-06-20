@@ -39,14 +39,23 @@ class Image : public View {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
-    /// <summary>See also ../Any/TextureAtlas.h for more details</summary>
-    TextureAtlas*const atlas;
+    /// <summary>See also ii887522::texturePacker::Sprite for more details</summary>
+    TextureAtlas* atlas;
+
+    /// <summary>See also ii887522::texturePacker::Sprite for more details</summary>
+    bool hasSetAtlas;
 
     /// <summary>
     ///   <para>SpriteName enum ordinal</para>
-    ///   <para>See also ../Struct/Sprite.h for more details</para>
+    ///   <para>See also ii887522::texturePacker::Sprite for more details</para>
     /// </summary>
-    const unsigned int name;
+    unsigned int name;
+
+    /// <summary>
+    ///   <para>SpriteName enum ordinal</para>
+    ///   <para>See also ii887522::texturePacker::Sprite for more details</para>
+    /// </summary>
+    bool hasSetName;
 
     const Point<int> position;
     unsigned int a;
@@ -54,14 +63,34 @@ class Image : public View {
     /// <summary>animation duration</summary>
     unsigned int duration;
 
-    const Align align;
-    const Rotation rotation;
+    Align align;
+    Rotation rotation;
 
    public:
-    /// <param name="atlas">It must not be assigned to integer or nullptr</param>
-    explicit constexpr Builder(TextureAtlas*const atlas, const unsigned int name, const Point<int>& position, const Align align = Align::LEFT, const Rotation rotation = Rotation::NONE) :
-      atlas{ atlas }, name{ name }, position{ position }, a{ static_cast<unsigned int>(MAX_A) }, duration{ 1u }  /* See also setDuration(const unsigned int) for more details */,
-      align{ align }, rotation{rotation} { }
+     explicit constexpr Builder(const Point<int>& position = Point{ 0, 0 }) : atlas{ nullptr }, hasSetAtlas{ false }, name{ 0u }, hasSetName{ false }, position{ position },
+      a{ static_cast<unsigned int>(MAX_COLOR.a) }, duration{ 1u }  /* See also setDuration(const unsigned int) for more details */, align{ Align::LEFT }, rotation{ Rotation::NONE } { }
+
+    /// <summary>
+    ///   <para>It must be called at least 1 time before building Image object.</para>
+    ///   <para>See also ../Any/TextureAtlas.h for more details</para>
+    /// </summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setTextureAtlas(TextureAtlas*const value) {
+      atlas = value;
+      hasSetAtlas = true;
+      return *this;
+    }
+
+    /// <summary>
+    ///   <para>SpriteName enum ordinal.</para>
+    ///   <para>It must be called at least 1 time before building Image object.</para>
+    ///   <para>See also ii887522::texturePacker::Sprite for more details</para>
+    /// </summary>
+    constexpr Builder& setName(const unsigned int value) {
+      name = value;
+      hasSetName = true;
+      return *this;
+    }
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;
@@ -72,6 +101,16 @@ class Image : public View {
     /// <param name="value">It must not be assigned to 0</param>
     constexpr Builder& setDuration(const unsigned int value) {
       duration = value;
+      return *this;
+    }
+
+    constexpr Builder& setAlign(const Align value) {
+      align = value;
+      return *this;
+    }
+
+    constexpr Builder& setRotation(const Rotation value) {
+      rotation = value;
       return *this;
     }
 
@@ -89,7 +128,7 @@ class Image : public View {
 
   /// <summary>
   ///   <para>SpriteName enum ordinal</para>
-  ///   <para>See also ../Struct/Sprite.h for more details</para>
+  ///   <para>See also ii887522::texturePacker::Sprite for more details</para>
   /// </summary>
   unsigned int name;
 
@@ -99,7 +138,7 @@ class Image : public View {
  protected:
   explicit Image(const Builder&);
 
-  /// <summary>See also ../Struct/Sprite.h for more details</summary>
+  /// <summary>See also ii887522::texturePacker::Sprite for more details</summary>
   /// <param name="name">SpriteName enum ordinal</param>
   void set(const unsigned int name);
 

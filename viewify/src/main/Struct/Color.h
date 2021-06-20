@@ -13,6 +13,10 @@ template <typename T> struct Color final {
 
   explicit constexpr Color() { }
   explicit constexpr Color(const T& r, const T& g, const T& b, const T& a) : r{ r }, g{ g }, b{ b }, a{ a } { }
+
+  template <typename U> explicit constexpr operator Color<U>() const {
+    return Color<U>{ static_cast<U>(r), static_cast<U>(g), static_cast<U>(b), static_cast<U>(a) };
+  }
 };
 
 }  // namespace ii887522::viewify

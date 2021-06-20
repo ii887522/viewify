@@ -23,16 +23,12 @@ template <typename T> class Map final {
   const unsigned int width;
 
  public:
-  explicit constexpr Map(const Size<unsigned int>& size) : cells{ new T[size.w * size.h] }, width{ size.w } {
+  explicit constexpr Map(const Size<unsigned int>& size = Size{ 1u, 1u }) : cells{ new T[size.w * size.h] }, width{ size.w } {
     memset(cells, 0, size.w * size.h * sizeof(T));
   }
 
-  constexpr const T& get(const Point<unsigned int>& position) const {
+  constexpr T& operator[](const Point<unsigned int>& position) {
     return cells[position.y * width + position.x];
-  }
-
-  constexpr void set(const Point<unsigned int>& position, const T& value) {
-    cells[position.y * width + position.x] = value;
   }
 
   ~Map() {

@@ -14,6 +14,8 @@
 #include "Any/View.h"
 #include "Atlas/GlyphAtlas.h"
 #include "Atlas/TextureAtlas.h"
+#include "Components/ListFactory.h"
+#include "Components/ListItemFactory.h"
 #include "Factory/ViewGroupFactory.h"
 #include "Functions/control_flow.h"
 #include "Functions/math_ext.h"

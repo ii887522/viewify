@@ -12,6 +12,9 @@
 #include "../Model/ButtonModel.h"
 #include "../Struct/Paint.h"
 #include "../Any/Enums.h"
+#include "../Struct/Size.h"
+#include "../Struct/Color.h"
+#include "../Any/constants.h"
 
 using std::function;
 
@@ -66,7 +69,8 @@ class Button final : public View {
 
    public:
     /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-    explicit Builder(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>&);
+    explicit Builder(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 },
+      const Paint<int, unsigned int>& = Paint{ Size{ 1, 1 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } });
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;

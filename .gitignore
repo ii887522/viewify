@@ -10,4 +10,5 @@ viewify/**/*.exe*
 viewify/**/*.ilk
 viewify/**/*.log
 viewify/**/*.lib*
+viewify/**/*.json*
 viewify/**/*.FileListAbsolute.txt

@@ -4,6 +4,8 @@
 #define VIEWIFY_SRC_MAIN_STRUCT_BORDER_H_
 
 #include "Rect.h"
+#include "Point.h"
+#include "Size.h"
 
 namespace ii887522::viewify {
 
@@ -19,7 +21,7 @@ struct Border final {
   const Rect<int> rect;
   const int width;
 
-  explicit constexpr Border(const Rect<int>& rect, const int width) : rect{ rect }, width{ width } { }
+  explicit constexpr Border(const Rect<int>& rect = Rect{ Point{ 0, 0 }, Size{ 3, 3 } }, const int width = 1) : rect{ rect }, width{ width } { }
 };
 
 }  // namespace ii887522::viewify

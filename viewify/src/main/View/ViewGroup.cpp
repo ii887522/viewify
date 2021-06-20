@@ -98,8 +98,10 @@ void ViewGroup::checkAndReactHits(const unsigned int dt) {
 }
 
 Action ViewGroup::preRender() {
-  for (auto i{ 0u }; i != views.size(); ++i) {
-    if (views[i]->preRender() == Action::QUIT) return Action::QUIT;
+  for (auto i{ static_cast<int>(views.size() - 1) }; i >= 0; --i) {
+    const auto result{ views[i]->preRender() };
+    if (result == Action::QUIT) return Action::QUIT;
+    else if (result == Action::CONSUME_EVENT) break;
   }
   return onPreRender(this);
 }
@@ -109,8 +111,10 @@ void ViewGroup::render() {
 }
 
 Action ViewGroup::postRender() {
-  for (auto i{ 0u }; i != views.size(); ++i) {
-    if (views[i]->postRender() == Action::QUIT) return Action::QUIT;
+  for (auto i{ static_cast<int>(views.size() - 1) }; i >= 0; --i) {
+    const auto result{ views[i]->postRender() };
+    if (result == Action::QUIT) return Action::QUIT;
+    else if (result == Action::CONSUME_EVENT) break;
   }
   return onPostRender(this);
 }

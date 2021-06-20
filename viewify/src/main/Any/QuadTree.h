@@ -30,7 +30,7 @@ class QuadTree final {
   QuadTree& operator=(QuadTree&&) = delete;
 
   vector<Rect<float>> rects;
-  Rect<float>* const parentRect;
+  Rect<float>*const parentRect;
   QuadTree* topLeft;
   QuadTree* topRight;
   QuadTree* bottomLeft;
@@ -45,7 +45,7 @@ class QuadTree final {
 
  public:
   /// <param name="rect">It is a container rectangle that contains this quad tree</param>
-  explicit QuadTree(const Rect<float>& rect);
+  explicit QuadTree(const Rect<float>& rect = Rect{ Point{ 0.f, 0.f }, Size{ 2.f, 2.f } });
 
   void add(const Rect<float>& rect);
   void add(const vector<Rect<float>>& p_rects);

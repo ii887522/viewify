@@ -10,12 +10,15 @@
 #include "../Model/ImageModel.h"
 #include "../Any/Enums.h"
 #include "../Struct/Size.h"
+#include "../Atlas/TextureAtlas.h"
 
 using std::runtime_error;
 
 namespace ii887522::viewify {
 
 Image* Image::Builder::build() {
+  if (!hasSetAtlas) throw runtime_error{ "Image atlas is required!" };
+  if (!hasSetName) throw runtime_error{ "Image name is required!" };
   return new Image{ *this };
 }
 
@@ -44,7 +47,7 @@ void Image::step(const unsigned int dt) {
 }
 
 void Image::render() {
-  atlas->render(name, getPosition().get(), model.getA(), rotation);
+  TextureAtlas::Renderer{ name }.setPosition(getPosition().get()).setA(model.getA()).setRotation(rotation).render(atlas);
 }
 
 }  // namespace ii887522::viewify

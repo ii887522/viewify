@@ -35,7 +35,7 @@ class ViewGroup : public View {
   ///   <para>See also MakeViews for more details</para>
   /// </summary>
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position, const MakeViews& = [](ViewGroup*const, SDL_Renderer*const) {
+  explicit ViewGroup(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 }, const MakeViews& = [](ViewGroup*const, SDL_Renderer*const) {
     return vector<View*>{ };
   }, const function<Action(ViewGroup*const self)>& onPreRender = [](ViewGroup*const) {
     return Action::NONE;
