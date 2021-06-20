@@ -3,10 +3,12 @@
 #ifndef VIEWIFY_SRC_MAIN_ANY_CONSTANTS_H_
 #define VIEWIFY_SRC_MAIN_ANY_CONSTANTS_H_
 
+#include "../Struct/Color.h"
+
 namespace ii887522::viewify {
 
 constexpr auto NO_FLAGS{ 0u };
-constexpr auto MAX_A{ 255.f };
+constexpr Color MAX_COLOR{ 255.f, 255.f, 255.f, 255.f };
 constexpr auto IMAGE_EXTENSION_NAME{ ".png" };
 constexpr auto BINARY_FILE_EXTENSION_NAME{ ".dat" };
 constexpr auto CHAR_COUNT{ 95u };

@@ -37,22 +37,24 @@ void TextureAtlas::addSurfaces(const string& atlasDirPath) {
   }
 }
 
-void TextureAtlas::render(const unsigned int name, const Point<int>& position, const unsigned int a, const Rotation rotation) {
-  SDL_SetTextureAlphaMod(getTextures()[sprites[name].atlasI], static_cast<Uint8>(a));
-  const SDL_Rect srcRect{ sprites[name].rect.position.x, sprites[name].rect.position.y, sprites[name].rect.size.w, sprites[name].rect.size.h };
+void TextureAtlas::Renderer::render(TextureAtlas*const self) {
+  SDL_SetTextureAlphaMod(self->getTextures()[self->sprites[name].atlasI], static_cast<Uint8>(a));
+  const SDL_Rect srcRect{ self->sprites[name].rect.position.x, self->sprites[name].rect.position.y, self->sprites[name].rect.size.w, self->sprites[name].rect.size.h };
   SDL_FRect dstRect;
-  dstRect.w = static_cast<float>(sprites[name].rect.size.w);
-  dstRect.h = static_cast<float>(sprites[name].rect.size.h);
-  if (sprites[name].isRotated && (rotation == Rotation::NONE || rotation == Rotation::HALF) || rotation == Rotation::QUARTER_CLOCKWISE || rotation == Rotation::QUARTER_COUNTERCLOCKWISE) {
-    dstRect.x = position.x - (sprites[name].rect.size.w - sprites[name].rect.size.h) * .5f;
-    dstRect.y = position.y + (sprites[name].rect.size.w - sprites[name].rect.size.h) * .5f;
+  dstRect.w = static_cast<float>(self->sprites[name].rect.size.w);
+  dstRect.h = static_cast<float>(self->sprites[name].rect.size.h);
+  if (
+    self->sprites[name].isRotated && (rotation == Rotation::NONE || rotation == Rotation::HALF) || rotation == Rotation::QUARTER_CLOCKWISE ||
+    rotation == Rotation::QUARTER_COUNTERCLOCKWISE) {
+    dstRect.x = position.x - (self->sprites[name].rect.size.w - self->sprites[name].rect.size.h) * .5f;
+    dstRect.y = position.y + (self->sprites[name].rect.size.w - self->sprites[name].rect.size.h) * .5f;
   } else {
     dstRect.x = static_cast<float>(position.x);
     dstRect.y = static_cast<float>(position.y);
   }
   SDL_RenderCopyExF(
-    getRenderer(), getTextures()[sprites[name].atlasI], &srcRect, &dstRect, static_cast<double>((sprites[name].isRotated ? -RIGHT_ANGLE : 0) + static_cast<int>(rotation) * RIGHT_ANGLE),
-    nullptr, SDL_FLIP_NONE);
+    self->getRenderer(), self->getTextures()[self->sprites[name].atlasI], &srcRect, &dstRect,
+    static_cast<double>((self->sprites[name].isRotated ? -RIGHT_ANGLE : 0) + static_cast<int>(rotation) * RIGHT_ANGLE), nullptr, SDL_FLIP_NONE);
 }
 
 }  // namespace ii887522::viewify

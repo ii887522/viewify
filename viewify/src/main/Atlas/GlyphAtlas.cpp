@@ -27,8 +27,8 @@ using ii887522::fontPacker::Font;
 
 namespace ii887522::viewify {
 
-GlyphAtlas::GlyphAtlas(SDL_Renderer*const renderer, const string& atlasDirPath) : Atlas{ renderer }, fontMetadatas{ read<Font, vector>(atlasDirPath + "fonts" + BINARY_FILE_EXTENSION_NAME) },
-  glyphs{ read<Glyph, vector>(atlasDirPath + "glyphs" + BINARY_FILE_EXTENSION_NAME) } {
+GlyphAtlas::GlyphAtlas(SDL_Renderer*const renderer, const string& atlasDirPath) : Atlas{ renderer },
+  fontMetadatas{ read<Font, vector>(atlasDirPath + "fonts" + BINARY_FILE_EXTENSION_NAME) }, glyphs{ read<Glyph, vector>(atlasDirPath + "glyphs" + BINARY_FILE_EXTENSION_NAME) } {
   addSurfaces(atlasDirPath);
   addTextures();
   enableAnisotropicFiltering();
@@ -44,14 +44,14 @@ void GlyphAtlas::addSurfaces(const string& atlasDirPath) {
 }
 
 void GlyphAtlas::addKerningSizes(const string& atlasDirPath) {
-  kerningSizes.resize(getTextures().size());
+  kerningSizes.resize(fontMetadatas.size());
   for (auto i{ 0u }; i != kerningSizes.size(); ++i) {
     if (exists(atlasDirPath + "kernings_" + to_string(i) + BINARY_FILE_EXTENSION_NAME))
       kerningSizes[i] = read<int, vector>(atlasDirPath + "kernings_" + to_string(i) + BINARY_FILE_EXTENSION_NAME);
   }
 }
 
-int GlyphAtlas::getTextW(const unsigned int fontName, const unsigned int fontSize, const string& str) {
+int GlyphAtlas::getTextW(const unsigned int fontName, const unsigned int fontSize, const string& str) const {
   auto x{ glyphs[getGlyphI(fontName, str.front())].advance * fontSize / static_cast<float>(fontMetadatas[fontName].size) };
   for (auto i{ 1u }; i != str.size(); ++i)
     x += (glyphs[getGlyphI(fontName, str[i])].advance + (kerningSizes[fontName].empty() ? 0 : kerningSizes[fontName][getKerningSizeI(str[i - 1u], str[i])])) * fontSize /
@@ -59,40 +59,40 @@ int GlyphAtlas::getTextW(const unsigned int fontName, const unsigned int fontSiz
   return static_cast<int>(x);
 }
 
-void GlyphAtlas::render(const unsigned int fontName, const unsigned int fontSize, const char ch, const Point<int>& position, const Color<unsigned int>& color) {
-  SDL_SetTextureColorMod(getTextures()[glyphs[getGlyphI(fontName, ch)].atlasI], static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b));
-  SDL_SetTextureAlphaMod(getTextures()[glyphs[getGlyphI(fontName, ch)].atlasI], static_cast<Uint8>(color.a));
+void GlyphAtlas::CharRenderer::render(GlyphAtlas*const self) {
+  SDL_SetTextureColorMod(self->getTextures()[self->glyphs[getGlyphI(fontName, ch)].atlasI], static_cast<Uint8>(color.r), static_cast<Uint8>(color.g), static_cast<Uint8>(color.b));
+  SDL_SetTextureAlphaMod(self->getTextures()[self->glyphs[getGlyphI(fontName, ch)].atlasI], static_cast<Uint8>(color.a));
   const SDL_Rect srcRect{
-    glyphs[getGlyphI(fontName, ch)].rect.position.x, glyphs[getGlyphI(fontName, ch)].rect.position.y, glyphs[getGlyphI(fontName, ch)].rect.size.w,
-    glyphs[getGlyphI(fontName, ch)].rect.size.h
+    self->glyphs[getGlyphI(fontName, ch)].rect.position.x, self->glyphs[getGlyphI(fontName, ch)].rect.position.y, self->glyphs[getGlyphI(fontName, ch)].rect.size.w,
+    self->glyphs[getGlyphI(fontName, ch)].rect.size.h
   };
   SDL_FRect dstRect;
-  dstRect.w = glyphs[getGlyphI(fontName, ch)].rect.size.w * fontSize / static_cast<float>(fontMetadatas[fontName].size);
-  dstRect.h = glyphs[getGlyphI(fontName, ch)].rect.size.h * fontSize / static_cast<float>(fontMetadatas[fontName].size);
-  if (glyphs[getGlyphI(fontName, ch)].isRotated) {
-    dstRect.x = position.x - ((glyphs[getGlyphI(fontName, ch)].rect.size.w - glyphs[getGlyphI(fontName, ch)].rect.size.h) * .5f) * fontSize /
-      static_cast<float>(fontMetadatas[fontName].size);
-    dstRect.y = position.y + ((glyphs[getGlyphI(fontName, ch)].rect.size.w - glyphs[getGlyphI(fontName, ch)].rect.size.h) * .5f) * fontSize /
-      static_cast<float>(fontMetadatas[fontName].size);
+  dstRect.w = self->glyphs[getGlyphI(fontName, ch)].rect.size.w * fontSize / static_cast<float>(self->fontMetadatas[fontName].size);
+  dstRect.h = self->glyphs[getGlyphI(fontName, ch)].rect.size.h * fontSize / static_cast<float>(self->fontMetadatas[fontName].size);
+  if (self->glyphs[getGlyphI(fontName, ch)].isRotated) {
+    dstRect.x = position.x - ((self->glyphs[getGlyphI(fontName, ch)].rect.size.w - self->glyphs[getGlyphI(fontName, ch)].rect.size.h) * .5f) * fontSize /
+      static_cast<float>(self->fontMetadatas[fontName].size);
+    dstRect.y = position.y + ((self->glyphs[getGlyphI(fontName, ch)].rect.size.w - self->glyphs[getGlyphI(fontName, ch)].rect.size.h) * .5f) * fontSize /
+      static_cast<float>(self->fontMetadatas[fontName].size);
   } else {
-    dstRect.x = position.x * fontSize / static_cast<float>(fontMetadatas[fontName].size);
-    dstRect.y = position.y * fontSize / static_cast<float>(fontMetadatas[fontName].size);
+    dstRect.x = position.x * fontSize / static_cast<float>(self->fontMetadatas[fontName].size);
+    dstRect.y = position.y * fontSize / static_cast<float>(self->fontMetadatas[fontName].size);
   }
   SDL_RenderCopyExF(
-    getRenderer(), getTextures()[glyphs[getGlyphI(fontName, ch)].atlasI], &srcRect, &dstRect, glyphs[getGlyphI(fontName, ch)].isRotated ? static_cast<double>(-RIGHT_ANGLE) : 0.0, nullptr,
-    SDL_FLIP_NONE);
+    self->getRenderer(), self->getTextures()[self->glyphs[getGlyphI(fontName, ch)].atlasI], &srcRect, &dstRect,
+    self->glyphs[getGlyphI(fontName, ch)].isRotated ? static_cast<double>(-RIGHT_ANGLE) : 0.0, nullptr, SDL_FLIP_NONE);
 }
 
-void GlyphAtlas::render(const unsigned int fontName, const unsigned int fontSize, const string& str, const Point<int>& position, const Color<unsigned int>& color) {
-  render(fontName, fontSize, str.front(), position, color);
+void GlyphAtlas::StringRenderer::render(GlyphAtlas*const self) {
+  CharRenderer{ fontName, fontSize, str->front() }.setPosition(position).setColor(color).render(self);
   auto x{ static_cast<int>(
-    position.x + (glyphs[getGlyphI(fontName, str.front())].advance + (kerningSizes[fontName].empty() ? 0 : kerningSizes[fontName][getKerningSizeI(str.front(), str[1u])])) * fontSize /
-    static_cast<float>(fontMetadatas[fontName].size))
+    position.x + (self->glyphs[getGlyphI(fontName, str->front())].advance + (str->size() == 1u || self->kerningSizes[fontName].empty() ? 0 :
+    self->kerningSizes[fontName][getKerningSizeI(str->front(), (*str)[1u])])) * fontSize / static_cast<float>(self->fontMetadatas[fontName].size))
   };
-  for (auto i{ 1u }; i != str.size(); ++i) {
-    render(fontName, fontSize, str[i], Point{ x, position.y }, color);
-    x += static_cast<int>((glyphs[getGlyphI(fontName, str[i])].advance + (kerningSizes[fontName].empty() ? 0 : kerningSizes[fontName][getKerningSizeI(str[i], str[i + 1u])])) * fontSize /
-      static_cast<float>(fontMetadatas[fontName].size));
+  for (auto i{ 1u }; i != str->size(); ++i) {
+    CharRenderer{ fontName, fontSize, (*str)[i] }.setPosition(Point{ x, position.y }).setColor(color).render(self);
+    x += static_cast<int>((self->glyphs[getGlyphI(fontName, (*str)[i])].advance + (self->kerningSizes[fontName].empty() ? 0 :
+      self->kerningSizes[fontName][getKerningSizeI((*str)[i], (*str)[i + 1u])])) * fontSize / static_cast<float>(self->fontMetadatas[fontName].size));
   }
 }
 

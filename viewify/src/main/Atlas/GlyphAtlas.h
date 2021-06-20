@@ -12,6 +12,7 @@
 #include "../Any/Atlas.h"
 #include "../Struct/Color.h"
 #include "../Functions/math_ext.h"
+#include "../Any/constants.h"
 
 using std::vector;
 using std::string;
@@ -69,20 +70,86 @@ class GlyphAtlas final : public Atlas {
 
   /// <summary>See also ii887522::fontPacker::Glyph for more details</summary>
   /// <param name="fontName">FontName enum ordinal</param>
-  constexpr int getGlyphUnrotatedW(const unsigned int fontName, const unsigned int fontSize, const char ch) {
+  constexpr int getGlyphUnrotatedW(const unsigned int fontName, const unsigned int fontSize, const char ch) const {
     return static_cast<int>(glyphs[getGlyphI(fontName, ch)].isRotated ?
       glyphs[getGlyphI(fontName, ch)].rect.size.h * fontSize / static_cast<float>(fontMetadatas[fontName].size) :
       glyphs[getGlyphI(fontName, ch)].rect.size.w * fontSize / static_cast<float>(fontMetadatas[fontName].size));
   }
 
   /// <param name="fontName">FontName enum ordinal</param>
-  int getTextW(const unsigned int fontName, const unsigned int fontSize, const string& str);
+  int getTextW(const unsigned int fontName, const unsigned int fontSize, const string& str) const;
 
-  /// <param name="fontName">FontName enum ordinal</param>
-  void render(const unsigned int fontName, const unsigned int fontSize, const char ch, const Point<int>& position, const Color<unsigned int>& = Color{ 0u, 0u, 0u, 255u });
+  /// <summary>Not Thread Safe</summary>
+  class CharRenderer final {
+    // remove copy semantics
+    CharRenderer(const CharRenderer&) = delete;
+    CharRenderer& operator=(const CharRenderer&) = delete;
 
-  /// <param name="fontName">FontName enum ordinal</param>
-  void render(const unsigned int fontName, const unsigned int fontSize, const string& str, const Point<int>& position, const Color<unsigned int>& = Color{ 0u, 0u, 0u, 255u });
+    // remove move semantics
+    CharRenderer(CharRenderer&&) = delete;
+    CharRenderer& operator=(CharRenderer&&) = delete;
+
+    const unsigned int fontName;
+    const unsigned int fontSize;
+    const char ch;
+    Point<int> position;
+    Color<unsigned int> color;
+
+   public:
+    /// <param name="fontName">FontName enum ordinal</param>
+    explicit constexpr CharRenderer(const unsigned int fontName, const unsigned int fontSize, const char ch) : fontName{ fontName }, fontSize{ fontSize }, ch{ ch }, position{ 0, 0 },
+      color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } { }
+
+    constexpr CharRenderer& setPosition(const Point<int>& value) {
+      position = value;
+      return *this;
+    }
+
+    constexpr CharRenderer& setColor(const Color<unsigned int>& value) {
+      color = value;
+      return *this;
+    }
+
+    /// <summary>It must be called to render a character.</summary>
+    /// <param name="self">It must not be assigned to nullptr or integer</param>
+    void render(GlyphAtlas*const self);
+  };
+
+  /// <summary>Not Thread Safe</summary>
+  class StringRenderer final {
+    // remove copy semantics
+    StringRenderer(const StringRenderer&) = delete;
+    StringRenderer& operator=(const StringRenderer&) = delete;
+
+    // remove move semantics
+    StringRenderer(StringRenderer&&) = delete;
+    StringRenderer& operator=(StringRenderer&&) = delete;
+
+    const unsigned int fontName;
+    const unsigned int fontSize;
+    const string*const str;
+    Point<int> position;
+    Color<unsigned int> color;
+
+   public:
+    /// <param name="fontName">FontName enum ordinal</param>
+    explicit constexpr StringRenderer(const unsigned int fontName, const unsigned int fontSize, const string& str) : fontName{ fontName }, fontSize{ fontSize }, str{ &str },
+      position{ 0, 0 }, color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } { }
+
+    constexpr StringRenderer& setPosition(const Point<int>& value) {
+      position = value;
+      return *this;
+    }
+
+    constexpr StringRenderer& setColor(const Color<unsigned int>& value) {
+      color = value;
+      return *this;
+    }
+
+    /// <summary>It must be called to render a string.</summary>
+    /// <param name="self">It must not be assigned to nullptr or integer</param>
+    void render(GlyphAtlas*const self);
+  };
 };
 
 }  // namespace ii887522::viewify

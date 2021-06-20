@@ -12,7 +12,7 @@ enum class CellType : unsigned int {
 };
 
 enum class Path : unsigned int {
-  MAIN, EMPTY
+  PAGE1, PAGE2
 };
 
 }  // namespace ii887522::viewify

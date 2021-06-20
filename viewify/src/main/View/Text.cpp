@@ -21,11 +21,13 @@ using std::runtime_error;
 
 namespace ii887522::viewify {
 
-Text::Builder::Builder(GlyphAtlas*const atlas, const unsigned int fontName, const Point<int>& position, const string& value, const Color<unsigned int>& color, const Align align) :
-  atlas{ atlas }, fontName{ fontName }, position{ position }, value{ value }, color{ color }, fontSize{ 0u }, hasSetFontSize{ false }, a{ static_cast<unsigned int>(MAX_A) },
-  duration{ 1u  /* See also Text::Builder::setDuration(const unsigned int) for more details */ }, align{ align } { }
+Text::Builder::Builder(const Point<int>& position, const string& value) : atlas{ nullptr }, hasSetAtlas{ false }, fontName{ 0u }, hasSetFontName{ false }, fontSize{ 0u },
+  hasSetFontSize{ false }, position{ position }, value{ value }, color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) }, a{ static_cast<unsigned int>(MAX_COLOR.a) },
+  duration{ 1u  /* See also Text::Builder::setDuration(const unsigned int) for more details */ }, align{ Align::LEFT } { }
 
 Text* Text::Builder::build() {
+  if (!hasSetAtlas) throw runtime_error{ "Text atlas is required!" };
+  if (!hasSetFontName) throw runtime_error{ "Text fontName is required!" };
   if (!hasSetFontSize) throw runtime_error{ "Text fontSize is required!" };
   return new Text{ *this };
 }
@@ -59,7 +61,10 @@ void Text::step(const unsigned int dt) {
 }
 
 void Text::render() {
-  atlas->render(fontName, fontSize, value, getPosition().get(), Color{ color.r, color.g, color.b, static_cast<unsigned int>(color.a * model.getA() / MAX_A) });
+  GlyphAtlas::StringRenderer{ fontName, fontSize, value }
+    .setPosition(getPosition().get())
+    .setColor(Color{ color.r, color.g, color.b, static_cast<unsigned int>(color.a * model.getA() / MAX_COLOR.a) })
+    .render(atlas);
 }
 
 }  // namespace ii887522::viewify
