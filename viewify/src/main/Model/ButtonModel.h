@@ -13,6 +13,7 @@
 
 using std::function;
 using ii887522::nitro::AnimatedAny;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
@@ -45,6 +46,7 @@ class ButtonModel final {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
+    AnimationController*const animationController;
     const Rect<int> rect;
     unsigned int a;
 
@@ -70,7 +72,8 @@ class ButtonModel final {
     bool hasSetOnClick;
 
    public:
-    explicit Builder(const Rect<int>& = Rect{ Point{ 0, 0 }, Size{ 1, 1 } });
+    /// <param name="animationController">It must not be assigned to nullptr or integer</param>
+    explicit Builder(AnimationController*const animationController, const Rect<int>& = Rect{ Point{ 0, 0 }, Size{ 1, 1 } });
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;

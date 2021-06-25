@@ -4,8 +4,10 @@
 #include <nitro/nitro.h>
 
 using ii887522::nitro::AnimatedAny;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
-  ModalModel::ModalModel(const unsigned int aDuration) : sceneCoverA{ AnimatedAny<int>::Builder{ 0 }.setDuration(aDuration).build() },
-    a{ AnimatedAny<int>::Builder{ 0 }.setDuration(aDuration).build() } { }
+  ModalModel::ModalModel(AnimationController*const animationController, const unsigned int aDuration) :
+    sceneCoverA{ AnimatedAny<int>::Builder{ animationController, 0 }.setDuration(aDuration).build() },
+    a{ AnimatedAny<int>::Builder{ animationController, 0 }.setDuration(aDuration).build() } { }
 }

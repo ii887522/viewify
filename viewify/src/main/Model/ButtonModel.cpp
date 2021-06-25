@@ -9,11 +9,13 @@
 
 using std::function;
 using std::runtime_error;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
-ButtonModel::Builder::Builder(const Rect<int>& rect) : rect{ rect }, a{ static_cast<unsigned int>(MAX_COLOR.a) }, aDuration{ 0u }, hasSetADuration{ false }, lightnessDuration{ 0u },
-  hasSetLightnessDuration{ false }, hasSetOnMouseMove{ false }, hasSetOnMouseOver{ false }, hasSetOnMouseOut{ false }, hasSetOnClick{ false } { }
+ButtonModel::Builder::Builder(AnimationController*const animationController, const Rect<int>& rect) : animationController{ animationController }, rect{ rect },
+  a{ static_cast<unsigned int>(MAX_COLOR.a) }, aDuration{ 0u }, hasSetADuration{ false }, lightnessDuration{ 0u }, hasSetLightnessDuration{ false }, hasSetOnMouseMove{ false },
+  hasSetOnMouseOver{ false }, hasSetOnMouseOut{ false }, hasSetOnClick{ false } { }
 
 ButtonModel::Builder& ButtonModel::Builder::setOnMouseMove(const function<void()>& value) {
   onMouseMove = value;
@@ -50,8 +52,8 @@ ButtonModel ButtonModel::Builder::build() {
 }
 
 ButtonModel::ButtonModel(const Builder& builder) : rect{ builder.rect },
-  state{ State::INITIAL }, lightness{ AnimatedAny<float>::Builder{ 1.f }.setDuration(builder.lightnessDuration).build() },
-  a{ AnimatedAny<int>::Builder{ static_cast<int>(builder.a) }.setDuration(builder.aDuration).build() }, onMouseMove{ builder.onMouseMove }, onMouseOver{ builder.onMouseOver },
-  onMouseOut{ builder.onMouseOut }, onClick{ builder.onClick } { }
+  state{ State::INITIAL }, lightness{ AnimatedAny<float>::Builder{ builder.animationController, 1.f }.setDuration(builder.lightnessDuration).build() },
+  a{ AnimatedAny<int>::Builder{ builder.animationController, static_cast<int>(builder.a) }.setDuration(builder.aDuration).build() }, onMouseMove{ builder.onMouseMove },
+  onMouseOver{ builder.onMouseOver }, onMouseOut{ builder.onMouseOut }, onClick{ builder.onClick } { }
 
 }  // namespace ii887522::viewify

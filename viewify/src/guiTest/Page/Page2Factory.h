@@ -14,6 +14,7 @@
 #include "../../main/Atlas/GlyphAtlas.h"
 
 using ii887522::nitro::Reactive;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
@@ -38,6 +39,8 @@ class Page2Factory final : public PageFactory<Path> {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
+    AnimationController* animationController;
+    bool hasSetAnimationController;
     SDL_Renderer* renderer;
     bool hasSetRenderer;
     GlyphAtlas* glyphAtlas;
@@ -48,8 +51,16 @@ class Page2Factory final : public PageFactory<Path> {
     bool hasSetCurrentPath;
 
    public:
-    explicit constexpr Builder() : renderer{ nullptr }, hasSetRenderer{ false }, glyphAtlas{ nullptr }, hasSetGlyphAtlas{ false }, pointer{ nullptr }, hasSetPointer{ false },
-      currentPath{ nullptr }, hasSetCurrentPath{ false } { }
+    explicit constexpr Builder() : animationController{ nullptr }, hasSetAnimationController{ false }, renderer{ nullptr }, hasSetRenderer{ false }, glyphAtlas{ nullptr },
+      hasSetGlyphAtlas{ false }, pointer{ nullptr }, hasSetPointer{ false }, currentPath{ nullptr }, hasSetCurrentPath{ false } { }
+
+    /// <summary>It must be called at least 1 time before building Page2Factory object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setAnimationController(AnimationController*const value) {
+      animationController = value;
+      hasSetAnimationController = true;
+      return *this;
+    }
 
     /// <summary>It must be called at least 1 time before building Page2Factory object.</summary>
     /// <param name="value">It must not be assigned to nullptr or integer</param>
@@ -90,6 +101,7 @@ class Page2Factory final : public PageFactory<Path> {
   };
 
  private:
+  AnimationController*const animationController;
   GlyphAtlas& glyphAtlas;
 
   Page2Factory(const Builder&);

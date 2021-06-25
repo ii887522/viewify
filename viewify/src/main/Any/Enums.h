@@ -5,8 +5,8 @@
 
 namespace ii887522::viewify {
 
-enum class Action : unsigned int {
-  NONE, QUIT, CONSUME_EVENT, RETURN_FROM_CALLER
+enum class EventLoopFlag : unsigned int {
+  NONE, ALWAYS_ANIMATE
 };
 
 enum class Align : unsigned int {

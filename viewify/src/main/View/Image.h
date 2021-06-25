@@ -5,6 +5,7 @@
 
 #ifndef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include "../Any/View.h"
 #include "../Struct/Point.h"
@@ -13,13 +14,15 @@
 #include "../Atlas/TextureAtlas.h"
 #include "../Any/constants.h"
 
+using ii887522::nitro::AnimationController;
+
 namespace ii887522::viewify {
 
 /// <summary>
 ///   <para>Not Thread Safe: it must only be used in main thread</para>
 ///   <para>See also ../Any/View.h for more details</para>
 /// </summary>
-class Image : public View {
+class Image final : public View {
   // remove copy semantics
   Image(const Image&) = delete;
   Image& operator=(const Image&) = delete;
@@ -38,6 +41,9 @@ class Image : public View {
     // remove move semantics
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
+
+    AnimationController* animationController;
+    bool hasSetAnimationController;
 
     /// <summary>See also ii887522::texturePacker::Sprite for more details</summary>
     TextureAtlas* atlas;
@@ -67,8 +73,17 @@ class Image : public View {
     Rotation rotation;
 
    public:
-     explicit constexpr Builder(const Point<int>& position = Point{ 0, 0 }) : atlas{ nullptr }, hasSetAtlas{ false }, name{ 0u }, hasSetName{ false }, position{ position },
-      a{ static_cast<unsigned int>(MAX_COLOR.a) }, duration{ 1u }  /* See also setDuration(const unsigned int) for more details */, align{ Align::LEFT }, rotation{ Rotation::NONE } { }
+    explicit constexpr Builder(const Point<int>& position = Point{ 0, 0 }) : animationController{ nullptr }, hasSetAnimationController{ false }, atlas{ nullptr }, hasSetAtlas{ false },
+      name{ 0u }, hasSetName{ false }, position{ position }, a{ static_cast<unsigned int>(MAX_COLOR.a) }, duration{ 1u }  /* See also setDuration(const unsigned int) for more details */,
+      align{ Align::LEFT }, rotation{ Rotation::NONE } { }
+
+    /// <summary>It must be called at least 1 time before building Image object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setAnimationController(AnimationController*const value) {
+      animationController = value;
+      hasSetAnimationController = true;
+      return *this;
+    }
 
     /// <summary>
     ///   <para>It must be called at least 1 time before building Image object.</para>

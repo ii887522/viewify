@@ -263,6 +263,9 @@
     <ClInclude Include="src\main\Factory\PageFactory.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="src\main\Functions\vector_ext.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp">

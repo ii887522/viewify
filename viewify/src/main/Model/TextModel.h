@@ -7,6 +7,7 @@
 #include "../Any/constants.h"
 
 using ii887522::nitro::AnimatedAny;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
@@ -31,6 +32,7 @@ class TextModel final {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
+    AnimationController*const animationController;
     const unsigned int a;
 
     /// <summary>Animation duration</summary>
@@ -40,7 +42,8 @@ class TextModel final {
     bool hasSetDuration;
 
    public:
-    explicit constexpr Builder(const unsigned int a = static_cast<unsigned int>(MAX_COLOR.a)) : a{ a }, duration{ 0u }, hasSetDuration{ false } { }
+    explicit constexpr Builder(AnimationController*const animationController, const unsigned int a = static_cast<unsigned int>(MAX_COLOR.a)) :
+      animationController{ animationController }, a{ a }, duration{ 0u }, hasSetDuration{ false } { }
 
     /// <summary>
     ///   <para>Animation Duration.</para>

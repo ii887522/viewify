@@ -19,8 +19,8 @@ using std::runtime_error;
 
 namespace ii887522::viewify {
 
-Button::Builder::Builder(SDL_Renderer*const renderer, const Point<int>& position, const Paint<int, unsigned int>& paint) :
-  renderer{ renderer }, position{ position }, paint{ paint }, onClick{ onClick }, a{ static_cast<unsigned int>(MAX_COLOR.a) },
+Button::Builder::Builder(const Point<int>& position, const Paint<int, unsigned int>& paint) : animationController{ nullptr }, hasSetAnimationController{ false }, renderer{ nullptr },
+  hasSetRenderer{ false }, position{ position }, paint{ paint }, onClick{ onClick }, a{ static_cast<unsigned int>(MAX_COLOR.a) },
   aDuration{ 1u  /* See also Button::Builder::setADuration(const unsigned int) for more details */ }, hasSetADuration{ false }, lightnessDuration{ 0u }, hasSetLightnessDuration{ false },
   hasSetOnMouseMove{ false }, hasSetOnMouseOver{ false }, hasSetOnMouseOut{ false }, hasSetOnClick{ false } { }
 
@@ -49,6 +49,8 @@ Button::Builder& Button::Builder::setOnClick(const function<void()>& value) {
 }
 
 Button* Button::Builder::build() {
+  if (!hasSetAnimationController) throw runtime_error{ "Button animationController is required!" };
+  if (!hasSetRenderer) throw runtime_error{ "Button renderer is required!" };
   if (!hasSetLightnessDuration) throw runtime_error{ "Button lightness duration is required!" };
   if (!hasSetOnMouseMove) throw runtime_error{ "Button onMouseMove is required!" };
   if (!hasSetOnMouseOver) throw runtime_error{ "Button onMouseOver is required!" };
@@ -58,7 +60,7 @@ Button* Button::Builder::build() {
 }
 
 Button::Button(const Builder& builder) : View{ builder.renderer, builder.position }, model{
-  ButtonModel::Builder{ Rect{ builder.position, builder.paint.size } }
+  ButtonModel::Builder{ builder.animationController, Rect{ builder.position, builder.paint.size } }
     .setA(builder.a)
     .setADuration(builder.aDuration)
     .setLightnessDuration(builder.lightnessDuration)

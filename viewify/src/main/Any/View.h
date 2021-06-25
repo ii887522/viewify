@@ -8,14 +8,16 @@
 #include <SDL.h>
 #include <nitro/nitro.h>
 #include "../Struct/Point.h"
-#include "../Any/Enums.h"
 
 using ii887522::nitro::Reactive;
+using ii887522::nitro::Action;
 
 namespace ii887522::viewify {
 
 /// <summary>
-///   <para>It represents the basic building block for user interface components. A view occupies a rectangular area on the screen and is responsible for drawing and event handling.</para>
+///   <para>
+///     It represents the basic building block for user interface components. A view occupies a rectangular area on the screen and is responsible for drawing and event handling.
+///   </para>
 ///   <para>Not Thread Safe: it must only be used in main thread</para>
 /// </summary>
 class View {

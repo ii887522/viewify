@@ -14,10 +14,10 @@
 #include "../Struct/Point.h"
 #include "../Any/View.h"
 #include "../Functions/sdl_ext.h"
-#include "../Any/Enums.h"
 #include "../Any/typedefs.h"
 
 using ii887522::nitro::Reactive;
+using ii887522::nitro::Action;
 using std::function;
 using std::vector;
 using std::runtime_error;
@@ -59,9 +59,10 @@ template <typename T> class Page final : public ViewGroup {
    public:
     /// <summary>See also MakeViews for more details</summary>
     /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-    explicit constexpr Builder(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 }, const MakeViews& makeViews = [](ViewGroup*const self, SDL_Renderer*const renderer) {
-      return vector<View*>{ };
-    }) : renderer{ renderer }, position{ position }, makeViews{ makeViews }, hasSetPath{ false }, currentPath{ nullptr }, hasSetCurrentPath{ false } { }
+    explicit constexpr Builder(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 },
+      const MakeViews& makeViews = [](ViewGroup*const self, SDL_Renderer*const renderer) {
+        return vector<View*>{ };
+      }) : renderer{ renderer }, position{ position }, makeViews{ makeViews }, hasSetPath{ false }, currentPath{ nullptr }, hasSetCurrentPath{ false } { }
 
     /// <summary>It must be called at least 1 time before building Page object.</summary>
     constexpr Builder& setPath(const T& value) {
@@ -128,7 +129,7 @@ template <typename T> class Page final : public ViewGroup {
   }
 
   void step(const unsigned int dt) override {
-    if (isShowing) ViewGroup::step(dt);
+    ViewGroup::step(dt);
   }
 
   Action preRender() override {

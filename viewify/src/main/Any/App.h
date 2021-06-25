@@ -5,10 +5,10 @@
 
 #ifndef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include <string>
 #include "../Struct/Size.h"
-#include "Enums.h"
 #include "../View/ViewGroup.h"
 #include "../Factory/ViewGroupFactory.h"
 #include "../Struct/Paint.h"
@@ -16,6 +16,7 @@
 #include "constants.h"  // NOLINT(build/include_subdir)
 
 using std::string;
+using ii887522::nitro::Action;
 
 namespace ii887522::viewify {
 
