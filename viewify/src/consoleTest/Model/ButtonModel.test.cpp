@@ -11,13 +11,15 @@
 #include "../../main/Functions/math_ext.h"
 
 using ii887522::nitro::Range;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
 TEST_CASE("test ButtonModel::Builder::build() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -33,7 +35,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -49,7 +51,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -65,7 +67,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -82,7 +84,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -101,7 +103,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([]() {})
@@ -120,7 +122,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([]() {})
@@ -142,7 +144,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([]() {})
@@ -167,7 +169,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto p{ 0u };
     auto q{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([&q]() {
@@ -194,7 +196,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto p{ 0u };
     auto q{ 0u };
     REQUIRE_THROWS(
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setOnMouseMove([&q]() {
           ++q;
         })
@@ -214,7 +216,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto p{ 0u };
     auto q{ 0u };
     REQUIRE_THROWS(
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([&q]() {
@@ -233,7 +235,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto n{ 0u };
     auto q{ 0u };
     REQUIRE_THROWS(
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([&q]() {
@@ -252,7 +254,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto p{ 0u };
     auto q{ 0u };
     REQUIRE_THROWS(
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseMove([&q]() {
@@ -271,7 +273,7 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
     auto n{ 0u };
     auto p{ 0u };
     REQUIRE_THROWS(
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setADuration(250u)
         .setLightnessDuration(250u)
         .setOnMouseOver([&m]() {
@@ -288,9 +290,10 @@ TEST_CASE("test ButtonModel::Builder::build() function") {
 }
 
 TEST_CASE("test ButtonModel::reactMouseMotion() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -332,7 +335,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -374,7 +377,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -417,7 +420,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -469,7 +472,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -522,7 +525,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -585,7 +588,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -658,7 +661,7 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
     auto p{ 0u };
     auto q{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -737,9 +740,10 @@ TEST_CASE("test ButtonModel::reactMouseMotion() function") {
 }
 
 TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -763,7 +767,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -787,7 +791,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -812,7 +816,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -842,7 +846,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -877,7 +881,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -918,7 +922,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
     auto p{ 0u };
     auto q{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -959,10 +963,11 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonDown() function") {
 }
 
 TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
+  AnimationController animationController;
   {
     auto n{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -992,7 +997,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
   {
     auto n{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1022,7 +1027,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
   {
     auto n{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1052,7 +1057,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
   {
     auto n{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1082,7 +1087,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
   {
     auto n{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1113,7 +1118,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
     auto m{ 1u };
     auto n{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -1149,7 +1154,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
     auto n{ 1u };
     auto p{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1190,7 +1195,7 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
     auto p{ 1u };
     auto q{ 1u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1232,9 +1237,10 @@ TEST_CASE("test ButtonModel::reactLeftMouseButtonUp() function") {
 }
 
 TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1251,7 +1257,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1268,7 +1274,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1286,7 +1292,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1307,7 +1313,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1329,7 +1335,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -1355,7 +1361,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1385,7 +1391,7 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
     auto p{ 0u };
     auto q{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1415,9 +1421,10 @@ TEST_CASE("test ButtonModel::reactMouseLeaveWindow() function") {
 }
 
 TEST_CASE("test ButtonModel::show() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1434,7 +1441,7 @@ TEST_CASE("test ButtonModel::show() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1451,7 +1458,7 @@ TEST_CASE("test ButtonModel::show() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1469,7 +1476,7 @@ TEST_CASE("test ButtonModel::show() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1490,7 +1497,7 @@ TEST_CASE("test ButtonModel::show() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1512,7 +1519,7 @@ TEST_CASE("test ButtonModel::show() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -1538,7 +1545,7 @@ TEST_CASE("test ButtonModel::show() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1568,7 +1575,7 @@ TEST_CASE("test ButtonModel::show() function") {
     auto p{ 0u };
     auto q{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1598,9 +1605,10 @@ TEST_CASE("test ButtonModel::show() function") {
 }
 
 TEST_CASE("test ButtonModel::hide() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1617,7 +1625,7 @@ TEST_CASE("test ButtonModel::hide() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1634,7 +1642,7 @@ TEST_CASE("test ButtonModel::hide() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1652,7 +1660,7 @@ TEST_CASE("test ButtonModel::hide() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1673,7 +1681,7 @@ TEST_CASE("test ButtonModel::hide() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1695,7 +1703,7 @@ TEST_CASE("test ButtonModel::hide() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(125u)
@@ -1721,7 +1729,7 @@ TEST_CASE("test ButtonModel::hide() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1748,9 +1756,10 @@ TEST_CASE("test ButtonModel::hide() function") {
 }
 
 TEST_CASE("test ButtonModel::step() function") {
+  AnimationController animationController;
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 1, 1 }, Size{ 3, 3 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1784,7 +1793,7 @@ TEST_CASE("test ButtonModel::step() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(125u)
@@ -1818,7 +1827,7 @@ TEST_CASE("test ButtonModel::step() function") {
   }
   {
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(250u)
@@ -1853,7 +1862,7 @@ TEST_CASE("test ButtonModel::step() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(0u)
         .setADuration(125u)
         .setLightnessDuration(250u)
@@ -1895,7 +1904,7 @@ TEST_CASE("test ButtonModel::step() function") {
   {
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(125u)
         .setLightnessDuration(250u)
@@ -1938,7 +1947,7 @@ TEST_CASE("test ButtonModel::step() function") {
     auto m{ 0u };
     auto n{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -1989,7 +1998,7 @@ TEST_CASE("test ButtonModel::step() function") {
     auto n{ 0u };
     auto p{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)
@@ -2048,7 +2057,7 @@ TEST_CASE("test ButtonModel::step() function") {
     auto p{ 0u };
     auto q{ 0u };
     ButtonModel model{
-      ButtonModel::Builder{ Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
+      ButtonModel::Builder{ &animationController, Rect{ Point{ 2, 2 }, Size{ 5, 5 } } }
         .setA(1u)
         .setADuration(250u)
         .setLightnessDuration(250u)

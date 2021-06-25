@@ -19,6 +19,7 @@
 
 using std::string;
 using ii887522::nitro::Pair;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
@@ -32,6 +33,8 @@ class ListItemFactory final : public ComponentFactory {
   ListItemFactory(ListItemFactory&&) = delete;
   ListItemFactory& operator=(ListItemFactory&&) = delete;
 
+  AnimationController* animationController;
+  bool hasSetAnimationController;
   GlyphAtlas* glyphAtlas;
   bool hasSetGlyphAtlas;
   unsigned int fontName;
@@ -46,10 +49,18 @@ class ListItemFactory final : public ComponentFactory {
 
  public:
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-  explicit constexpr ListItemFactory(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 }) : ComponentFactory{ renderer, position }, glyphAtlas { nullptr },
-    hasSetGlyphAtlas{ false }, fontName{ 0u }, hasSetFontName{ false }, fontSize{ 0u }, hasSetFontSize{ false }, keyMargin{ 1, 1 }, keyPadding{ 1, 1 },
-    keyPaint{ Size{ 1, 1 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } }, textPair{ " ", " " },
+  explicit constexpr ListItemFactory(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 }) : ComponentFactory{ renderer, position }, animationController{ nullptr },
+    hasSetAnimationController{ false }, glyphAtlas{ nullptr }, hasSetGlyphAtlas{ false }, fontName{ 0u }, hasSetFontName{ false }, fontSize{ 0u }, hasSetFontSize{ false },
+    keyMargin{ 1, 1 }, keyPadding{ 1, 1 }, keyPaint{ Size{ 1, 1 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } }, textPair{ " ", " " },
     textColorPair{ Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } } { }
+
+  /// <summary>It must be called at least 1 time before making ListItem component.</summary>
+  /// <param name="value">It must not be assigned to nullptr or integer</param>
+  constexpr ListItemFactory& setAnimationController(AnimationController*const value) {
+    animationController = value;
+    hasSetAnimationController = true;
+    return *this;
+  }
 
   /// <summary>It must be called at least 1 time before making ListItem component.</summary>
   /// <param name="value">It must not be assigned to nullptr or integer</param>

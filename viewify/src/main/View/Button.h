@@ -5,18 +5,20 @@
 
 #ifndef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include <functional>
 #include "../Any/View.h"
 #include "../Struct/Point.h"
 #include "../Model/ButtonModel.h"
 #include "../Struct/Paint.h"
-#include "../Any/Enums.h"
 #include "../Struct/Size.h"
 #include "../Struct/Color.h"
 #include "../Any/constants.h"
 
 using std::function;
+using ii887522::nitro::AnimationController;
+using ii887522::nitro::Action;
 
 namespace ii887522::viewify {
 
@@ -44,7 +46,10 @@ class Button final : public View {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
-    SDL_Renderer*const renderer;
+    AnimationController* animationController;
+    bool hasSetAnimationController;
+    SDL_Renderer* renderer;
+    bool hasSetRenderer;
     const Point<int> position;
     const Paint<int, unsigned int> paint;
     unsigned int a;
@@ -68,9 +73,23 @@ class Button final : public View {
     bool hasSetOnClick;
 
    public:
-    /// <param name="renderer">It must not be assigned to nullptr or integer</param>
-    explicit Builder(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 },
-      const Paint<int, unsigned int>& = Paint{ Size{ 1, 1 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } });
+    explicit Builder(const Point<int>& position = Point{ 0, 0 }, const Paint<int, unsigned int>& = Paint{ Size{ 1, 1 }, Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) } });
+
+    /// <summary>It must be called at least 1 time before building Button object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setAnimationController(AnimationController*const value) {
+      animationController = value;
+      hasSetAnimationController = true;
+      return *this;
+    }
+
+    /// <summary>It must be called at least 1 time before building Button object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setRenderer(SDL_Renderer*const value) {
+      renderer = value;
+      hasSetRenderer = true;
+      return *this;
+    }
 
     constexpr Builder& setA(const unsigned int value) {
       a = value;

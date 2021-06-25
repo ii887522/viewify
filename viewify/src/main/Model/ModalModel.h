@@ -7,6 +7,7 @@
 #include "../Any/constants.h"
 
 using ii887522::nitro::AnimatedAny;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
@@ -24,8 +25,9 @@ class ModalModel final {
   AnimatedAny<int> a;
 
  public:
+  /// <param name="animationController">It must not be assigned to nullptr or integer</param>
   /// <param name="duration">Animation duration and it must not be assigned to 0</param>
-  explicit ModalModel(const unsigned int aDuration = 1u);
+  explicit ModalModel(AnimationController*const animationController, const unsigned int aDuration = 1u);
 
   constexpr unsigned int getSceneCoverA() const {
     return static_cast<unsigned int>(sceneCoverA.get());

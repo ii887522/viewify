@@ -17,6 +17,7 @@
 #include "../../main/ViewGroup/Page.h"
 
 using ii887522::nitro::Reactive;
+using ii887522::nitro::AnimationController;
 using std::uniform_int_distribution;
 using std::default_random_engine;
 
@@ -43,6 +44,8 @@ class Page1Factory final : public PageFactory<Path> {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
+    AnimationController* animationController;
+    bool hasSetAnimationController;
     SDL_Renderer* renderer;
     bool hasSetRenderer;
     TextureAtlas* textureAtlas;
@@ -55,8 +58,16 @@ class Page1Factory final : public PageFactory<Path> {
     bool hasSetCurrentPath;
 
    public:
-    explicit constexpr Builder() : renderer{ nullptr }, hasSetRenderer{ false }, textureAtlas{ nullptr }, hasSetTextureAtlas{ false }, glyphAtlas{ nullptr }, hasSetGlyphAtlas{ false },
-      pointer{ nullptr }, hasSetPointer{ false }, currentPath{ nullptr }, hasSetCurrentPath{ false } { }
+    explicit constexpr Builder() : animationController{ nullptr }, hasSetAnimationController{ false }, renderer{ nullptr }, hasSetRenderer{ false }, textureAtlas{ nullptr },
+      hasSetTextureAtlas{ false }, glyphAtlas{ nullptr }, hasSetGlyphAtlas{ false }, pointer{ nullptr }, hasSetPointer{ false }, currentPath{ nullptr }, hasSetCurrentPath{ false } { }
+
+    /// <summary>It must be called at least 1 time before building Page1Factory object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setAnimationController(AnimationController*const value) {
+      animationController = value;
+      hasSetAnimationController = true;
+      return *this;
+    }
 
     /// <summary>It must be called at least 1 time before building Page1Factory object.</summary>
     /// <param name="value">It must not be assigned to nullptr or integer</param>
@@ -105,6 +116,7 @@ class Page1Factory final : public PageFactory<Path> {
   };
 
  private:
+  AnimationController*const animationController;
   Reactive<bool> canIncrementScore0;
   Reactive<bool> canResetScore0;
   Reactive<bool> canIncrementScore1;

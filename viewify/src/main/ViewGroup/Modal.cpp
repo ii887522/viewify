@@ -25,10 +25,12 @@ using std::runtime_error;
 
 namespace ii887522::viewify {
 
-Modal::Builder::Builder(const Point<int>& position, const Paint<int, unsigned int>& paint, const MakeViews& makeViews) : renderer{ nullptr }, hasSetRenderer{ false }, sceneSize{ 0, 0 },
-  hasSetSceneSize{ false }, position{ position }, paint{ paint }, isShowing{ nullptr }, hasSetShowing{ false }, duration{ 1u }, makeViews{ makeViews } { }
+Modal::Builder::Builder(const Point<int>& position, const Paint<int, unsigned int>& paint, const MakeViews& makeViews) : animationController{ nullptr }, hasSetAnimationController{ false }
+  , renderer{ nullptr }, hasSetRenderer{ false }, sceneSize{ 0, 0 }, hasSetSceneSize{ false }, position{ position }, paint{ paint }, isShowing{ nullptr }, hasSetShowing{ false },
+  duration{ 1u }, makeViews{ makeViews } { }
 
 Modal* Modal::Builder::build() {
+  if (!hasSetAnimationController) throw runtime_error{ "Modal animationController is required!" };
   if (!hasSetRenderer) throw runtime_error{ "Modal renderer is required!" };
   if (!hasSetSceneSize) throw runtime_error{ "Modal sceneSize is required!" };
   if (!hasSetShowing) throw runtime_error{ "Modal isShowing is required!" };
@@ -36,7 +38,7 @@ Modal* Modal::Builder::build() {
 }
 
 Modal::Modal(const Builder& builder) : ViewGroup{ builder.renderer, builder.position, builder.makeViews }, sceneSize{ builder.sceneSize }, paint{ builder.paint },
-  isShowing{ *builder.isShowing }, model{ builder.duration } {
+  isShowing{ *builder.isShowing }, model{ builder.animationController, builder.duration } {
   isShowing.watch([this](const bool&, const bool& newValue, const int) {
     if (newValue) {
       model.show();
@@ -104,7 +106,6 @@ Action Modal::reactMouseLeaveWindow(const SDL_WindowEvent& windowEvent) {
 }
 
 void Modal::step(const unsigned int dt) {
-  if (!isShowing.get()) return;
   model.step(dt);
   ViewGroup::step(dt);
 }

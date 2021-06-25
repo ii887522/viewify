@@ -21,6 +21,7 @@
 
 using std::function;
 using std::vector;
+using ii887522::nitro::AnimationController;
 using ii887522::nitro::Reactive;
 
 namespace ii887522::viewify {
@@ -49,6 +50,8 @@ class Modal final : public ViewGroup {
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
 
+    AnimationController* animationController;
+    bool hasSetAnimationController;
     SDL_Renderer* renderer;
     bool hasSetRenderer;
     Size<int> sceneSize;
@@ -65,6 +68,14 @@ class Modal final : public ViewGroup {
       const MakeViews& = [](ViewGroup*const, SDL_Renderer*const) {
         return vector<View*>{ };
       });
+
+    /// <summary>It must be called at least 1 time before building Modal object.</summary>
+    /// <param name="value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setAnimationController(AnimationController*const value) {
+      animationController = value;
+      hasSetAnimationController = true;
+      return *this;
+    }
 
     /// <summary>It must be called at least 1 time before building Modal object.</summary>
     /// <param name="value">It must not be assigned to nullptr or integer</param>

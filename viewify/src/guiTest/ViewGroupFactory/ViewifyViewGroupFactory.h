@@ -17,6 +17,7 @@
 #include "../../main/Factory/PageFactory.h"
 
 using ii887522::nitro::Reactive;
+using ii887522::nitro::AnimationController;
 using std::vector;
 
 namespace ii887522::viewify {
@@ -31,6 +32,7 @@ class ViewifyViewGroupFactory final : public ViewGroupFactory {
   ViewifyViewGroupFactory(ViewifyViewGroupFactory&&) = delete;
   ViewifyViewGroupFactory& operator=(ViewifyViewGroupFactory&&) = delete;
 
+  AnimationController*const animationController;
   Reactive<Path> currentPath;
   SDL_Cursor*const pointer;
   TextureAtlas* textureAtlas;
@@ -40,7 +42,8 @@ class ViewifyViewGroupFactory final : public ViewGroupFactory {
   void freePageFactories();
 
  public:
-  ViewifyViewGroupFactory();
+  /// <param name="animationController">It must not be assigned to nullptr or integer</param>
+  ViewifyViewGroupFactory(AnimationController*const animationController);
 
   /// <summary>See also ../View/ViewGroup.h for more details</summary>
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
