@@ -3,6 +3,7 @@
 #ifdef GUI_TEST
 
 #include "ViewifyViewGroupFactory.h"
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include <vector>
 #include "../../main/View/ViewGroup.h"
@@ -16,17 +17,19 @@
 #include "../Page/Page2Factory.h"
 
 using std::vector;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
-ViewifyViewGroupFactory::ViewifyViewGroupFactory() : currentPath{ Path::PAGE1 }, pointer{ SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND) }, textureAtlas{ nullptr }, glyphAtlas{ nullptr }
-{ }
+ViewifyViewGroupFactory::ViewifyViewGroupFactory(AnimationController*const animationController) : animationController{ animationController }, currentPath{ Path::PAGE1 },
+  pointer{ SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND) }, textureAtlas{ nullptr }, glyphAtlas{ nullptr } { }
 
 ViewGroup ViewifyViewGroupFactory::make(SDL_Renderer*const renderer, const Size<int>& size) {
   textureAtlas = new TextureAtlas{ renderer, "res/test/images/" };
   glyphAtlas = new GlyphAtlas{ renderer, "res/test/fonts/" };
   pageFactories = {
     Page1Factory::Builder{ }
+      .setAnimationController(animationController)
       .setRenderer(renderer)
       .setTextureAtlas(textureAtlas)
       .setGlyphAtlas(glyphAtlas)
@@ -34,6 +37,7 @@ ViewGroup ViewifyViewGroupFactory::make(SDL_Renderer*const renderer, const Size<
       .setCurrentPath(&currentPath)
       .build(),
     Page2Factory::Builder{ }
+      .setAnimationController(animationController)
       .setRenderer(renderer)
       .setGlyphAtlas(glyphAtlas)
       .setPointer(pointer)

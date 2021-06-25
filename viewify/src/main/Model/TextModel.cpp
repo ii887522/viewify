@@ -14,6 +14,6 @@ TextModel TextModel::Builder::build() {
   throw runtime_error{ "ImageModel duration is required!" };
 }
 
-TextModel::TextModel(const Builder& builder) : a{ AnimatedAny<int>::Builder{ static_cast<int>(builder.a) }.setDuration(builder.duration).build() } { }
+TextModel::TextModel(const Builder& builder) : a{ AnimatedAny<int>::Builder{ builder.animationController, static_cast<int>(builder.a) }.setDuration(builder.duration).build() } { }
 
 }  // namespace ii887522::viewify

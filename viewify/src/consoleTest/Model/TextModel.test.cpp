@@ -2,61 +2,67 @@
 
 #ifdef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <stdexcept>
 #include <catch.hpp>
 #include "../../main/Model/TextModel.h"
 
 using std::runtime_error;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
 TEST_CASE("test TextModel::Builder::build() function") {
-  REQUIRE(TextModel::Builder{ 0u }.setDuration(125u).build().getA() == 0u);
-  REQUIRE(TextModel::Builder{ 1u }.setDuration(125u).build().getA() == 1u);
-  REQUIRE(TextModel::Builder{ 1u }.setDuration(250u).build().getA() == 1u);
-  REQUIRE_THROWS(TextModel::Builder{ 0u }.build());
-  REQUIRE_THROWS(TextModel::Builder{ 1u }.build());
+  AnimationController animationController;
+  REQUIRE(TextModel::Builder{ &animationController, 0u }.setDuration(125u).build().getA() == 0u);
+  REQUIRE(TextModel::Builder{ &animationController, 1u }.setDuration(125u).build().getA() == 1u);
+  REQUIRE(TextModel::Builder{ &animationController, 1u }.setDuration(250u).build().getA() == 1u);
+  REQUIRE_THROWS(TextModel::Builder{ &animationController, 0u }.build());
+  REQUIRE_THROWS(TextModel::Builder{ &animationController, 1u }.build());
 }
 
 TEST_CASE("test TextModel::show() function") {
+  AnimationController animationController;
   {
-    TextModel model{ TextModel::Builder{ 0u }.setDuration(125u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 0u }.setDuration(125u).build() };
     model.show();
     REQUIRE(model.getA() == 0u);
   }
   {
-    TextModel model{ TextModel::Builder{ 0u }.setDuration(250u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 0u }.setDuration(250u).build() };
     model.show();
     REQUIRE(model.getA() == 0u);
   }
   {
-    TextModel model{ TextModel::Builder{ 1u }.setDuration(250u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 1u }.setDuration(250u).build() };
     model.show();
     REQUIRE(model.getA() == 1u);
   }
 }
 
 TEST_CASE("test TextModel::hide() function") {
+  AnimationController animationController;
   {
-    TextModel model{ TextModel::Builder{ 0u }.setDuration(125u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 0u }.setDuration(125u).build() };
     model.hide();
     REQUIRE(model.getA() == 0u);
   }
   {
-    TextModel model{ TextModel::Builder{ 0u }.setDuration(250u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 0u }.setDuration(250u).build() };
     model.hide();
     REQUIRE(model.getA() == 0u);
   }
   {
-    TextModel model{ TextModel::Builder{ 1u }.setDuration(250u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 1u }.setDuration(250u).build() };
     model.hide();
     REQUIRE(model.getA() == 0u);
   }
 }
 
 TEST_CASE("test TextModel::step() function") {
+  AnimationController animationController;
   {
-    TextModel model{ TextModel::Builder{ 0u }.setDuration(125u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 0u }.setDuration(125u).build() };
     model.show();
     model.step(15u);
     REQUIRE(model.getA() == 30u);
@@ -70,7 +76,7 @@ TEST_CASE("test TextModel::step() function") {
     REQUIRE(model.getA() == 255u);
   }
   {
-    TextModel model{ TextModel::Builder{ 0u }.setDuration(250u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 0u }.setDuration(250u).build() };
     model.show();
     model.step(30u);
     REQUIRE(model.getA() == 30u);
@@ -84,7 +90,7 @@ TEST_CASE("test TextModel::step() function") {
     REQUIRE(model.getA() == 255u);
   }
   {
-    TextModel model{ TextModel::Builder{ 1u }.setDuration(250u).build() };
+    TextModel model{ TextModel::Builder{ &animationController, 1u }.setDuration(250u).build() };
     model.show();
     model.step(30u);
     REQUIRE(model.getA() == 31u);

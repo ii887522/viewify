@@ -5,15 +5,16 @@
 
 #ifndef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include <vector>
 #include <functional>
 #include "../Any/View.h"
-#include "../Any/Enums.h"
 #include "../Any/typedefs.h"
 
 using std::vector;
 using std::function;
+using ii887522::nitro::Action;
 
 namespace ii887522::viewify {
 

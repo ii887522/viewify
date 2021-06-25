@@ -20,6 +20,7 @@
 #include "../Any/constants.h"
 
 using ii887522::nitro::Pair;
+using ii887522::nitro::AnimationController;
 using std::initializer_list;
 using std::string;
 using std::vector;
@@ -36,6 +37,8 @@ class ListFactory final : public ComponentFactory {
   ListFactory(ListFactory&&) = delete;
   ListFactory& operator=(ListFactory&&) = delete;
 
+  AnimationController* animationController;
+  bool hasSetAnimationController;
   GlyphAtlas* glyphAtlas;
   bool hasSetGlyphAtlas;
   unsigned int fontName;
@@ -51,6 +54,14 @@ class ListFactory final : public ComponentFactory {
  public:
   /// <param name="renderer">It must not be assigned to nullptr or integer</param>
   explicit ListFactory(SDL_Renderer*const renderer, const Point<int>& position = Point{ 0, 0 });
+
+  /// <summary>It must be called at least 1 time before making List component.</summary>
+  /// <param name="value">It must not be assigned to nullptr or integer</param>
+  constexpr ListFactory& setAnimationController(AnimationController*const value) {
+    animationController = value;
+    hasSetAnimationController = true;
+    return *this;
+  }
 
   /// <summary>It must be called at least 1 time before making List component.</summary>
   /// <param name="value">It must not be assigned to nullptr or integer</param>

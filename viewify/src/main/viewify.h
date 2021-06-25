@@ -23,6 +23,7 @@
 #include "Functions/math_ext.h"
 #include "Functions/sdl_ext.h"
 #include "Functions/ttf_ext.h"
+#include "Functions/vector_ext.h"
 #include "Model/ButtonModel.h"
 #include "Model/ImageModel.h"
 #include "Model/ModalModel.h"

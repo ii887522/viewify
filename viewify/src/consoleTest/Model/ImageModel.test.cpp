@@ -7,56 +7,61 @@
 #include "../../main/Model/ImageModel.h"
 
 using std::runtime_error;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
 TEST_CASE("test ImageModel::Builder::build() function") {
-  REQUIRE(ImageModel::Builder{ 0u }.setDuration(125u).build().getA() == 0u);
-  REQUIRE(ImageModel::Builder{ 1u }.setDuration(125u).build().getA() == 1u);
-  REQUIRE(ImageModel::Builder{ 1u }.setDuration(250u).build().getA() == 1u);
-  REQUIRE_THROWS(ImageModel::Builder{ 0u }.build());
-  REQUIRE_THROWS(ImageModel::Builder{ 1u }.build());
+  AnimationController animationController;
+  REQUIRE(ImageModel::Builder{ &animationController, 0u }.setDuration(125u).build().getA() == 0u);
+  REQUIRE(ImageModel::Builder{ &animationController, 1u }.setDuration(125u).build().getA() == 1u);
+  REQUIRE(ImageModel::Builder{ &animationController, 1u }.setDuration(250u).build().getA() == 1u);
+  REQUIRE_THROWS(ImageModel::Builder{ &animationController, 0u }.build());
+  REQUIRE_THROWS(ImageModel::Builder{ &animationController, 1u }.build());
 }
 
 TEST_CASE("test ImageModel::show() function") {
+  AnimationController animationController;
   {
-    ImageModel model{ ImageModel::Builder{ 0u }.setDuration(125u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 0u }.setDuration(125u).build() };
     model.show();
     REQUIRE(model.getA() == 0u);
   }
   {
-    ImageModel model{ ImageModel::Builder{ 0u }.setDuration(250u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 0u }.setDuration(250u).build() };
     model.show();
     REQUIRE(model.getA() == 0u);
   }
   {
-    ImageModel model{ ImageModel::Builder{ 1u }.setDuration(250u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 1u }.setDuration(250u).build() };
     model.show();
     REQUIRE(model.getA() == 1u);
   }
 }
 
 TEST_CASE("test ImageModel::hide() function") {
+  AnimationController animationController;
   {
-    ImageModel model{ ImageModel::Builder{ 0u }.setDuration(125u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 0u }.setDuration(125u).build() };
     model.hide();
     REQUIRE(model.getA() == 0u);
   }
   {
-    ImageModel model{ ImageModel::Builder{ 0u }.setDuration(250u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 0u }.setDuration(250u).build() };
     model.hide();
     REQUIRE(model.getA() == 0u);
   }
   {
-    ImageModel model{ ImageModel::Builder{ 1u }.setDuration(250u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 1u }.setDuration(250u).build() };
     model.hide();
     REQUIRE(model.getA() == 0u);
   }
 }
 
 TEST_CASE("test ImageModel::step() function") {
+  AnimationController animationController;
   {
-    ImageModel model{ ImageModel::Builder{ 0u }.setDuration(125u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 0u }.setDuration(125u).build() };
     model.show();
     model.step(15u);
     REQUIRE(model.getA() == 30u);
@@ -70,7 +75,7 @@ TEST_CASE("test ImageModel::step() function") {
     REQUIRE(model.getA() == 255u);
   }
   {
-    ImageModel model{ ImageModel::Builder{ 0u }.setDuration(250u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 0u }.setDuration(250u).build() };
     model.show();
     model.step(30u);
     REQUIRE(model.getA() == 30u);
@@ -84,7 +89,7 @@ TEST_CASE("test ImageModel::step() function") {
     REQUIRE(model.getA() == 255u);
   }
   {
-    ImageModel model{ ImageModel::Builder{ 1u }.setDuration(250u).build() };
+    ImageModel model{ ImageModel::Builder{ &animationController, 1u }.setDuration(250u).build() };
     model.show();
     model.step(30u);
     REQUIRE(model.getA() == 31u);

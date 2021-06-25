@@ -31,6 +31,7 @@ using std::string;
 namespace ii887522::viewify {
 
 Page2Factory* Page2Factory::Builder::build() {
+  if (!hasSetAnimationController) throw runtime_error{ "Page2Factory animationController is required!" };
   if (!hasSetRenderer) throw runtime_error{ "Page2Factory renderer is required!" };
   if (!hasSetGlyphAtlas) throw runtime_error{ "Page2Factory glyphAtlas is required!" };
   if (!hasSetPointer) throw runtime_error{ "Page2Factory pointer is required!" };
@@ -39,13 +40,19 @@ Page2Factory* Page2Factory::Builder::build() {
 }
 
 Page2Factory::Page2Factory(const Builder& builder) : PageFactory{ PageFactory::Builder{ builder.renderer }.setPointer(builder.pointer).setCurrentPath(builder.currentPath) },
-  glyphAtlas{ *builder.glyphAtlas } { }
+  animationController{ builder.animationController }, glyphAtlas{ *builder.glyphAtlas } { }
 
 Page<Path>* Page2Factory::make(const Size<int>& size) {
   return Page<Path>::Builder{ getRenderer(), Point{ 0, 0 }, [=](ViewGroup*const, SDL_Renderer*const p_renderer) {
     return vector<View*>{
-      Text::Builder{ Point{ 16, 16 }, "List" }.setGlyphAtlas(&glyphAtlas).setFontName(static_cast<unsigned int>(FontName::_ARIAL)).setFontSize(32u).build(),
+      Text::Builder{ Point{ 16, 16 }, "List" }
+        .setAnimationController(animationController)
+        .setGlyphAtlas(&glyphAtlas)
+        .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
+        .setFontSize(32u)
+        .build(),
       ListFactory{ p_renderer, Point{ 16, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(32u)
@@ -53,6 +60,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 192, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(32u)
@@ -60,6 +68,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 368, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -67,6 +76,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 464, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -74,6 +84,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 560, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -81,6 +92,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 656, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -88,6 +100,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 752, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -95,6 +108,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 848, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -103,6 +117,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } }, Pair{ string{ " " }, string{ "Item 2" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 944, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -111,6 +126,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ " " }, string{ "Item 1" } }, Pair{ string{ " " }, string{ "Item 2" } }, Pair{ string{ " " }, string{ "Item 3" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 1040, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -119,6 +135,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ "1" }, string{ "Item 1" } }, Pair{ string{ "2" }, string{ "Item 2" } }, Pair{ string{ "3" }, string{ "Item 3" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 1136, 64 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -127,6 +144,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ "1" }, string{ "Item 1" } }, Pair{ string{ "2" }, string{ "Item 2" } }, Pair{ string{ "3" }, string{ "Item 3" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 16, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -136,6 +154,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ "1" }, string{ "Item 1" } }, Pair{ string{ "2" }, string{ "Item 2" } }, Pair{ string{ "3" }, string{ "Item 3" } } })
         .make(),
       ListFactory{ p_renderer, Point{ 144, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -146,6 +165,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 0u, 0u, 255u }, Color{ 0u, 0u, 0u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 272, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -156,6 +176,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 0u, 255u }, Color{ 0u, 0u, 0u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 400, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -166,6 +187,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 255u, 255u }, Color{ 0u, 0u, 0u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 528, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -176,6 +198,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 255u, 128u }, Color{ 0u, 0u, 0u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 656, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -186,6 +209,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 255u, 128u }, Color{ 192u, 0u, 0u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 784, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -196,6 +220,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 255u, 128u }, Color{ 192u, 192u, 0u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 912, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -206,6 +231,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 255u, 128u }, Color{ 192u, 192u, 192u, 255u } })
         .make(),
       ListFactory{ p_renderer, Point{ 1040, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)
@@ -216,6 +242,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextColorPair(Pair{ Color{ 255u, 255u, 255u, 128u }, Color{ 192u, 192u, 192u, 128u } })
         .make(),
       ListFactory{ p_renderer, Point{ 1168, 192 } }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_BELL))
         .setFontSize(16u)
@@ -225,7 +252,9 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setTextPairs({ Pair{ string{ "1" }, string{ "Item 1" } }, Pair{ string{ "2" }, string{ "Item 2" } }, Pair{ string{ "3" }, string{ "Item 3" } } })
         .setTextColorPair(Pair{ Color{ 0u, 0u, 0u, 255u }, Color{ 192u, 192u, 192u, 128u } })
         .make(),
-      Button::Builder{ p_renderer, Point{ (size.w - NAV_BUTTON_SIZE.w) >> 1u, size.h - NAV_BUTTON_SIZE.h - 16 }, Paint{ NAV_BUTTON_SIZE, Color{ 192u, 192u, 255u, 255u } } }
+      Button::Builder{ Point{ (size.w - NAV_BUTTON_SIZE.w) >> 1u, size.h - NAV_BUTTON_SIZE.h - 16 }, Paint{ NAV_BUTTON_SIZE, Color{ 192u, 192u, 255u, 255u } } }
+        .setAnimationController(animationController)
+        .setRenderer(p_renderer)
         .setLightnessDuration(128u)
         .setOnMouseMove([this]() {
           SDL_SetCursor(getPointer());
@@ -239,6 +268,7 @@ Page<Path>* Page2Factory::make(const Size<int>& size) {
         .setOnMouseOver([]() { })
         .build(),
       Text::Builder{ Point{ size.w >> 1u, size.h - NAV_BUTTON_SIZE.h - 2 }, "Prev page" }
+        .setAnimationController(animationController)
         .setGlyphAtlas(&glyphAtlas)
         .setFontName(static_cast<unsigned int>(FontName::_ARIAL))
         .setFontSize(16u)

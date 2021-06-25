@@ -2,20 +2,24 @@
 
 #ifdef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <catch.hpp>
 #include "../../main/Model/ModalModel.h"
+
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
 TEST_CASE("test ModalModel::show() function") {
+  AnimationController animationController;
   {
-    ModalModel model{ 125u };
+    ModalModel model{ &animationController, 125u };
     model.show();
     REQUIRE(model.getSceneCoverA() == 0u);
     REQUIRE(model.getA() == 0u);
   }
   {
-    ModalModel model{ 250u };
+    ModalModel model{ &animationController, 250u };
     model.show();
     REQUIRE(model.getSceneCoverA() == 0u);
     REQUIRE(model.getA() == 0u);
@@ -23,14 +27,15 @@ TEST_CASE("test ModalModel::show() function") {
 }
 
 TEST_CASE("test ModalModel::hide() function") {
+  AnimationController animationController;
   {
-    ModalModel model{ 125u };
+    ModalModel model{ &animationController, 125u };
     model.hide();
     REQUIRE(model.getSceneCoverA() == 0u);
     REQUIRE(model.getA() == 0u);
   }
   {
-    ModalModel model{ 250u };
+    ModalModel model{ &animationController, 250u };
     model.hide();
     REQUIRE(model.getSceneCoverA() == 0u);
     REQUIRE(model.getA() == 0u);
@@ -38,8 +43,9 @@ TEST_CASE("test ModalModel::hide() function") {
 }
 
 TEST_CASE("test ModalModel::step() function") {
+  AnimationController animationController;
   {
-    ModalModel model{ 125u };
+    ModalModel model{ &animationController, 125u };
     model.show();
     model.step(15u);
     REQUIRE(model.getSceneCoverA() == 15u);
@@ -58,7 +64,7 @@ TEST_CASE("test ModalModel::step() function") {
     REQUIRE(model.getA() == 255u);
   }
   {
-    ModalModel model{ 250u };
+    ModalModel model{ &animationController, 250u };
     model.show();
     model.step(30u);
     REQUIRE(model.getSceneCoverA() == 15u);

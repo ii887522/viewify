@@ -5,6 +5,7 @@
 
 #ifndef CONSOLE_TEST
 
+#include <nitro/nitro.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <string>
@@ -17,6 +18,7 @@
 #include "../Atlas/GlyphAtlas.h"
 
 using std::string;
+using ii887522::nitro::AnimationController;
 
 namespace ii887522::viewify {
 
@@ -40,6 +42,9 @@ class Text : public View {
     // remove move semantics
     Builder(Builder&&) = delete;
     Builder& operator=(Builder&&) = delete;
+
+    AnimationController* animationController;
+    bool hasSetAnimationController;
 
     /// <summary>See also ../Atlas/GlyphAtlas.h for more details</summary>
     GlyphAtlas* atlas;
@@ -68,6 +73,14 @@ class Text : public View {
    public:
     /// <param name="value">It must not be assigned to ""</param>
     explicit Builder(const Point<int>& position = Point{ 0, 0 }, const string& value = " ");
+
+    /// <summary>It must be called at least 1 time before building Text object.</summary>
+    /// <param name="p_value">It must not be assigned to nullptr or integer</param>
+    constexpr Builder& setAnimationController(AnimationController*const p_value) {
+      animationController = p_value;
+      hasSetAnimationController = true;
+      return *this;
+    }
 
     /// <summary>
     ///   <para>It must be called at least 1 time before building Text object.</para>

@@ -14,12 +14,15 @@
 #include "../../main/Struct/Color.h"
 #include "../../main/Struct/Paint.h"
 
+using ii887522::nitro::AnimationController;
+
 namespace ii887522::viewify {
 
 static int main(int, char**) {
   const Subsystems subsystems;
-  ViewifyViewGroupFactory viewifyViewGroupFactory;
-  eventLoop(App::Builder{ "Test", Paint{ Size{ 1280, 992 }, Color{ 255u, 255u, 255u, 255u } } }.setSceneFactory(&viewifyViewGroupFactory).build());
+  AnimationController animationController;
+  ViewifyViewGroupFactory viewifyViewGroupFactory{ &animationController };
+  eventLoop(App::Builder{ "Test", Paint{ Size{ 1280, 992 }, Color{ 255u, 255u, 255u, 255u } } }.setSceneFactory(&viewifyViewGroupFactory).build(), &animationController);
   return EXIT_SUCCESS;
 }
 
