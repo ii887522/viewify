@@ -131,9 +131,6 @@
     <ClInclude Include="src\main\Factory\ViewGroupFactory.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="src\main\Functions\control_flow.h">
-      <Filter>Header Files\Functions</Filter>
-    </ClInclude>
     <ClInclude Include="src\main\Functions\math_ext.h">
       <Filter>Header Files\Functions</Filter>
     </ClInclude>
@@ -266,6 +263,9 @@
     <ClInclude Include="src\main\Functions\vector_ext.h">
       <Filter>Header Files\Functions</Filter>
     </ClInclude>
+    <ClInclude Include="src\main\Any\EventLoopBuilder.h">
+      <Filter>Header Files\Any</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main\Any\Subsystems.cpp">
@@ -303,9 +303,6 @@
     </ClCompile>
     <ClCompile Include="src\main\Factory\ViewGroupFactory.cpp">
       <Filter>Source Files\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main\Functions\control_flow.cpp">
-      <Filter>Source Files\Functions</Filter>
     </ClCompile>
     <ClCompile Include="src\main\ViewGroup\Modal.cpp">
       <Filter>Source Files\ViewGroup</Filter>
@@ -378,6 +375,9 @@
     </ClCompile>
     <ClCompile Include="src\main\Factory\ComponentFactory.cpp">
       <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Any\EventLoopBuilder.cpp">
+      <Filter>Source Files\Any</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
