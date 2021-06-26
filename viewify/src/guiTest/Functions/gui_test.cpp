@@ -9,7 +9,7 @@
 #include "../../main/Any/Subsystems.h"
 #include "../ViewGroupFactory/ViewifyViewGroupFactory.h"
 #include "../../main/Any/App.h"
-#include "../../main/Functions/control_flow.h"
+#include "../../main/Any/EventLoopBuilder.h"
 #include "../../main/Struct/Size.h"
 #include "../../main/Struct/Color.h"
 #include "../../main/Struct/Paint.h"
@@ -22,7 +22,8 @@ static int main(int, char**) {
   const Subsystems subsystems;
   AnimationController animationController;
   ViewifyViewGroupFactory viewifyViewGroupFactory{ &animationController };
-  eventLoop(App::Builder{ "Test", Paint{ Size{ 1280, 992 }, Color{ 255u, 255u, 255u, 255u } } }.setSceneFactory(&viewifyViewGroupFactory).build(), &animationController);
+  App app{ App::Builder{ "Test", Paint{ Size{ 1280, 992 }, Color{ 255u, 255u, 255u, 255u } } }.setSceneFactory(&viewifyViewGroupFactory).build() };
+  EventLoopBuilder{ }.setApp(&app).setAnimationController(&animationController).build();
   return EXIT_SUCCESS;
 }
 

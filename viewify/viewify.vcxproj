@@ -47,6 +47,7 @@
     <ClInclude Include="src\main\Any\Atlas.h" />
     <ClInclude Include="src\main\Any\constants.h" />
     <ClInclude Include="src\main\Any\Enums.h" />
+    <ClInclude Include="src\main\Any\EventLoopBuilder.h" />
     <ClInclude Include="src\main\Any\Map.h" />
     <ClInclude Include="src\main\Any\QuadTree.h" />
     <ClInclude Include="src\main\Any\Subsystems.h" />
@@ -59,7 +60,6 @@
     <ClInclude Include="src\main\Factory\ComponentFactory.h" />
     <ClInclude Include="src\main\Factory\PageFactory.h" />
     <ClInclude Include="src\main\Factory\ViewGroupFactory.h" />
-    <ClInclude Include="src\main\Functions\control_flow.h" />
     <ClInclude Include="src\main\Functions\math_ext.h" />
     <ClInclude Include="src\main\Functions\sdl_ext.h" />
     <ClInclude Include="src\main\Functions\ttf_ext.h" />
@@ -103,6 +103,7 @@
     <ClCompile Include="src\guiTest\ViewGroupFactory\ViewifyViewGroupFactory.cpp" />
     <ClCompile Include="src\main\Any\App.cpp" />
     <ClCompile Include="src\main\Any\Atlas.cpp" />
+    <ClCompile Include="src\main\Any\EventLoopBuilder.cpp" />
     <ClCompile Include="src\main\Any\QuadTree.cpp" />
     <ClCompile Include="src\main\Any\Subsystems.cpp" />
     <ClCompile Include="src\main\Any\View.cpp" />
@@ -112,7 +113,6 @@
     <ClCompile Include="src\main\ComponentFactory\ListItemFactory.cpp" />
     <ClCompile Include="src\main\Factory\ComponentFactory.cpp" />
     <ClCompile Include="src\main\Factory\ViewGroupFactory.cpp" />
-    <ClCompile Include="src\main\Functions\control_flow.cpp" />
     <ClCompile Include="src\main\Functions\sdl_ext.cpp" />
     <ClCompile Include="src\main\Functions\ttf_ext.cpp" />
     <ClCompile Include="src\main\Model\ButtonModel.cpp" />
@@ -256,7 +256,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -276,12 +276,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.4.2\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.4.3\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -298,12 +298,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x86;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x86;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x86;$(ProjectDir)..\libs\nitro-1.4.2\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x86;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x86;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x86;$(ProjectDir)..\libs\nitro-1.4.3\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -323,7 +323,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -345,7 +345,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -365,12 +365,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.4.2\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\nitro-1.4.3\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -387,12 +387,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x64;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x64;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x64;$(ProjectDir)..\libs\nitro-1.4.2\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\lib\x64;$(ProjectDir)..\libs\SDL2_image-2.0.5\lib\x64;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\lib\x64;$(ProjectDir)..\libs\nitro-1.4.3\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;nitro.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
@@ -412,7 +412,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.2\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libs\SDL2-2.0.12\include;$(ProjectDir)..\libs\SDL2_image-2.0.5\include;$(ProjectDir)..\libs\SDL2_ttf-2.0.15\include;$(ProjectDir)..\libs\nitro-1.4.3\include;$(ProjectDir)..\libs\texture-packer-1.1.5\include;$(ProjectDir)..\libs\font-packer-1.2.3\include;$(ProjectDir)..\libs\viewify-1.6.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
