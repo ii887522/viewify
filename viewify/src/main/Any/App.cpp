@@ -42,8 +42,14 @@ void App::reactMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent) {
   if (buttonEvent.button == SDL_BUTTON_LEFT) scene.reactLeftMouseButtonUp(buttonEvent);
 }
 
-void App::reactWindowEvent(const SDL_WindowEvent& windowEvent) {
-  if (windowEvent.event == SDL_WINDOWEVENT_LEAVE) scene.reactMouseLeaveWindow(windowEvent);
+Action App::reactWindowEvent(const SDL_WindowEvent& windowEvent) {
+  switch (windowEvent.event) {
+  case SDL_WINDOWEVENT_LEAVE: scene.reactMouseLeaveWindow(windowEvent);
+    break;
+  case SDL_WINDOWEVENT_MINIMIZED: return Action::WINDOW_MINIMIZED;
+  case SDL_WINDOWEVENT_RESTORED: return Action::WINDOW_RESTORED;
+  }
+  return Action::NONE;
 }
 
 Action App::react(const SDL_Event& event) {
@@ -57,7 +63,7 @@ Action App::react(const SDL_Event& event) {
     break;
   case SDL_MOUSEBUTTONUP: reactMouseButtonUp(event.button);
     break;
-  case SDL_WINDOWEVENT: reactWindowEvent(event.window);
+  case SDL_WINDOWEVENT: return reactWindowEvent(event.window);
   }
   return Action::NONE;
 }
@@ -71,7 +77,8 @@ void App::checkAndReactHits(const unsigned int dt) {
 }
 
 void App::renderBackground() {
-  SDL_SetRenderDrawColor(renderer, static_cast<Uint8>(backgroundColor.r), static_cast<Uint8>(backgroundColor.g), static_cast<Uint8>(backgroundColor.b), static_cast<Uint8>(backgroundColor.a));
+  SDL_SetRenderDrawColor(
+    renderer, static_cast<Uint8>(backgroundColor.r), static_cast<Uint8>(backgroundColor.g), static_cast<Uint8>(backgroundColor.b), static_cast<Uint8>(backgroundColor.a));
   SDL_RenderClear(renderer);
 }
 

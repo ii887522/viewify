@@ -78,7 +78,7 @@ class App final {
   explicit App(const Builder&);
   void reactMouseButtonDown(const SDL_MouseButtonEvent& buttonEvent);
   void reactMouseButtonUp(const SDL_MouseButtonEvent& buttonEvent);
-  void reactWindowEvent(const SDL_WindowEvent& windowEvent);
+  Action reactWindowEvent(const SDL_WindowEvent& windowEvent);
   void renderBackground();
   void render();
 
