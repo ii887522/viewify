@@ -20,6 +20,7 @@
 using std::to_string;
 using std::function;
 using std::runtime_error;
+using std::string;
 using ii887522::nitro::AnimationController;
 #if defined LINEAR_ALLOCATOR && defined SHORT_TERM_ALLOCATOR_SIZE
 using ii887522::nitro::beginShortTermAlloc;
@@ -79,8 +80,9 @@ struct Score final : public Text {
 
    public:
     explicit Builder(const Point<int>& position = Point{ 0, 0 }, const Color<unsigned int>& color = Color{ 0u, 0u, 0u, static_cast<unsigned int>(MAX_COLOR.a) },
-      const function<void()>& onValueMax = []() { }) : atlas{ nullptr }, hasSetAtlas{ false }, fontName{ 0u }, hasSetFontName{ false }, fontSize{ 0u }, hasSetFontSize{ false },
-      position{ position }, color{ color }, canIncrement{ nullptr }, hasSetCanIncrement{ false }, canReset{ nullptr }, hasSetCanReset{ false }, max{ max }, onValueMax{ onValueMax } { }
+      const function<void()>& onValueMax = []() { }) : animationController{ nullptr }, hasSetAnimationController{ false }, atlas{ nullptr }, hasSetAtlas{ false }, fontName{ 0u },
+      hasSetFontName{ false }, fontSize{ 0u }, hasSetFontSize{ false }, position{ position }, color{ color }, canIncrement{ nullptr }, hasSetCanIncrement{ false }, canReset{ nullptr },
+      hasSetCanReset{ false }, max{ 0u }, hasSetMax{ false }, onValueMax{ onValueMax } { }
 
     /// <summary>It must be called at least 1 time before building Score object.</summary>
     /// <param name="value">It must not be assigned to nullptr or integer</param>
